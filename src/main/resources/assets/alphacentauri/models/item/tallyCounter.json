@@ -1,0 +1,6 @@
+{
+    "parent":"alphacentauri:item/generic_item",
+    "textures": {
+        "layer0":"alphacentauri:items/tallyCounter"
+    }
+}

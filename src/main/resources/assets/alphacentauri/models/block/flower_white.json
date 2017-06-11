@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "alphacentauri:blocks/flower_white",
+        "cross": "alphacentauri:blocks/flower_white"
+    }
+}

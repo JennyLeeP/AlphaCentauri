@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "alphacentauri:blocks/mushroom_purple"
+    }
+}

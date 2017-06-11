@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=z": { "model": "alphacentauri:acportal_ew" },
+        "axis=x": { "model": "alphacentauri:acportal_ns" }
+    }
+}

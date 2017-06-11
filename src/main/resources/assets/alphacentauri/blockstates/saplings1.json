@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "stage=0,variant=spiral": { 
+          "model": "alphacentauri:spiral_sapling"
+        },
+        "stage=0,variant=splotch": {
+          "model": "alphacentauri:splotch_sapling"
+        },
+        "stage=1,variant=spiral": {
+        "model": "alphacentauri:spiral_sapling"
+        },
+        "stage=1,variant=splotch": {
+        "model": "alphacentauri:splotch_sapling"
+        }
+    }
+}

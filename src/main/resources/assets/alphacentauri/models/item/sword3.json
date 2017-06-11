@@ -1,0 +1,6 @@
+{
+    "parent":"alphacentauri:item/handheld",
+    "textures": {
+        "layer0":"alphacentauri:items/sword3"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "alphacentauri:blocks/log_splotch_top",
+        "side": "alphacentauri:blocks/log_splotch"
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "axis=none,variant=spiral": {
+      "model": "alphacentauri:spiral_bark"
+    },
+    "axis=none,variant=splotch": {
+      "model": "alphacentauri:splotch_bark"
+    },
+    "axis=x,variant=spiral": {
+      "model": "alphacentauri:spiral_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,variant=splotch": {
+      "model": "alphacentauri:splotch_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,variant=spiral": {
+      "model": "alphacentauri:spiral_log"
+    },
+    "axis=y,variant=splotch": {
+      "model": "alphacentauri:splotch_log"
+    },
+    "axis=z,variant=spiral": {
+      "model": "alphacentauri:spiral_log",
+      "x": 90
+    },
+    "axis=z,variant=splotch": {
+      "model": "alphacentauri:splotch_log",
+      "x": 90
+    }
+  }
+}

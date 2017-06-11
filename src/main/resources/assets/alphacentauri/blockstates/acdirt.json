@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "alphacentauri:acdirt" },
+            { "model": "alphacentauri:acdirt", "y": 90 },
+            { "model": "alphacentauri:acdirt", "y": 180 },
+            { "model": "alphacentauri:acdirt", "y": 270 }
+        ]
+    }
+}
