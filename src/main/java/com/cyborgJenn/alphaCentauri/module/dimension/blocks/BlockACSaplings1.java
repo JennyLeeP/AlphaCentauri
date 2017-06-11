@@ -96,7 +96,7 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
         {
             case SPIRAL:
-            	worldgenerator = new WorldGenSpiralTree();
+            	worldgenerator = new WorldGenSpiralTree(true);
             	AlphaCentauri.logger.info("Generate Spiral Tree");
             	break;
             case SPLOTCH:

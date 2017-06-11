@@ -4,9 +4,6 @@ import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.portal.BlockAlphaCentauriPortal;
-
-import cofh.thermalfoundation.ThermalFoundation;
-import cofh.thermalfoundation.init.TFItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;

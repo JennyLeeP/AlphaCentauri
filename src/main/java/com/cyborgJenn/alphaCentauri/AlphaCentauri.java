@@ -31,7 +31,6 @@ import com.cyborgJenn.alphaCentauri.module.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.module.motd.CommandMotd;
 import com.cyborgJenn.alphaCentauri.module.motd.Motd;
 
-import cofh.thermalfoundation.init.TFItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
