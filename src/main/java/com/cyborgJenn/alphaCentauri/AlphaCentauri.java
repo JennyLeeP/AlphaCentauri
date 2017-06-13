@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.cyborgJenn.alphaCentauri.core.handlers.CyborgEventHandler;
 import com.cyborgJenn.alphaCentauri.core.handlers.EventHandlerEntity;
+import com.cyborgJenn.alphaCentauri.core.handlers.WorldEventHandler;
 import com.cyborgJenn.alphaCentauri.core.item.ModItems;
 import com.cyborgJenn.alphaCentauri.core.network.PacketHandler;
 import com.cyborgJenn.alphaCentauri.core.proxy.CommonProxy;
@@ -26,6 +27,8 @@ import com.cyborgJenn.alphaCentauri.module.commands.CommandTps;
 import com.cyborgJenn.alphaCentauri.module.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.command.TeleportCommand;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.BlockColorHandler;
 import com.cyborgJenn.alphaCentauri.module.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.module.motd.CommandMotd;
@@ -44,6 +47,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(
 		modid = Reference.MODID, 
@@ -89,7 +93,9 @@ public class AlphaCentauri {
 		if(Config.enableModuleDimension)
 		{
 			ModBlocks.init();
-			ModBiomes.initBiomes();	
+			ModBiomes.initBiomes();
+			//MinecraftForge.EVENT_BUS.register(new WorldEventHandler());//TODO confirm necessary.
+			//GameRegistry.registerWorldGenerator(new WorldGenBaseTree(), 0);
 		}
 		logger.info("Pre Init Complete..........");
 	}
