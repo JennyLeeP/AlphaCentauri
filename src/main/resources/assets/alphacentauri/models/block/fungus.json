@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "alphacentauri:blocks/acdirt",
+        "top": "alphacentauri:blocks/fungus_top",
+        "side": "alphacentauri:blocks/fungus_side"
+    }
+}

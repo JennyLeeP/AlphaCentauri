@@ -113,7 +113,9 @@ public class ModBlocks {
 	public static Block oreCertus;
 	public static Block oreResonating;
 	public static Block oreYellorite;
+	
 	public static Block Purple_Mushroom;
+	public static Block fungus;
 	
 	public static void init()
 	{
@@ -193,6 +195,7 @@ public class ModBlocks {
 		
 		
 		ALIEN_PLANTS_1 = new BlockAlienPlants1();
+		fungus 		   = new BlockFungus("fungus");
 		//leaves          = new ZetaLeafBlock();
 		
 		

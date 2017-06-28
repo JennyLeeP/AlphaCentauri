@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "snowy=false": { "model": "alphacentauri:fungus" },
+        "snowy=true": { "model": "alphacentauri:acgrass_snowed" }
+    }
+}
