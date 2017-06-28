@@ -5,11 +5,11 @@ import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.core.render.ACSkyRenderer;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
-import com.cyborgJenn.alphaCentauri.core.utils.Registry;
 import com.cyborgJenn.alphaCentauri.module.dimension.biome.ACBiomeProvider;
 import com.cyborgJenn.alphaCentauri.module.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.chunk.AlphaCentauriChunkProvider;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -69,6 +69,7 @@ public class ACWorldProvider extends WorldProvider{
 	/**
      * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
      */
+	@Override
     public boolean isSurfaceWorld()
     {
         return true;
@@ -188,15 +189,17 @@ public class ACWorldProvider extends WorldProvider{
         BlockPos blockpos = new BlockPos(x, 0, z);
         return this.worldObj.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.worldObj.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.acGrass;
     }
+	@Override
 	public boolean getHasNoSky()
     {
         return this.hasNoSky;
     }
-
+	@Override
     public float[] getLightBrightnessTable()
     {
         return this.lightBrightnessTable;
     }
+	@Override
     public WorldBorder createWorldBorder()
     {
         return new WorldBorder();

@@ -5,19 +5,25 @@ import com.cyborgJenn.alphaCentauri.module.dimension.blocks.BlockACSaplings1;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class WorldEventHandler 
 {
-	private int BlockID;
-	/** Used to make the sapling grow the tree **/
-	@EventHandler
-	public void bonemealUsed(BonemealEvent event)
+	/** Used to make the sapling grow the tree 
+	 * @return **/
+	@SubscribeEvent
+	public void onBoneMeal(BonemealEvent event)
 	{
-		if(event.getWorld().getBlockState(event.getPos()).getBlock() == ModBlocks.SAPLINGS1.getDefaultState())
+		AlphaCentauri.logger.info("Bonemeal the things");
+		
+		if (event.getResult() == Result.DEFAULT && event.getBlock().equals(ModBlocks.SAPLINGS1))
 		{
-			AlphaCentauri.logger.info("Bonemeal the things");
-			((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), ModBlocks.SAPLINGS1.getDefaultState());
+			if (!event.getWorld().isRemote)
+			{
+				((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), ModBlocks.SAPLINGS1.getDefaultState());
+			}
+			event.setResult(Result.ALLOW);
 		}
 	}
 }

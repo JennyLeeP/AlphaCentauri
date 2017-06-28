@@ -19,7 +19,6 @@ import com.cyborgJenn.alphaCentauri.core.utils.AlphaCentauriTab;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.core.utils.ListEntities;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
-import com.cyborgJenn.alphaCentauri.core.utils.Registry;
 import com.cyborgJenn.alphaCentauri.module.commands.CommandHeal;
 import com.cyborgJenn.alphaCentauri.module.commands.CommandKill;
 import com.cyborgJenn.alphaCentauri.module.commands.CommandKillall;
@@ -30,6 +29,7 @@ import com.cyborgJenn.alphaCentauri.module.dimension.command.TeleportCommand;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.BlockColorHandler;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 import com.cyborgJenn.alphaCentauri.module.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.module.motd.CommandMotd;
 import com.cyborgJenn.alphaCentauri.module.motd.Motd;
@@ -94,8 +94,6 @@ public class AlphaCentauri {
 		{
 			ModBlocks.init();
 			ModBiomes.initBiomes();
-			//MinecraftForge.EVENT_BUS.register(new WorldEventHandler());//TODO confirm necessary.
-			//GameRegistry.registerWorldGenerator(new WorldGenBaseTree(), 0);
 		}
 		logger.info("Pre Init Complete..........");
 	}
@@ -123,6 +121,8 @@ public class AlphaCentauri {
 			Registry.registerDimension();
 			proxy.registerDimensionRenderers();
 			BlockColorHandler.registerColorHandlers();
+			MinecraftForge.TERRAIN_GEN_BUS.register(new WorldEventHandler());//TODO confirm necessary.
+			GameRegistry.registerWorldGenerator(new WorldGenBaseTree(), 0);
 		}
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		logger.info("Init Complete.............");

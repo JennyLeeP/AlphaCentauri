@@ -92,11 +92,14 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	}
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
+		WorldGenBaseTree treeGen = new WorldGenBaseTree();
+		int i = 0;
+        int j = 0;
 		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
 		{
 			return;
 		}
-		WorldGenBaseTree treeGen = new WorldGenBaseTree();
+		
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
 		{
 		case SPIRAL:
@@ -104,8 +107,8 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			AlphaCentauri.logger.info("Generate Spiral Tree");
 			break;
 		case SPLOTCH:
-			treeGen = new WorldGenSplotchTree();
-			AlphaCentauri.logger.info("Generate Splotch Tree");
+			treeGen = new WorldGenSplotchTree(worldIn, pos);
+			//AlphaCentauri.logger.info("Generate Splotch Tree");
 			break;
 		default:
 			break;

@@ -94,7 +94,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	public int redFlowersPerChunk;
 	public int blackFlowersPerChunk;
 	//World world;
-	public ACBiomeDecorator(Biome par1BiomeGenBase) {
+	public ACBiomeDecorator(Biome biomeGenBase) {
 		super();
 		// TODO chunkprovider settings ?.
 		
@@ -397,6 +397,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	/**
 	 * Standard ore generation helper. Generates most ores.
 	 */
+	@Override
 	protected void genStandardOre1(World worldIn, Random random, int blockCount, WorldGenerator generator, int minHeight, int maxHeight)
 	{
 		if (maxHeight < minHeight)
@@ -429,6 +430,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	 * The main difference between this and {@link #genStandardOre1} is that this takes takes center and spread, while
 	 * genStandardOre1 takes min and max heights.
 	 */
+	@Override
 	protected void genStandardOre2(World worldIn, Random random, int blockCount, WorldGenerator generator, int centerHeight, int spread)
 	{
 		for (int i = 0; i < blockCount; ++i)
