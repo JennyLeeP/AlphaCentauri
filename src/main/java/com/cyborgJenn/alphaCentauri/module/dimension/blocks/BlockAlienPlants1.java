@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class BlockAlienPlants1 extends BlockBush 
 {
-	public BlockAlienPlants1()
+	public BlockAlienPlants1(String name)
 	{
 		
 	}

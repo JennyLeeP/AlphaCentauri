@@ -7,6 +7,7 @@ import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.accessories.gui.GuiAccessory;
 import com.cyborgJenn.alphaCentauri.module.accessories.render.RenderHud;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -129,13 +130,16 @@ public class ClientProxy extends CommonProxy
 		registerItemBlockRender(ModBlocks.oreTin);
 		registerItemBlockRender(ModBlocks.oreUranium);
 		registerItemBlockRender(ModBlocks.oreYellorite);
-		registerItemBlockRender(ModBlocks.fungus);
+		registerItemBlockRender(ModBlocks.FUNGUS);
 		/*   Plants   */
 		registerItemBlockRender(ModBlocks.Purple_Mushroom);
 		registerMetaBlockRender(ModBlocks.LOG1, 0, "spiral_log");
 		registerMetaBlockRender(ModBlocks.LOG1, 1, "splotch_log");
 		registerMetaBlockRender(ModBlocks.SAPLINGS1, 0, "spiral_sapling");
 		registerMetaBlockRender(ModBlocks.SAPLINGS1, 1, "splotch_sapling");
+		
+		registerItemBlockRender(ModBlocks.MOSS);
+		//Registry.blockModelRegister(ModBlocks.MOSS);
 		
 		
 	}

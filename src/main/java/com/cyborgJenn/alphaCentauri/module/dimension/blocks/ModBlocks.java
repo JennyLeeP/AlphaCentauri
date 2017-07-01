@@ -52,7 +52,7 @@ public class ModBlocks {
 	public static Block walls;
 	public static Block fences;
 
-	public static Block sphagnumMoss;
+	public static Block MOSS;
 	public static Block vines;
 
 	public static Block whiteFlower;
@@ -115,7 +115,8 @@ public class ModBlocks {
 	public static Block oreYellorite;
 	
 	public static Block Purple_Mushroom;
-	public static Block fungus;
+	public static Block FUNGUS;
+	public static Block MUSHROOM_BLOCK;
 	
 	public static void init()
 	{
@@ -133,7 +134,7 @@ public class ModBlocks {
 		alphaCentauriPortal     = (BlockAlphaCentauriPortal) new BlockAlphaCentauriPortal("acportal");
 
 		/*  GROUND type  Blocks  */
-		acGrass       = (BlockACGrass) new BlockACGrass("acgrass");
+		acGrass       = (BlockACGrass) new BlockACGrass();
 		//beachGrass    = new BeachGrassBlock("beachGrass");
 		acDirt        = new BlockACDirt("acdirt");
 		peat          = new GenericBlock(2, Material.GROUND, "peat");
@@ -185,7 +186,7 @@ public class ModBlocks {
 		redFlower       = new PlantBlock("flower_red");
 		blackFlower     = new PlantBlock("flower_black");
 
-		sphagnumMoss    = new SphagnumMossBlock(Material.VINE, "sphagnumMoss");
+		MOSS    		= new MossBlock("moss");
 		vines           = new VineBlock("bluemoss");
 		Purple_Mushroom = new PurpleShroom("purple_mushroom");
 		/*  Trees Leaves Saplings  */
@@ -194,8 +195,9 @@ public class ModBlocks {
 		SAPLINGS1       = new BlockACSaplings1();
 		
 		
-		ALIEN_PLANTS_1 = new BlockAlienPlants1();
-		fungus 		   = new BlockFungus("fungus");
+		ALIEN_PLANTS_1 = new BlockAlienPlants1("alien_plants");
+		FUNGUS 		   = new BlockFungus("fungus");
+		MUSHROOM_BLOCK = new BlockAlienMushroom("mushroom_block");
 		//leaves          = new ZetaLeafBlock();
 		
 		

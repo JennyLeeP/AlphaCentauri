@@ -86,8 +86,6 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
     }
 	public void makeTrunk(World worldIn, BlockPos pos, int height)
 	{
-
-
 		for (int i=0; i<=height; i++)
 		{
 			worldIn.setBlockState(pos.up(i), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));

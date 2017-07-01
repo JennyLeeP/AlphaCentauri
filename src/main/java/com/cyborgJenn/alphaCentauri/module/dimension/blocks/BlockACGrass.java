@@ -34,9 +34,10 @@ public class BlockACGrass extends Block implements IGrowable
 {
 	//public static final PropertyBool SNOWY = PropertyBool.create("snowy");
     // TODO Snow
-	public BlockACGrass(String name) 
+	public BlockACGrass() 
 	{
         super(Material.GRASS);
+        String name = "acgrass";
         //this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         this.setTickRandomly(true);
         this.setHardness(1.0F);
@@ -45,6 +46,7 @@ public class BlockACGrass extends Block implements IGrowable
         this.setResistance(25.0F);
         this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setUnlocalizedName(Reference.MODID +"."+ name);
+		//this.setRegistryName(name);
 		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
 		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
     }
