@@ -1,14 +1,15 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "parent": "block/thin_block",
     "textures": {
         "0": "alphacentauri:blocks/moss",
-        "particle": "alphacentauri:blocks/moss"
+        "particle": "alphacentauri:blocks/moss",
+        "inventory": "alphacentauri:blocks/moss"
     },
     "elements": [
         {
             "name": "moss",
             "from": [ 0.0, 0.0, 0.0 ], 
-            "to": [ 16.0, 0.01, 16.0 ], 
+            "to": [ 16.0, 0.1, 16.0 ], 
             "faces": {
                 "up": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
             }

@@ -2,7 +2,6 @@ package com.cyborgJenn.alphaCentauri.module.dimension.blocks;
 
 import javax.annotation.Nullable;
 
-import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.block.BlockBush;

@@ -3,6 +3,7 @@ package com.cyborgJenn.alphaCentauri.module.dimension.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -42,10 +43,7 @@ public class GenericBlock extends Block
 		}
 		else {}
 
-		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		Registry.registerBlock(this, name);
 
 	}
 }

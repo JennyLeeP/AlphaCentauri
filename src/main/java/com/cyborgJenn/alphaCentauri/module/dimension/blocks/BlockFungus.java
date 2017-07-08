@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -17,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -32,18 +34,19 @@ public class BlockFungus extends Block
 	
 	public BlockFungus(String name) 
 	{
-		super(Material.PLANTS);
+		super(Material.GROUND);
 		this.setHardness(1.0F);
         this.blockSoundType = SoundType.PLANT;
         this.setHarvestLevel("shovel", 2);
         this.setResistance(25.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
-        //this.setTickRandomly(true); 
-        this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-        this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		Registry.registerBlock(this, name);
 	}
+	@Override
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
+    {
+		return true;
+    }
 	/**
      * Get the actual Block state of this Block at the given position. This applies properties not visible in the
      * metadata, such as fence connections.
