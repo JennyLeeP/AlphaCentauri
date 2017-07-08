@@ -132,14 +132,16 @@ public class ClientProxy extends CommonProxy
 		registerItemBlockRender(ModBlocks.oreYellorite);
 		registerItemBlockRender(ModBlocks.FUNGUS);
 		/*   Plants   */
-		registerItemBlockRender(ModBlocks.Purple_Mushroom);
+		registerItemBlockRender(ModBlocks.PURPLE_MUSHROOM);
+		registerItemBlockRender(ModBlocks.BLUE_MUSHROOM);
 		registerMetaBlockRender(ModBlocks.LOG1, 0, "spiral_log");
 		registerMetaBlockRender(ModBlocks.LOG1, 1, "splotch_log");
 		registerMetaBlockRender(ModBlocks.SAPLINGS1, 0, "spiral_sapling");
 		registerMetaBlockRender(ModBlocks.SAPLINGS1, 1, "splotch_sapling");
 		
 		registerItemBlockRender(ModBlocks.MOSS);
-		//Registry.blockModelRegister(ModBlocks.MOSS);
+		registerItemBlockRender(ModBlocks.BLOCK_MUSHROOM_PURPLE);
+		registerItemBlockRender(ModBlocks.BLOCK_MUSHROOM_BLUE);
 		
 		
 	}

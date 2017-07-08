@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "alphacentauri:blocks/block_mushroom_blue_inside",
+        "down": "alphacentauri:blocks/block_mushroom_blue_inside",
+        "up": "alphacentauri:blocks/block_mushroom_blue_skin",
+        "north": "alphacentauri:blocks/block_mushroom_blue_skin",
+        "east": "alphacentauri:blocks/block_mushroom_blue_inside",
+        "south": "alphacentauri:blocks/block_mushroom_blue_inside",
+        "west": "alphacentauri:blocks/block_mushroom_blue_skin"
+    }
+}

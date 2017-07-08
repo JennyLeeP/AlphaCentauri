@@ -5,6 +5,7 @@ import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.portal.BlockAlphaCentauriPortal;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -114,9 +115,11 @@ public class ModBlocks {
 	public static Block oreResonating;
 	public static Block oreYellorite;
 	
-	public static Block Purple_Mushroom;
+	public static Block PURPLE_MUSHROOM;
+	public static Block BLUE_MUSHROOM;
 	public static Block FUNGUS;
-	public static Block MUSHROOM_BLOCK;
+	public static Block BLOCK_MUSHROOM_PURPLE;
+	public static Block BLOCK_MUSHROOM_BLUE;
 	
 	public static void init()
 	{
@@ -188,7 +191,7 @@ public class ModBlocks {
 
 		MOSS    		= new MossBlock("moss");
 		vines           = new VineBlock("bluemoss");
-		Purple_Mushroom = new PurpleShroom("purple_mushroom");
+		
 		/*  Trees Leaves Saplings  */
 		LOG1            = new BlockACLog1("log1");
 		PLANKS1         = new BlockACPlanks1();
@@ -196,11 +199,13 @@ public class ModBlocks {
 		
 		
 		ALIEN_PLANTS_1 = new BlockAlienPlants1("alien_plants");
-		FUNGUS 		   = new BlockFungus("fungus");
-		MUSHROOM_BLOCK = new BlockAlienMushroom("mushroom_block");
+		
+		FUNGUS 		    = new BlockFungus("fungus");
+		PURPLE_MUSHROOM = new AlienShroom("purple_mushroom");
+		BLUE_MUSHROOM   = new AlienShroom("blue_mushroom");
+		BLOCK_MUSHROOM_PURPLE = new BlockAlienMushroom("block_mushroom_purple", MapColor.PURPLE, PURPLE_MUSHROOM);
+		BLOCK_MUSHROOM_BLUE   = new BlockAlienMushroom("block_mushroom_blue", MapColor.BLUE, BLUE_MUSHROOM);
 		//leaves          = new ZetaLeafBlock();
-		
-		
 		
 		/* Ores  */
 		oreGold      = new GenericBlock(1, Material.ROCK, "ore_gold");

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "alphacentauri:blocks/block_mushroom_stem",
+        "end": "alphacentauri:blocks/block_mushroom_purple_inside"
+    }
+}

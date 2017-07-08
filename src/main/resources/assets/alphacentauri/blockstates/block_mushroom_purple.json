@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+     "model": "alphacentauri:block_mushroom_purple_cap_all"
+     },
+        "variants": {
+        "variant=north_west": { "model": "alphacentauri:block_mushroom_purple_nw" },
+        "variant=north": { "model": "alphacentauri:block_mushroom_purple_n" },
+        "variant=north_east": { "model": "alphacentauri:block_mushroom_purple_ne" },
+        "variant=west": { "model": "alphacentauri:block_mushroom_purple_w" },
+        "variant=center": { "model": "alphacentauri:block_mushroom_purple_c" },
+        "variant=east": { "model": "alphacentauri:block_mushroom_purple_e" },
+        "variant=south_west": { "model": "alphacentauri:block_mushroom_purple_sw" },
+        "variant=south": { "model": "alphacentauri:block_mushroom_purple_s" },
+        "variant=south_east": { "model": "alphacentauri:block_mushroom_purple_se" },
+        "variant=stem": { "model": "alphacentauri:block_mushroom_purple_stem" },
+        "variant=all_stem": { "model": "alphacentauri:block_mushroom_purple_stem_all" },
+        "variant=all_outside": { "model": "alphacentauri:block_mushroom_purple_cap_all" },
+        "variant=all_inside": { "model": "alphacentauri:block_mushroom_purple_inside_all" },
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}
