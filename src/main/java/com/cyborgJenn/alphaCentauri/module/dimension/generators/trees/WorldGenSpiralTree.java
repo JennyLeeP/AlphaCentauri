@@ -25,19 +25,14 @@ import net.minecraft.world.chunk.IChunkProvider;
 public class WorldGenSpiralTree extends WorldGenBaseTree
 {
 	private ArrayList<BlockPos> RSIDES = new ArrayList<BlockPos>();
-	private final World world;
-	private Random rand = new Random();
-	private final BlockPos pos;
 	private final int BaseHeight = 5;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL);
 	private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
 	public WorldGenSpiralTree(World world,BlockPos pos)
 	{
-		super(true);
+		super(true, world, pos);
 		addSides();
-		this.pos = pos;
-		this.world = world;
 		this.gen();// TODO fix hacky tree gen.
 	}
 	@Override
