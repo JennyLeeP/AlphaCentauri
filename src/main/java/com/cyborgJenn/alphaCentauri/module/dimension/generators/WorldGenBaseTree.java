@@ -19,7 +19,7 @@ public class WorldGenBaseTree implements IWorldGenerator
 {
 	private final boolean doBlockNotify;
 	protected final World world;
-	protected Random rand = new Random();
+	//protected Random rand = new Random();
 	protected final BlockPos pos;
 
 	public WorldGenBaseTree(boolean notify, World world, BlockPos pos)
@@ -30,11 +30,6 @@ public class WorldGenBaseTree implements IWorldGenerator
     }
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
-	{
-		
-	}
-	
-	public void generateTree(World world, Random rand, BlockPos pos)
 	{
 		
 	}
@@ -50,7 +45,7 @@ public class WorldGenBaseTree implements IWorldGenerator
             worldIn.setBlockState(pos, state, 2);
         }
     }
-	protected void setDirt(World worldIn, IBlockState block, BlockPos pos)
+	protected void setDirt(World worldIn, IBlockState block)
 	{
 		if (block == ModBlocks.acGrass.getDefaultState())
 		{
@@ -169,7 +164,7 @@ public class WorldGenBaseTree implements IWorldGenerator
 		case EAST:
 			return pos.getX() + x;
 		case WEST:
-			return pos.getX() + x;
+			return pos.getX() - x;
 		default:
 			return x;
 		}    	
@@ -190,7 +185,7 @@ public class WorldGenBaseTree implements IWorldGenerator
 		case EAST:
 			return pos.getZ() + z;
 		case WEST:
-			return pos.getZ() + z;
+			return pos.getZ() - z;
 		default:
 			return z;
 		}  

@@ -1,14 +1,14 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators.trees;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.BlockACLog1;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.BlockACPlanks1;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -24,7 +24,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class WorldGenSpiralTree extends WorldGenBaseTree
 {
-	private ArrayList<BlockPos> RSIDES = new ArrayList<BlockPos>();
 	private final int BaseHeight = 5;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL);
 	private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
@@ -32,21 +31,16 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	public WorldGenSpiralTree(World world,BlockPos pos)
 	{
 		super(true, world, pos);
-		addSides();
-		this.gen();// TODO fix hacky tree gen.
+		this.generateTree(world, new Random());// TODO fix hacky tree gen.
 	}
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		this.generateTree(world, random, pos);
+		this.generateTree(world, random);
 	}
-	@Override
-	public void generateTree(World worldIn, Random rand, BlockPos pos) 
+
+	public void generateTree(World worldIn, Random rand) 
 	{
-		EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
-		int j = pos.getX();
-        int k = pos.getY();
-        int l = pos.getZ();
         
 		if (this.isValidLocation(worldIn, pos, false))
 		{
@@ -54,41 +48,38 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 			int quantity = rand.nextInt(4)+1;
 			
 			IBlockState block = worldIn.getBlockState(pos.down());
-			this.setDirt(worldIn, block, pos);
+			this.setDirt(worldIn, block);
 			
-			this.makeTrunk(worldIn, pos, height);
-			this.makeRoots(worldIn, pos, quantity);
+			this.makeTrunk(worldIn, height);
+			this.makeRoots(worldIn, quantity, rand);
 			System.out.println("Quantity; "+quantity);
-			RSIDES.clear();
 			
 		}	
 	}
-	public void gen()
-	{
-		this.generateTree(world, rand, pos);
-	}
-	public void makeTrunk(World worldIn, BlockPos pos, int height)
+	
+	public void makeTrunk(World worldIn, int height)
 	{
 
 
 		for (int i=0; i<=height; i++)
 		{
-			worldIn.setBlockState(pos.up(i), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+			this.setBlockAndNotifyAdequately(worldIn, pos.up(i), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
 		}
 
 	}
 	/**
 	 * Makes a Quantity of Roots up to 4 
 	 * @param worldIn
-	 * @param pos
 	 * @param quantity
 	 */
-	private void makeRoots(World worldIn, BlockPos pos, int quantity)
+	private void makeRoots(World worldIn, int quantity, Random rand)
 	{
-		int j;
-		for (j=1; j<=quantity;j++)
+		List<EnumFacing> availableSides = Lists.newArrayList(EnumFacing.Plane.HORIZONTAL.facings()); //array of available sides of the tree
+		for (int j=1; j<=quantity;j++)
 		{
-			rootType(worldIn, pickSide(pos), selectType());
+			EnumFacing direction = availableSides.remove(rand.nextInt(availableSides.size())); //pick a random direction and remove it from the list
+			int type = rand.nextInt(2) + 1;
+			buildRoot(worldIn, direction, type);
 		}
 	}
 	/**
@@ -99,75 +90,35 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	{
 
 	}
+	
 	/**
 	 * Selects the type of Root to use.
 	 * @param worldIn
 	 * @param type
 	 */
-	private void rootType(World worldIn, BlockPos pos, int type)
+	private void buildRoot(World worldIn, EnumFacing direction, int type)
 	{
 		switch (type)
 		{
 		case 1: 
 			//TODO actually set the blocks for the root type.
 			System.out.println("Type 1");
-			this.setBlockAndNotifyAdequately(worldIn, pos, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
-			this.setBlockAndNotifyAdequately(worldIn, pos, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 1, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 1, direction);
 			break;
 		case 2:
 			System.out.println("Type 2");
-			this.setBlockAndNotifyAdequately(worldIn, pos, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE));
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, -1, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 3, 0, -1, direction);
 			break;
 
 		default:
 			System.out.println("Type default");
 			break;
 		}
-	}
-	/**
-	 * Method used to return an Integer referring to type of root to use.
-	 * Must be = to the number of root types we have.
-	 * @return
-	 */
-	private int selectType()
-	{
-		int type = rand.nextInt(2) + 1;
-
-		return type;
-	}
-	/**
-	 * Gets Random position for Root around tree Trunk. 
-	 * Must remove side from list if chosen.
-	 * 4 Side of tree - pos.east() , pos.west(), pos.north(), pos.south().
-	 * @param pos
-	 * @return
-	 */
-	private BlockPos pickSide(BlockPos pos)
-	{ 
-		BlockPos thePos;
-		int choice = rand.nextInt(RSIDES.size());
-		thePos = RSIDES.get(choice);
-		int X = thePos.getX();
-		int Y = thePos.getY();
-		int Z = thePos.getZ();
-		
-		AlphaCentauri.logger.info("ThePos: "+ thePos);
-		AlphaCentauri.logger.info("Pos: "+ pos);
-		
-		pos = pos.add(X, Y, Z);
-		RSIDES.remove(choice);
-		System.out.println("Choice: " + pos);//TODO remove debug code
-		return pos;
-	}
-	private void addSides()
-	{
-		RSIDES.add(BlockPos.ORIGIN.east());
-		RSIDES.add(BlockPos.ORIGIN.west());
-		RSIDES.add(BlockPos.ORIGIN.north());
-		RSIDES.add(BlockPos.ORIGIN.south());
-	}
-	public void rotatedPos(BlockPos pos)
-	{
-		
 	}
 }
