@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
+import com.cyborgJenn.alphaCentauri.module.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.google.common.base.Objects;
 
@@ -16,7 +17,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenCaves;
 
-public class LargeCaveGen extends MapGenCaves{
+public class LargeCaveGen extends MapGenCaves
+{
+	private static final IBlockState DEFAULT_STATE = Blocks.AIR.getDefaultState();
 
 	@Override
 	protected void addRoom(long seed, int chunkX, int chunkZ, ChunkPrimer chunkprimer, double posX, double posY, double posZ)
@@ -26,7 +29,8 @@ public class LargeCaveGen extends MapGenCaves{
 		}
 		this.addTunnel(seed, chunkX, chunkZ, chunkprimer, posX, posY, posZ, 1.0F + this.rand.nextFloat() * Config.largeNodeMultiplier, 0.0F, 0.0F, -1, -1, 0.5D);
 	}
-	
+	//TODO Caverns. Very large room , deep in the world, very sporadic.
+	//TODO Hide Large Node cut outs in the world. First Pass = done. Could be cleaned up and improved.
 	@Override
 	protected void addTunnel(long seed, int chunkX, int chunkZ, ChunkPrimer chunkprimer, double posX, double posY, double posZ, float p_151541_12_, float p_151541_13_, float p_151541_14_, int p_151541_15_, int p_151541_16_, double p_151541_17_)
 	{
@@ -77,7 +81,7 @@ public class LargeCaveGen extends MapGenCaves{
 			f3 *= 0.75F;
 			f4 += (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 2.0F;
 			f3 += (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 4.0F;
-//flag2 = true;
+			//flag2 = true;
 			if (!flag2 && p_151541_15_ == k1 && p_151541_12_ > 1.0F && p_151541_16_ > 0)
 			{
 				this.addTunnel(random.nextLong(), chunkX, chunkZ, chunkprimer, posX, posY, posZ, (float) (random.nextFloat() * Config.caveTunnelSizeVar1 + 0.5F), p_151541_13_ - ((float)Math.PI / 2F), p_151541_14_ / 3.0F, p_151541_15_, p_151541_16_, 1.0D);
@@ -193,7 +197,7 @@ public class LargeCaveGen extends MapGenCaves{
 										if (d12 > -0.7D && d13 * d13 + d12 * d12 + d14 * d14 < 1.0D)
 										{
 											IBlockState iblockstate1 = chunkprimer.getBlockState(k2, l3, j3);
-                                            IBlockState iblockstate2 = (IBlockState)Objects.firstNonNull(chunkprimer.getBlockState(k2, l3 + 1, j3), Blocks.AIR.getDefaultState());
+											IBlockState iblockstate2 = (IBlockState)Objects.firstNonNull(chunkprimer.getBlockState(k2, l3 + 1, j3), Blocks.AIR.getDefaultState());
 
 											if (isTopBlock(chunkprimer, k2, l3, j3, chunkX, chunkZ))
 											{
@@ -218,11 +222,15 @@ public class LargeCaveGen extends MapGenCaves{
 		}
 	}
 	@Override
-	protected boolean canReplaceBlock(IBlockState p_175793_1_, IBlockState p_175793_2_)
-    {
-        return p_175793_1_.getBlock() == Blocks.STONE ? true : (p_175793_1_.getBlock() == Blocks.DIRT ? true : (p_175793_1_.getBlock() == Blocks.GRASS ? true : (p_175793_1_.getBlock() == Blocks.HARDENED_CLAY ? true : (p_175793_1_.getBlock() == Blocks.STAINED_HARDENED_CLAY ? true : (p_175793_1_.getBlock() == Blocks.SANDSTONE ? true : (p_175793_1_.getBlock() == Blocks.RED_SANDSTONE ? true : (p_175793_1_.getBlock() == Blocks.MYCELIUM ? true : (p_175793_1_.getBlock() == ModBlocks.acStone ? true : (p_175793_1_.getBlock() == Blocks.SAND || p_175793_1_.getBlock() == Blocks.GRAVEL) && p_175793_2_.getMaterial() != Material.WATER))))))));
-    }
-	
+	protected boolean canReplaceBlock(IBlockState blockState, IBlockState blockStateUP)
+	{
+		return blockState.getBlock() == Blocks.STONE ? true : (blockState.getBlock() == Blocks.DIRT ? true : (blockState.getBlock() == Blocks.GRASS ? true : 
+			(blockState.getBlock() == Blocks.HARDENED_CLAY ? true : (blockState.getBlock() == Blocks.STAINED_HARDENED_CLAY ? true : 
+				(blockState.getBlock() == Blocks.SANDSTONE ? true : (blockState.getBlock() == Blocks.RED_SANDSTONE ? true : 
+					(blockState.getBlock() == Blocks.MYCELIUM ? true : (blockState.getBlock() == ModBlocks.acStone ? true : 
+						(blockState.getBlock() == Blocks.SAND || blockState.getBlock() == Blocks.GRAVEL) && blockState.getMaterial() != Material.WATER))))))));
+	}
+
 	@Override
 	protected void recursiveGenerate(World world, int p_151538_2_, int p_151538_3_, int p_151538_4_, int p_151538_5_, ChunkPrimer chunkPrimerIn)
 	{
@@ -263,64 +271,85 @@ public class LargeCaveGen extends MapGenCaves{
 	}
 
 	protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
-    {
-        net.minecraft.block.Block block = data.getBlockState(x, y, z).getBlock();
-        return block== Blocks.FLOWING_WATER || block == Blocks.WATER;
-    }
+	{
+		net.minecraft.block.Block block = data.getBlockState(x, y, z).getBlock();
+		return block== Blocks.FLOWING_WATER || block == Blocks.WATER;
+	}
 
-    //Exception biomes to make sure we generate like vanilla
-    private boolean isExceptionBiome(net.minecraft.world.biome.Biome biome)
-    {
-    	if (biome == net.minecraft.init.Biomes.BEACH) return true;
-        if (biome == net.minecraft.init.Biomes.DESERT) return true;
-        return false;
-    }
+	//Exception biomes to make sure we generate like vanilla
+	private boolean isExceptionBiome(net.minecraft.world.biome.Biome biome)
+	{
+		if (biome == net.minecraft.init.Biomes.BEACH) return true;
+		if (biome == net.minecraft.init.Biomes.DESERT) return true;
+		if (Config.enableModuleDimension){
+			if (biome == ModBiomes.BEACH) return true;
+			if (biome == ModBiomes.DESERT) return true;
+		}
+		return false;
+	}
+	//Determine if the block at the specified location is the top block for the biome, we take into account
+	//Vanilla bugs to make sure that we generate the map the same way vanilla does.
+	private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
+	{
+		net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+		IBlockState state = data.getBlockState(x, y, z);
+		return (isExceptionBiome(biome) ? state.getBlock() == Blocks.GRASS.getDefaultState() : state.getBlock().getDefaultState() == biome.topBlock);
+	}
+	/**
+	 * Digs out the current block, default implementation removes stone, filler, and top block
+	 * Sets the block to lava if y is less then 10, and air other wise.
+	 * If setting to air, it also checks to see if we've broken the surface and if so
+	 * tries to make the floor the biome's top block
+	 *
+	 * @param data Block data array
+	 * @param index Pre-calculated index into block data
+	 * @param x local X position
+	 * @param y local Y position
+	 * @param z local Z position
+	 * @param chunkX Chunk X position
+	 * @param chunkZ Chunk Y position
+	 * @param foundTop True if we've encountered the biome's top block. Ideally if we've broken the surface.
+	 */
+	protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
+	{
+		net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+		IBlockState top = biome.topBlock;
+		IBlockState filler = biome.fillerBlock;
 
-    //Determine if the block at the specified location is the top block for the biome, we take into account
-    //Vanilla bugs to make sure that we generate the map the same way vanilla does.
-    private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
-    {
-        net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
-        IBlockState state = data.getBlockState(x, y, z);
-        return (isExceptionBiome(biome) ? state.getBlock() == Blocks.GRASS : state.getBlock() == biome.topBlock);
-    }
+		if (this.canReplaceBlock(state, up) || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+		{
+			if (y < 10)
+			{
+				data.setBlockState(x, y, z, BLK_LAVA);
+			}
+			else
+			{
+				data.setBlockState(x, y, z, BLK_AIR);
+				if (foundTop && data.getBlockState(x, y - 1, z) != Blocks.AIR.getDefaultState())
+				{
+					int lvl = findGroundBlock(x,z,data);
+					data.setBlockState(x, lvl - 1, z, top.getBlock().getDefaultState());
+					data.setBlockState(x, lvl - 2, z, filler.getBlock().getDefaultState());
+				}
+				if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
+				{
+					data.setBlockState(x, y - 1, z, top.getBlock().getDefaultState());
+				}
+			}
+		}
+	}
 
-    /**
-     * Digs out the current block, default implementation removes stone, filler, and top block
-     * Sets the block to lava if y is less then 10, and air other wise.
-     * If setting to air, it also checks to see if we've broken the surface and if so
-     * tries to make the floor the biome's top block
-     *
-     * @param data Block data array
-     * @param index Pre-calculated index into block data
-     * @param x local X position
-     * @param y local Y position
-     * @param z local Z position
-     * @param chunkX Chunk X position
-     * @param chunkZ Chunk Y position
-     * @param foundTop True if we've encountered the biome's top block. Ideally if we've broken the surface.
-     */
-    protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
-    {
-        net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
-        IBlockState top = biome.topBlock;
-        IBlockState filler = biome.fillerBlock;
-
-        if (this.canReplaceBlock(state, up) || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
-        {
-            if (y < 10)
-            {
-                data.setBlockState(x, y, z, BLK_LAVA);
-            }
-            else
-            {
-                data.setBlockState(x, y, z, BLK_AIR);
-
-                if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
-                {
-                    data.setBlockState(x, y - 1, z, top.getBlock().getDefaultState());
-                }
-            }
-        }
-    }
+	public int findGroundBlock(int x, int z, ChunkPrimer data)
+	{
+		int y;
+		int i = (x << 12 | z << 8) + 256 - 1;
+		for (y = 255; y >= 0; --y)
+		{
+			if (data.getBlockState(x, y, z) != Blocks.AIR.getDefaultState())
+			{
+				return y;
+			}	
+		}
+		return y;
+	}
 }
