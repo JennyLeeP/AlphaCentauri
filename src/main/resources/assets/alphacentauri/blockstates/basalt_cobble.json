@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+     "model": "alphacentauri:basalt_cobble"
+     },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

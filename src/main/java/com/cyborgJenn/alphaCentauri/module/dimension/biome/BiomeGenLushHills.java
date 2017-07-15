@@ -22,9 +22,6 @@ public class BiomeGenLushHills extends ACBiome{
 		this.spawnableMonsterList.clear();
 		this.spawnableMonsterList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
 		this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
-		this.customBiomeDecorator.whiteFlowersPerChunk = 3;
-		this.customBiomeDecorator.grayFlowersPerChunk = 2;
-		this.customBiomeDecorator.purpleFlowersPerChunk = 3;
 		this.customBiomeDecorator.treesPerChunk = 10;
 		this.customBiomeDecorator.nodesPerChunk = 3;
 	}

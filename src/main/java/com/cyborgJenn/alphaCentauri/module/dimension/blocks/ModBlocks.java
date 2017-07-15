@@ -155,8 +155,8 @@ public class ModBlocks {
 		/* Stone Blocks */
 		acStone       = new GenericBlock(1, Material.ROCK, "acstone");
 		acCobble      = new GenericBlock(1, Material.ROCK, "accobble");
-		//basalt        = new GenericBlock(1, Material.ROCK, "basalt");
-		//basaltCobble  = new GenericBlock(1, Material.ROCK, "basaltCobble");
+		basalt        = new GenericBlock(1, Material.ROCK, "basalt");
+		basaltCobble  = new GenericBlock(1, Material.ROCK, "basalt_cobble");
 		marble        = new GenericBlock(1, Material.ROCK, "marble");
 		granite       = new GenericBlock(1, Material.ROCK, "granite");
 		lightSandstone= new SandstoneBlock("sandstone_light");

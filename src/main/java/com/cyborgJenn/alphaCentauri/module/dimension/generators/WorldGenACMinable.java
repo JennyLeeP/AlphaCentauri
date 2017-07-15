@@ -11,9 +11,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class WorldGenACMinable extends WorldGenerator 
+public class WorldGenACMinable extends WorldGenerator implements IWorldGenerator 
 {
 	private final Predicate<IBlockState> predicate;
 	private final IBlockState oreBlock;
@@ -24,11 +27,11 @@ public class WorldGenACMinable extends WorldGenerator
     {
         this(state, blockCount, BlockMatcher.forBlock(ModBlocks.acStone));
     }
-	public WorldGenACMinable(IBlockState state, int blockCount, Predicate<IBlockState> p_i45631_3_)
+	public WorldGenACMinable(IBlockState state, int blockCount, Predicate<IBlockState> predicate)
     {
         this.oreBlock = state;
         this.numberOfBlocks = blockCount;
-        this.predicate = p_i45631_3_;
+        this.predicate = predicate;
     }
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
@@ -92,4 +95,10 @@ public class WorldGenACMinable extends WorldGenerator
 
         return true;
     }
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
+			IChunkProvider chunkProvider) {
+		// TODO Auto-generated method stub
+		
+	}
 }

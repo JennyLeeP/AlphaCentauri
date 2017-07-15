@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenFossils;
 
 public class BiomeGenACDesert extends ACBiome 
@@ -25,6 +26,11 @@ public class BiomeGenACDesert extends ACBiome
         this.theBiomeDecorator.cactiPerChunk = 10;
         this.spawnableCreatureList.clear();
         //this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 4, 2, 3));//TODO Bunnies ? Aliens ?
+	}
+	@Override
+	public BiomeDecorator createBiomeDecorator()
+	{   
+		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
 	}
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)

@@ -2,182 +2,162 @@ package com.cyborgJenn.alphaCentauri.module.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenACMinable;
-import com.google.common.base.Predicate;
 
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.fml.common.Loader;
 
 public class ACBiomeDecorator extends BiomeDecorator 
 {
 	public ChunkProviderSettings chunkProviderSettings;
 
-	public WorldGenerator dirtGen;
-	public WorldGenerator gravelGen;
-	public WorldGenerator plantYellowGen;
-	public WorldGenerator plantRedGen;
-	public WorldGenerator methIceGen;
-
+	/*    Vanilla    */
+	public WorldGenerator dirt;
+	public WorldGenerator gravel;
 	public WorldGenerator iron;
 	public WorldGenerator gold;
 	public WorldGenerator diamond;
 	public WorldGenerator emerald;
 	public WorldGenerator lapis;
-	public WorldGenerator redStone;
+	public WorldGenerator redstone;
 	public WorldGenerator coal;
 
+	/*     Thermal Foundation   */
 	public WorldGenerator copper;
 	public WorldGenerator tin;
 	public WorldGenerator silver;
 	public WorldGenerator lead;
 	public WorldGenerator ferrous;
-	public WorldGenerator uranium;
+	public WorldGenerator iridium;
 	public WorldGenerator aluminum;
+	public WorldGenerator platinum;
+	public WorldGenerator mithril;
+	/*      Forestry            */
 	public WorldGenerator apatite;
-
-	public WorldGenerator Quartz;
-	public WorldGenerator ardite;
-	public WorldGenerator cobalt;
+	/*   Applied Energistics    */
+	public WorldGenerator certus;
+	/*      RailCraft           */
 	public WorldGenerator saltpeter;
 	public WorldGenerator sulphur;
-
-	public WorldGenerator cursedNodesGen;
-
-	public WorldGenerator whiteFlowersGen;
-	public WorldGenerator orangeFlowersGen;
-	public WorldGenerator yellowFlowersGen;
-	public WorldGenerator magentaFlowersGen;
-	public WorldGenerator blueFlowersGen;
-	public WorldGenerator lightBlueFlowersGen;
-	public WorldGenerator cyanFlowersGen;
-	public WorldGenerator lightGrayFlowersGen;
-	public WorldGenerator grayFlowersGen;
-	public WorldGenerator purpleFlowersGen;
-	public WorldGenerator pinkFlowersGen;
-	public WorldGenerator limeFlowersGen;
-	public WorldGenerator greenFlowersGen;
-	public WorldGenerator brownFlowersGen;
-	public WorldGenerator redFlowersGen;
-	public WorldGenerator blackFlowersGen;
-
-
-	public int methIcePerChunk;
-	public int grassPerChunk;
-	public int nodesPerChunk;
-
-	public int whiteFlowersPerChunk;
-	public int orangeFlowersPerChunk;
-	public int yellowFlowersPerChunk;
-	public int blueFlowersPerChunk;
-	public int lightBlueFlowersPerChunk;
-	public int CyanFlowersPerChunk;
-	public int limeFlowersPerChunk;
-	public int lightGrayFlowersPerChunk;
-	public int grayFlowersPerChunk;
-	public int purpleFlowersPerChunk;
-	public int magentaFlowersPerChunk;
-	public int pinkFlowersPerChunk;
-	public int greenFlowersPerChunk;
-	public int brownFlowersPerChunk;
-	public int redFlowersPerChunk;
-	public int blackFlowersPerChunk;
-	//World world;
-	public ACBiomeDecorator(Biome biomeGenBase) {
-		super();
-		// TODO chunkprovider settings ?.
-		
-		//String settings = world.getWorldInfo().getGeneratorOptions();
-		//this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(settings).build();
-		//this.sandGen = new WorldGenTDSand(7, ModBlocks.lightSand,0);
-		this.dirtGen = new WorldGenACMinable(ModBlocks.acDirt.getDefaultState(), 12);
-		this.gravelGen = new WorldGenACMinable(ModBlocks.blueGravel.getDefaultState(), 21);
-		//this.methIceGen = new WorldGenMethIce(4);
-
-
-		/* Vanilla Ores  - Block placed, int meta, int number , Block target */
-
-		this.iron     = new WorldGenACMinable(ModBlocks.oreIron.getDefaultState(), 6);
-		this.gold     = new WorldGenACMinable(ModBlocks.oreGold.getDefaultState(), 6);
-		this.diamond  = new WorldGenACMinable(ModBlocks.oreDiamond.getDefaultState(), 6);
-		this.lapis    = new WorldGenACMinable(ModBlocks.oreLapis.getDefaultState(), 6);
-		this.emerald  = new WorldGenACMinable(ModBlocks.oreEmerald.getDefaultState(), 6);
-		this.redStone = new WorldGenACMinable(ModBlocks.oreRedstone.getDefaultState(), 6);
-		this.coal     = new WorldGenACMinable(ModBlocks.oreCoal.getDefaultState(), 6);
-				/* Modded Ores  - Block placed, int meta, int number , Block target */
-/*
-		this.aluminum  = new WorldGenACMinable(ModBlocks.oreAluminum.getDefaultState(), 6);
-		this.apatite   = new WorldGenACMinable(ModBlocks.oreApatite.getDefaultState(),   12);
-		this.ardite    = new WorldGenACMinable(ModBlocks.oreArdite.getDefaultState(),    12);
-		this.cobalt    = new WorldGenACMinable(ModBlocks.oreCobalt.getDefaultState(),     8);
-		this.copper    = new WorldGenACMinable(ModBlocks.oreCopper.getDefaultState(),     8);
-		this.ferrous   = new WorldGenACMinable(ModBlocks.oreNickel.getDefaultState(),     4);
-		this.lead      = new WorldGenACMinable(ModBlocks.oreLead.getDefaultState(),       8);
-		this.saltpeter = new WorldGenACMinable(ModBlocks.oreSaltpeter.getDefaultState(), 12);
-		this.silver    = new WorldGenACMinable(ModBlocks.oreSilver.getDefaultState(),     8);
-		this.sulphur   = new WorldGenACMinable(ModBlocks.oreSulfur.getDefaultState(),     8);
-		this.tin       = new WorldGenACMinable(ModBlocks.oreTin.getDefaultState(),       12);
-		this.uranium   = new WorldGenACMinable(ModBlocks.oreUranium.getDefaultState(),    1);
-*/
-		// TODO this.cursedNodesGen = new WorldGenCursedNodes(ModBlocks.cursedStone, ModBlocks.gateGalifrey, 0);
-		/*
-        this.whiteFlowersGen     = new WorldGenFlowers(ModBlocks.whiteFlower);
-        //BlockFlower flowerIn, BlockFlower.EnumFlowerType type
-        this.orangeFlowersGen    = new WorldGenFlowers(ModBlocks.orangeFlower);
-        this.magentaFlowersGen   = new WorldGenFlowers(ModBlocks.magentaFlower);
-        this.lightBlueFlowersGen = new WorldGenFlowers(ModBlocks.lightBlueFlower);
-        this.yellowFlowersGen    = new WorldGenFlowers(ModBlocks.yellowFlower);
-        this.limeFlowersGen      = new WorldGenFlowers(ModBlocks.limeFlower);
-        this.pinkFlowersGen      = new WorldGenFlowers(ModBlocks.pinkFlower);
-        this.grayFlowersGen      = new WorldGenFlowers(ModBlocks.grayFlower);
-        this.lightGrayFlowersGen = new WorldGenFlowers(ModBlocks.lightGrayFlower);
-        this.cyanFlowersGen      = new WorldGenFlowers(ModBlocks.cyanFlower);
-        this.purpleFlowersGen    = new WorldGenFlowers(ModBlocks.purpleFlower);
-        this.blueFlowersGen      = new WorldGenFlowers(ModBlocks.blueFlower);
-        this.brownFlowersGen     = new WorldGenFlowers(ModBlocks.brownFlower);
-        this.greenFlowersGen     = new WorldGenFlowers(ModBlocks.greenFlower);
-        this.redFlowersGen       = new WorldGenFlowers(ModBlocks.redFlower);
-        this.blackFlowersGen     = new WorldGenFlowers(ModBlocks.blackFlower);
-
-
-
-        this.whiteFlowersPerChunk = 0;
-        this.orangeFlowersPerChunk = 0;
-        this.yellowFlowersPerChunk = 0;
-        this.blueFlowersPerChunk = 0;
-        this.lightBlueFlowersPerChunk = 0;
-        this.CyanFlowersPerChunk = 0;
-        this.limeFlowersPerChunk = 0;
-        this.lightGrayFlowersPerChunk = 0;
-        this.grayFlowersPerChunk = 0;
-        this.purpleFlowersPerChunk = 0;
-        this.magentaFlowersPerChunk = 0;
-        this.pinkFlowersPerChunk = 0;
-        this.greenFlowersPerChunk = 0;
-        this.brownFlowersPerChunk = 0;
-        this.redFlowersPerChunk = 0;
-        this.blackFlowersPerChunk = 0;
-
-        this.methIcePerChunk = 2;
-        this.flowersPerChunk = 0;
-        this.grassPerChunk = 1;
-        this.sandPerChunk = 7;
-        this.sandPerChunk2 = 5;
-        this.nodesPerChunk = 0;
-		 */
-	}
+	/*      MFFS                */
+	public WorldGenerator monazit;
+	/*      TechReborn          */
+	public WorldGenerator uranium;
+	public WorldGenerator bauxite;
+	public WorldGenerator galena;
+	public WorldGenerator garneirite;
+	/*     ProjectRed           */
+	public WorldGenerator electrotine;
+	public WorldGenerator ruby;
+	public WorldGenerator saphire;
+	public WorldGenerator peridot;
+	/*     Deep Resonance       */
+	public WorldGenerator resonating;
+	/*     Big Reactors         */
+	public WorldGenerator yellorite;
 	
+	public WorldGenerator cursedNodesGen;
+	public int nodesPerChunk;
+	
+	public WorldGenerator flowersGen;
+	public int flowersPerChunk;
+	
+	public WorldGenerator methIceGen;
+	public int methIcePerChunk;
+	
+	public int grassPerChunk;
+	
+	public ACBiomeDecorator(Biome biomeGenBase) 
+	{
+		super();
+	}
+	@Override
+	public void decorate(World worldIn, Random random, Biome biome, BlockPos pos)
+	{
+		if (this.decorating)
+		{
+			throw new RuntimeException("Already decorating");
+		}
+		else
+		{
+			this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
+			this.chunkPos = pos;
+			this.dirt = new WorldGenACMinable(ModBlocks.acDirt.getDefaultState(), this.chunkProviderSettings.dirtSize);
+			this.gravel = new WorldGenACMinable(ModBlocks.blueGravel.getDefaultState(), this.chunkProviderSettings.gravelSize);
+			this.iron     = new WorldGenACMinable(ModBlocks.oreIron.getDefaultState(), this.chunkProviderSettings.ironSize);
+			this.gold     = new WorldGenACMinable(ModBlocks.oreGold.getDefaultState(), this.chunkProviderSettings.goldSize);
+			this.diamond  = new WorldGenACMinable(ModBlocks.oreDiamond.getDefaultState(), this.chunkProviderSettings.diamondSize);
+			this.lapis    = new WorldGenACMinable(ModBlocks.oreLapis.getDefaultState(), this.chunkProviderSettings.lapisSize);
+			this.emerald  = new WorldGenACMinable(ModBlocks.oreEmerald.getDefaultState(), 6);
+			this.redstone = new WorldGenACMinable(ModBlocks.oreRedstone.getDefaultState(), this.chunkProviderSettings.redstoneSize);
+			this.coal     = new WorldGenACMinable(ModBlocks.oreCoal.getDefaultState(), this.chunkProviderSettings.coalSize);
+			if (Loader.isModLoaded("thermalfoundation") || Config.forceOres)
+			{
+				this.aluminum  = new WorldGenACMinable(ModBlocks.oreAluminum.getDefaultState(), 6);
+				this.copper    = new WorldGenACMinable(ModBlocks.oreCopper.getDefaultState(),     8);
+				this.ferrous   = new WorldGenACMinable(ModBlocks.oreNickel.getDefaultState(),     4);
+				this.lead      = new WorldGenACMinable(ModBlocks.oreLead.getDefaultState(),       8);
+				this.silver    = new WorldGenACMinable(ModBlocks.oreSilver.getDefaultState(),     8);
+				this.tin       = new WorldGenACMinable(ModBlocks.oreTin.getDefaultState(),       12);
+				this.iridium   = new WorldGenACMinable(ModBlocks.oreIridium.getDefaultState(),    1);
+				this.platinum   = new WorldGenACMinable(ModBlocks.orePlatinum.getDefaultState(),    3);
+				this.mithril   = new WorldGenACMinable(ModBlocks.oreMithril.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("railcraft") || Config.forceOres)
+			{
+				this.sulphur   = new WorldGenACMinable(ModBlocks.oreSulfur.getDefaultState(),     8);
+				this.saltpeter = new WorldGenACMinable(ModBlocks.oreSaltpeter.getDefaultState(), 12);
+			}
+			if (Loader.isModLoaded("forestry") || Config.forceOres)
+			{
+				this.apatite   = new WorldGenACMinable(ModBlocks.oreApatite.getDefaultState(),   12);
+			}
+			if (Loader.isModLoaded("techreborn") || Config.forceOres)
+			{
+				this.uranium   = new WorldGenACMinable(ModBlocks.oreIridium.getDefaultState(),    4);
+				this.bauxite   = new WorldGenACMinable(ModBlocks.oreBauxite.getDefaultState(),    4);
+				this.galena   = new WorldGenACMinable(ModBlocks.oreGalena.getDefaultState(),    4);
+				this.garneirite   = new WorldGenACMinable(ModBlocks.oreGarneirite.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("mffs") || Config.forceOres)
+			{
+				this.monazit   = new WorldGenACMinable(ModBlocks.oreMonazit.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("projectred") || Config.forceOres)
+			{
+				this.electrotine   = new WorldGenACMinable(ModBlocks.oreElectrotine.getDefaultState(),    4);
+				this.ruby   = new WorldGenACMinable(ModBlocks.oreRuby.getDefaultState(),    4);
+				this.saphire   = new WorldGenACMinable(ModBlocks.oreSaphire.getDefaultState(),    4);
+				this.peridot   = new WorldGenACMinable(ModBlocks.orePeridot.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("appliedenergistics") || Config.forceOres)
+			{
+				this.certus   = new WorldGenACMinable(ModBlocks.oreCertus.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("deepresonance") || Config.forceOres)
+			{
+				this.resonating   = new WorldGenACMinable(ModBlocks.oreResonating.getDefaultState(),    4);
+			}
+			if (Loader.isModLoaded("big-reactors") || Config.forceOres)
+			{
+				this.yellorite   = new WorldGenACMinable(ModBlocks.oreYellorite.getDefaultState(),    4);
+			}
+			this.genDecorations(biome, worldIn, random);
+			this.decorating = false;
+		}
+	}
 	/**
 	 * The method that does the work of actually decorating chunks
 	 */
@@ -248,135 +228,31 @@ public class ACBiomeDecorator extends BiomeDecorator
 
 					if (blockflower.getDefaultState().getMaterial() != Material.AIR)
 					{
-						this.yellowFlowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
-						this.yellowFlowerGen.generate(worldIn, random, blockpos1);
-						//this.plantRedGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
+						//TODO generate random flower.
+						//this.yellowFlowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
+						//this.yellowFlowerGen.generate(worldIn, random, blockpos1);
+						
 					}
 				}
 			}
-		/*
-        for (j = 0; j < whiteFlowersPerChunk; ++j)
+		
+        for (int j = 0; j < flowersPerChunk; ++j)
         {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            whiteFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
+            //k = chunk_X + randomGenerator.nextInt(16) + 8;
+            //l = randomGenerator.nextInt(128);
+            //i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
+            //flowersGen.generate(worldIn, random, blockPos, l, i1);
         }
-        for (j = 0; j < orangeFlowersPerChunk; ++j)
+       
+		
+        for (int j = 0; j < nodesPerChunk; ++j)
         {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            orangeFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
+            //k = chunk_X + randomGenerator.nextInt(16) + 8;
+            //l = randomGenerator.nextInt(128);
+           // i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
+            //cursedNodesGen.generate(currentWorld, randomGenerator, k, l, i1);
         }
-        for (j = 0; j < magentaFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            magentaFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < lightBlueFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            lightBlueFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < yellowFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            yellowFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < limeFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-           limeFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < pinkFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-           pinkFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < grayFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            grayFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < lightGrayFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            lightGrayFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < CyanFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            cyanFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < purpleFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            purpleFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < blueFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            blueFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < brownFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            brownFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < greenFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            greenFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < redFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            redFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-        for (j = 0; j < blackFlowersPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            blackFlowersGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-		 */
-		/*
-        for (j = 0; j < nodesPerChunk; ++j)
-        {
-            k = chunk_X + randomGenerator.nextInt(16) + 8;
-            l = randomGenerator.nextInt(128);
-            i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            cursedNodesGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-		 */
+		 
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 			for (int i3 = 0; i3 < this.grassPerChunk; ++i3)
 			{
@@ -393,7 +269,43 @@ public class ACBiomeDecorator extends BiomeDecorator
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(worldIn, random, chunkPos));
 
 	}
+	/**
+	 * Generates ores in the current chunk
+	 */
+	@Override
+	protected void generateOres(World worldIn, Random random)
+	{
+		net.minecraftforge.common.MinecraftForge.ORE_GEN_BUS.post(new net.minecraftforge.event.terraingen.OreGenEvent.Pre(worldIn, random, chunkPos));
 
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, dirtGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIRT))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.dirtCount, this.dirt, this.chunkProviderSettings.dirtMinHeight, this.chunkProviderSettings.dirtMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, gravel, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GRAVEL))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.gravelCount, this.gravel, this.chunkProviderSettings.gravelMinHeight, this.chunkProviderSettings.gravelMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, coal, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.COAL))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.coalCount, this.coal, this.chunkProviderSettings.coalMinHeight, this.chunkProviderSettings.coalMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, iron, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.IRON))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.ironCount, this.iron, this.chunkProviderSettings.ironMinHeight, this.chunkProviderSettings.ironMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, gold, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GOLD))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.goldCount, this.gold, this.chunkProviderSettings.goldMinHeight, this.chunkProviderSettings.goldMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, redstone, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.REDSTONE))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.redstoneCount, this.redstone, this.chunkProviderSettings.redstoneMinHeight, this.chunkProviderSettings.redstoneMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, diamond, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIAMOND))
+			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.diamondCount, this.diamond, this.chunkProviderSettings.diamondMinHeight, this.chunkProviderSettings.diamondMaxHeight);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, lapis, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.LAPIS))
+			this.genStandardOre2(worldIn, random, this.chunkProviderSettings.lapisCount, this.lapis, this.chunkProviderSettings.lapisCenterHeight, this.chunkProviderSettings.lapisSpread);
+		if (Loader.isModLoaded("thermalfoundation") || Config.forceOres) { genTFOres(worldIn, random); }
+		if (Loader.isModLoaded("railcraft") || Config.forceOres) { genRCOres(worldIn, random); }
+		if (Loader.isModLoaded("forestry") || Config.forceOres) { genForestryOres(worldIn, random); }
+		if (Loader.isModLoaded("techreborn") || Config.forceOres) { genTechROres(worldIn, random); }
+		if (Loader.isModLoaded("mffs") || Config.forceOres ) { genMFFSOres(worldIn, random); }
+		if (Loader.isModLoaded("projectred") || Config.forceOres) { genPROres(worldIn, random); }
+		if (Loader.isModLoaded("appliedenergistics") || Config.forceOres) { genAEOres(worldIn, random); }
+		if (Loader.isModLoaded("deepresonance") || Config.forceOres) { genDROres(worldIn, random); }
+		if (Loader.isModLoaded("big-reactors") || Config.forceOres) { genBROres(worldIn, random); }
+		
+		net.minecraftforge.common.MinecraftForge.ORE_GEN_BUS.post(new net.minecraftforge.event.terraingen.OreGenEvent.Post(worldIn, random, chunkPos));
+
+	}
 	/**
 	 * Standard ore generation helper. Generates most ores.
 	 */
@@ -424,7 +336,6 @@ public class ACBiomeDecorator extends BiomeDecorator
 			generator.generate(worldIn, random, blockpos);
 		}
 	}
-
 	/**
 	 * Standard ore generation helper. Vanilla uses this to generate Lapis Lazuli.
 	 * The main difference between this and {@link #genStandardOre1} is that this takes takes center and spread, while
@@ -439,67 +350,82 @@ public class ACBiomeDecorator extends BiomeDecorator
 			generator.generate(worldIn, random, blockpos);
 		}
 	}
-	/**
-	 * Generates ores in the current chunk
-	 */
-	@Override
-	protected void generateOres(World worldIn, Random random)
+	private void genTFOres(World worldIn, Random random)
 	{
-
-		net.minecraftforge.common.MinecraftForge.ORE_GEN_BUS.post(new net.minecraftforge.event.terraingen.OreGenEvent.Pre(worldIn, random, chunkPos));
-		/*
-		if (TerrainGen.generateOre(worldIn, random, dirtGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIRT))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.dirtCount, this.dirtGen, this.chunkProviderSettings.dirtMinHeight, this.chunkProviderSettings.dirtMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, gravelGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GRAVEL))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.gravelCount, this.gravelGen, this.chunkProviderSettings.gravelMinHeight, this.chunkProviderSettings.gravelMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, coalGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.COAL))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.coalCount, this.coalGen, this.chunkProviderSettings.coalMinHeight, this.chunkProviderSettings.coalMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, ironGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.IRON))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.ironCount, this.ironGen, this.chunkProviderSettings.ironMinHeight, this.chunkProviderSettings.ironMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, goldGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GOLD))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.goldCount, this.goldGen, this.chunkProviderSettings.goldMinHeight, this.chunkProviderSettings.goldMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, redstoneGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.REDSTONE))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.redstoneCount, this.redstoneGen, this.chunkProviderSettings.redstoneMinHeight, this.chunkProviderSettings.redstoneMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, diamondGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIAMOND))
-			this.genStandardOre1(worldIn, random, this.chunkProviderSettings.diamondCount, this.diamondGen, this.chunkProviderSettings.diamondMinHeight, this.chunkProviderSettings.diamondMaxHeight);
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, lapisGen, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.LAPIS))
-			this.genStandardOre2(worldIn, random, this.chunkProviderSettings.lapisCount, this.lapisGen, this.chunkProviderSettings.lapisCenterHeight, this.chunkProviderSettings.lapisSpread);
-*/
-
-		/* 
-		 * Mod Ore spawns set according to :
-		 * http://ftbwiki.org/Ore - if changes are needed to match FTB in the future : remind me I may have forgotten.
-		 */
-
+		//TODO maybe get ore spawn rates from TF. or set spawn rates based on FTB or something.
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, copper, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 12, this.copper, 40, 75);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, tin, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 9, this.tin, 20, 55);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, silver, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.silver, 5, 30);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, lead, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.lead, 2, 35);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, ferrous, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 2, this.ferrous, 5, 20);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, iridium, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.iridium, 0, 64);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, aluminum, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 2, this.aluminum, 0, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, platinum, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 2, this.platinum, 0, 32);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, mithril, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 2, this.mithril, 0, 32);
 		
-        //if (TerrainGen.generateOre(worldIn, random, copper, chunk_X, chunk_Z, CUSTOM))
-           // this.genStandardOre1(12, this.copper, 40, 75);
-        //if (TerrainGen.generateOre(worldIn, random, tin, chunk_X, chunk_Z, CUSTOM))
-            //this.genStandardOre1(9, this.tin, 20, 55);
-            
-           /* 
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, silver, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.silver, 5, 30);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, lead, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.lead, 2, 35);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, ferrous, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(2, this.ferrous, 5, 20);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, uranium, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.uranium, 0, 64);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, aluminum, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(2, this.aluminum, 0, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, apatite, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.apatite, 30, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, apatite, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.ardite, 30, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, apatite, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.cobalt, 30, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, apatite, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.saltpeter, 30, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, apatite, chunk_X, chunk_Z, CUSTOM))
-            this.genStandardOre1(4, this.sulphur, 30, 128);
-		 */
-		net.minecraftforge.common.MinecraftForge.ORE_GEN_BUS.post(new net.minecraftforge.event.terraingen.OreGenEvent.Post(worldIn, random, chunkPos));
-
+	}
+	private void genRCOres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, saltpeter, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.saltpeter, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, sulphur, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+            this.genStandardOre1(worldIn, random, 4, this.sulphur, 30, 128);
+		
+	}
+	private void genForestryOres(World worldIn, Random random) 
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, apatite, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.apatite, 30, 128);
+	}
+	private void genTechROres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, uranium, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			this.genStandardOre1(worldIn, random, 4, this.uranium, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, bauxite, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.bauxite, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, galena, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.galena, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, garneirite, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.garneirite, 30, 128);
+	}
+	private void genMFFSOres(World worldIn, Random random) 
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, monazit, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.monazit, 30, 128);	
+	}
+	private void genPROres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, electrotine, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.electrotine, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, ruby, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.ruby, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, saphire, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.saphire, 30, 128);
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, peridot, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.peridot, 30, 128);
+	}
+	private void genAEOres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, certus, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.certus, 30, 128);
+	}
+	private void genDROres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, resonating, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.resonating, 30, 128);
+	}
+	private void genBROres(World worldIn, Random random)
+	{
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, yellorite, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
+			genStandardOre1(worldIn, random, 4, this.yellorite, 30, 128);
 	}
 }

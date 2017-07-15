@@ -29,6 +29,8 @@ import com.cyborgJenn.alphaCentauri.module.dimension.command.TeleportCommand;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.BlockColorHandler;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.DimensionEntityHandler;
+import com.cyborgJenn.alphaCentauri.module.dimension.util.OreDictionary;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 import com.cyborgJenn.alphaCentauri.module.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.module.motd.CommandMotd;
@@ -94,6 +96,8 @@ public class AlphaCentauri {
 		{
 			ModBlocks.init();
 			ModBiomes.initBiomes();
+			OreDictionary.registerOres();
+			MinecraftForge.EVENT_BUS.register(new DimensionEntityHandler());
 		}
 		logger.info("Pre Init Complete..........");
 	}

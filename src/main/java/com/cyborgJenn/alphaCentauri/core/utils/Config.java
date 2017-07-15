@@ -60,7 +60,9 @@ public class Config
     public static int       biomeBloodMountainsID;
     public static int       biomeLivingOceanID;
     public static int       desertID;
+    public static int       fungalID;
     public static boolean   enableTreeParticles = true;
+	
 		
 	public static void init(File file)
 	{
@@ -125,7 +127,7 @@ public class Config
 	private static void configlargeCaveOptions(Configuration config)
 	{
 		String caveSettings = "Cave Settings";
-		config.addCustomCategoryComment(caveSettings, "Setting for Controlling the size and frequemcy of Caves");
+		config.addCustomCategoryComment(caveSettings, "Setting for Controlling the size and frequency of Caves");
 		largeNodeMultiplier = config.get(caveSettings, "Large Node Multiplier", 16, "MC is 5 by default. A larger number here gives largeNodes more girth").getInt();
 		largeNodeFrequency 	= config.get(caveSettings, "Large Node Frequency", 2, "MC is 4 by default. A lower number here makes them more frequent.").getInt();
 		nodeMultiplier 		= config.get(caveSettings, "Node Multiplier", 9, "MC is 3 by default. A larger number here gives Nodes more girth").getInt();
@@ -160,7 +162,7 @@ public class Config
 		int bID = 120;
 		String dimension        = "Dimension";
 		config.addCustomCategoryComment(dimension, "These settings are for the dimension module.");
-		dimensionID             = config.get(dimension, "Dimesion ID", 444).getInt();
+		dimensionID             = config.get(dimension, "Dimension ID", 444).getInt();
         biomeLushHillsID        = config.get(dimension, "BiomeLushHillsID", bID++).getInt();
         biomeGreenRiverID       = config.get(dimension, "BiomeGreenRiverID", bID++).getInt();
         biomeLivingPlateauID    = config.get(dimension, "BiomeLivingPlateauID", bID++).getInt();
@@ -171,7 +173,8 @@ public class Config
         biomeMangrovesID        = config.get(dimension, "BiomeMangrovesID", bID++).getInt();
         biomeTreacherousHillsID = config.get(dimension, "BiomeTreacherousHillsID", bID++).getInt();
         biomeBloodMountainsID   = config.get(dimension, "BiomeBloodMountainsID", bID++).getInt();
-        desertID                = config.get(dimension, "DesertID", bID++).getInt();
+        desertID                = config.get(dimension, "BiomeDesertID", bID++).getInt();
+        fungalID                = config.get(dimension, "BiomeFungalID", bID++).getInt();
 	}
 	
 	private static void configParticles(Configuration config) {

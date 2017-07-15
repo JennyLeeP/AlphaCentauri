@@ -40,6 +40,8 @@ public class ACWorldProvider extends WorldProvider{
     {
 		this.setDimension(Config.dimensionID);
 		this.hasNoSky = false;
+		/* Use this to test your Biome Creation. Make sure to switch back to our BiomeProvider before pushing to github.*/
+		//this.biomeProvider = new BiomeProviderSingle(ModBiomes.HOODOO_VALLEY);
         this.biomeProvider = new ACBiomeProvider(worldObj.getSeed(), worldObj.getWorldType(), worldObj.getWorldInfo().getGeneratorOptions());
         this.generateLightBrightnessTable();
     }
@@ -150,13 +152,13 @@ public class ACWorldProvider extends WorldProvider{
     {
         float f = MathHelper.cos(p_76562_1_ * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
         f = MathHelper.clamp_float(f, 0.0F, 1.0F);
-        float f1 = 0.7529412F;
-        float f2 = 0.84705883F;
-        float f3 = 1.0F;
-        f1 = f1 * (f * 0.94F + 0.06F);
-        f2 = f2 * (f * 0.94F + 0.06F);
-        f3 = f3 * (f * 0.91F + 0.09F);
-        return new Vec3d((double)f1, (double)f2, (double)f3);
+        float red = 0.7529412F; // R
+        float green = 0.84705883F;// G
+        float blue = 1.0F;       // B
+        red = red * (f * 0.94F + 0.06F);
+        green = green * (f * 0.94F + 0.06F);
+        blue = blue * (f * 0.91F + 0.09F);
+        return new Vec3d((double)red, (double)green, (double)blue);
     }
     /**
      * the y level at which clouds are rendered.

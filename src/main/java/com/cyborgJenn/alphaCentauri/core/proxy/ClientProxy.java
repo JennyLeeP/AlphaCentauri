@@ -64,7 +64,10 @@ public class ClientProxy extends CommonProxy
 		registerItemBlockRender(ModBlocks.gateAlphaCentauri);
 		registerItemBlockRender(ModBlocks.alphaCentauriPortal);
 		registerItemBlockRender(ModBlocks.acStone);
-		registerItemBlockRender(ModBlocks.acStone);
+		
+		registerItemBlockRender(ModBlocks.basalt);
+		registerItemBlockRender(ModBlocks.basaltCobble);
+		
 		registerItemBlockRender(ModBlocks.acDirt);
 		registerItemBlockRender(ModBlocks.acGrass);
 		registerItemBlockRender(ModBlocks.marble);

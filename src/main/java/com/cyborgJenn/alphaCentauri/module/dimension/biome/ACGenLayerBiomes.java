@@ -8,7 +8,7 @@ import net.minecraft.world.gen.layer.IntCache;
 public class ACGenLayerBiomes extends GenLayer {
 
 
-	protected Biome[] allowedBiomes = {ModBiomes.LUSHHILLS, ModBiomes.GREENRIVER, ModBiomes.BEACH, ModBiomes.BloodMountains,
+	protected Biome[] allowedBiomes = {ModBiomes.LUSHHILLS, ModBiomes.GREENRIVER, ModBiomes.BEACH, ModBiomes.HOODOO_VALLEY,
 			ModBiomes.LIVINGPLATEAU, ModBiomes.Mangroves, ModBiomes.Morass, ModBiomes.PrimevalForest, ModBiomes.TreacherousHills, ModBiomes.VioletBoscage,ModBiomes.DESERT};
 
 

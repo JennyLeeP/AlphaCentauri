@@ -5,29 +5,30 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenFossils;
 
-public class BiomeGenBeach extends ACBiome{
-
-	private int field_150644_aH;
-	
-	public BiomeGenBeach(Biome.BiomeProperties properties) {
+public class BiomeGenBeach extends ACBiome
+{
+	public BiomeGenBeach(Biome.BiomeProperties properties) 
+	{
 		super(properties);
-		//this.topBlock = (Block) Blocks.sand;
-        //this.fillerBlock = (Block) Blocks.gravel;
-        //this.rootHeight = 0.0F;
-        //this.heightVariation = 0.1F;
-        this.spawnableCreatureList.clear();
-        //this.setTemperatureRainfall(0.2F, 0.3F);
-        //this.setColor(8900670);
+		this.topBlock = ModBlocks.darkSand.getDefaultState();
+        this.fillerBlock = ModBlocks.purpleGravel.getDefaultState();
+        this.spawnableCreatureList.clear();    
 	}
-	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
-    {      
-            this.topBlock = ModBlocks.darkSand.getDefaultState();
-            this.fillerBlock = ModBlocks.redGravel.getDefaultState();
-
-    		this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
+	@Override
+	public BiomeDecorator createBiomeDecorator()
+	{   
+		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
+	}
+	@Override
+	public void decorate(World worldIn, Random rand, BlockPos pos)
+    {
+        super.decorate(worldIn, rand, pos);
     }
 }

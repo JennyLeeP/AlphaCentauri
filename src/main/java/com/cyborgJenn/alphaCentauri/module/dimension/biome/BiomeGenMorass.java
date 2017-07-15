@@ -28,9 +28,7 @@ public class BiomeGenMorass extends ACBiome{
         this.spawnableMonsterList.clear();
         theBiomeDecorator = new ACBiomeDecorator(this);
         customBiomeDecorator = (ACBiomeDecorator)theBiomeDecorator;
-        this.customBiomeDecorator.blueFlowersPerChunk = 3;
-        this.customBiomeDecorator.grayFlowersPerChunk = 2;
-        this.customBiomeDecorator.purpleFlowersPerChunk = 3;
+        
         this.customBiomeDecorator.treesPerChunk = 7;
         this.customBiomeDecorator.nodesPerChunk = 1;
         this.customBiomeDecorator.grassPerChunk = 5;

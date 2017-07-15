@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 public class ACBiome extends Biome{
@@ -21,6 +22,12 @@ public class ACBiome extends Biome{
 	public ACBiome(BiomeProperties par1) {
 		super(par1);	
 	}
+	@Override
+	public BiomeDecorator createBiomeDecorator()
+	{   
+		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
+	}
+	
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {
         this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);

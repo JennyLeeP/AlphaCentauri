@@ -35,9 +35,6 @@ public class BiomeGenVioletBoscage extends ACBiome{
 		theBiomeDecorator = new ACBiomeDecorator(this);
 		customBiomeDecorator = (ACBiomeDecorator)theBiomeDecorator;
 		this.worldGeneratorTrees = new WorldGenTrees(false);
-		this.customBiomeDecorator.whiteFlowersPerChunk = 3;
-		this.customBiomeDecorator.grayFlowersPerChunk = 2;
-		this.customBiomeDecorator.purpleFlowersPerChunk = 3;
 		this.customBiomeDecorator.treesPerChunk = 7;
 		this.customBiomeDecorator.nodesPerChunk = 3;
 		this.customBiomeDecorator.sandPerChunk = 4;
