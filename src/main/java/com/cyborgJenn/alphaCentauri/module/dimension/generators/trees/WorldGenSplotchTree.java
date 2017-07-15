@@ -1,12 +1,16 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators.trees;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.BlockACLog1;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.BlockACPlanks1;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -19,60 +23,47 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.property.Properties;
 
 public class WorldGenSplotchTree extends WorldGenBaseTree 
 {
-	private final World world;
-	private Random rand = new Random();
-	private final BlockPos pos;
 	private final int BaseHeight = 15;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPLOTCH);
 	private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
 	public WorldGenSplotchTree(World world, BlockPos pos)
 	{
-		super(true);
+		super(true, world, pos);
 		//addSides();
-		this.pos = pos;
-		this.world = world;
-		this.gen();// TODO fix hacky tree gen.
+		this.generateTree(world, new Random());// TODO fix hacky tree gen.
 	}
 
 	public void gen()
 	{
-		this.generateTree(world, rand, pos);
+		
 	}
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		this.generateTree(world, random, pos);
+		this.generateTree(world, random);
 	}
-	@Override
-	public  void generateTree(World worldIn, Random rand, BlockPos position) 
-	{
-		EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);//Picks random side of tree around the horizontal plane.
-		IBlockState state = worldIn.getBlockState(position);
-		int height = rand.nextInt(3) + rand.nextInt(2) + 6;
-		int posX = position.getX();
-		int posY = position.getY();
-		int posZ = position.getZ();
 
-		if (this.isValidLocation(worldIn, position, false))
+	public  void generateTree(World worldIn, Random rand) 
+	{
+		int height = rand.nextInt(3) + rand.nextInt(2) + 6;
+
+		if (this.isValidLocation(worldIn, pos, false))
 		{
-			int k1 = posX;
-            int l1 = posZ;
-            int rootType = rand.nextInt(4);
-            k1 += enumfacing.getFrontOffsetX();
-            l1 += enumfacing.getFrontOffsetZ();
-            
-			makeTrunk(worldIn, position, height);
+
+			int quantity = rand.nextInt(4)+1;
 			
-			int k2 = posY;
-			BlockPos newPos = new BlockPos(k1, k2, l1);
+			makeTrunk(worldIn, pos, height);
+			
+			BlockPos newPos = pos.up(5).east();
 			
             placeLogAt(worldIn, newPos);
-            placeRoot(worldIn, newPos, enumfacing, rootType);
+            makeRoots(worldIn, quantity, rand);
 		}
 		
 	}
@@ -88,17 +79,62 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 	{
 		for (int i=0; i<=height; i++)
 		{
-			worldIn.setBlockState(pos.up(i), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+			setBlockAndNotifyAdequately(worldIn, pos.up(i), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
 		}
 
 	}
-	private void placeRoot(World worldIn, BlockPos pos, EnumFacing facing, int type)
+	/**
+	 * Makes a Quantity of Roots up to 4 
+	 * @param worldIn
+	 * @param quantity
+	 */
+	private void makeRoots(World worldIn, int quantity, Random rand)
 	{
-		int offsetX = facing.getFrontOffsetX();
-		int offsetZ = facing.getFrontOffsetZ();
-		int index = facing.getHorizontalIndex();// 0 = south, 1 = west, 2 = north 3 = east.
-		EnumFacing opp = facing.getOpposite();
-		
-		AlphaCentauri.logger.info("Facing: "+facing+" RootType: "+type+ " Xoffset: "+ offsetX+ " Zoffset: "+offsetZ+" Index: "+index+" Opposite: "+opp);
+		List<EnumFacing> availableSides = Lists.newArrayList(EnumFacing.Plane.HORIZONTAL.facings()); //array of available sides of the tree
+		for (int j=1; j<=quantity;j++)
+		{
+			EnumFacing direction = availableSides.remove(rand.nextInt(availableSides.size())); //pick a random direction and remove it from the list
+			int type = rand.nextInt(2) + 1;
+			buildRoot(worldIn, direction, type);
+		}
+	}
+	/**
+	 * Makes the branches
+	 * @param quantity
+	 */
+	private void makeBranches(int quantity)
+	{
+
+	}
+	
+	/**
+	 * Selects the type of Root to use.
+	 * @param worldIn
+	 * @param type
+	 */
+	private void buildRoot(World worldIn, EnumFacing direction, int type)
+	{
+		switch (type)
+		{
+		case 1: 
+			//TODO actually set the blocks for the root type.
+			System.out.println("Type 1");
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 1, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 1, direction);
+			break;
+		case 2:
+			System.out.println("Type 2");
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, -1, direction);
+			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 3, 0, -1, direction);
+			break;
+
+		default:
+			System.out.println("Type default");
+			break;
+		}
 	}
 }

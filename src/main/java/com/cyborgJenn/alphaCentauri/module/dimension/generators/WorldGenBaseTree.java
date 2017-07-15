@@ -8,31 +8,28 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WorldGenBaseTree implements IWorldGenerator
 {
 	private final boolean doBlockNotify;
-	public WorldGenBaseTree()
-	{
-		this(false);
-	}
-	public WorldGenBaseTree(boolean notify)
+	protected final World world;
+	//protected Random rand = new Random();
+	protected final BlockPos pos;
+
+	public WorldGenBaseTree(boolean notify, World world, BlockPos pos)
     {
         this.doBlockNotify = notify;
+        this.world = world;
+        this.pos = pos;
     }
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
-	{
-		
-	}
-	
-	public void generateTree(World world, Random rand, BlockPos pos)
 	{
 		
 	}
@@ -48,7 +45,7 @@ public class WorldGenBaseTree implements IWorldGenerator
             worldIn.setBlockState(pos, state, 2);
         }
     }
-	protected void setDirt(World worldIn, IBlockState block, BlockPos pos)
+	protected void setDirt(World worldIn, IBlockState block)
 	{
 		if (block == ModBlocks.acGrass.getDefaultState())
 		{
@@ -138,5 +135,59 @@ public class WorldGenBaseTree implements IWorldGenerator
         		|| blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks.vines 
         		|| blockType == ModBlocks.SAPLINGS1 || blockType == ModBlocks.LOG1 || blockType == ModBlocks.acGrass 
         		|| blockType == ModBlocks.acDirt;
+    }
+    
+    /**
+     * Sets the block in the world based on coordinates relative to base of the trunk of the tree. Positions assumed as no change for east facing
+     * @param worldIn
+     * @param blockStateIn
+     * @param x
+     * @param y
+     * @param z
+     * @param direction
+     */
+    protected void setRelativeBlockState(World worldIn, IBlockState blockStateIn, int x, int y, int z, EnumFacing direction)
+    {
+    	BlockPos blockPos = new BlockPos(this.getXWithOffset(x,z,direction),this.getYWithOffset(y), this.getZWithOffset(x, z, direction));
+    	
+    	setBlockAndNotifyAdequately(worldIn, blockPos, blockStateIn);
+    }
+    
+    private int getXWithOffset(int x, int z, EnumFacing direction)
+    {
+		switch(direction)
+		{
+		case NORTH:
+			return pos.getX() + z;
+		case SOUTH:
+			return pos.getX() - z;
+		case EAST:
+			return pos.getX() + x;
+		case WEST:
+			return pos.getX() - x;
+		default:
+			return x;
+		}    	
+    }
+    private int getYWithOffset(int y)
+    {
+		return pos.getY() + y;
+    	
+    }
+    private int getZWithOffset(int x, int z, EnumFacing direction)
+    {
+    	switch(direction)
+		{
+		case NORTH:
+			return pos.getZ() - x;
+		case SOUTH:
+			return pos.getZ() + x;
+		case EAST:
+			return pos.getZ() + z;
+		case WEST:
+			return pos.getZ() - z;
+		default:
+			return z;
+		}  
     }
 }

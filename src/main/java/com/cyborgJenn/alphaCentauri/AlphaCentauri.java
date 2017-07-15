@@ -126,7 +126,7 @@ public class AlphaCentauri {
 			proxy.registerDimensionRenderers();
 			BlockColorHandler.registerColorHandlers();
 			MinecraftForge.TERRAIN_GEN_BUS.register(new WorldEventHandler());//TODO confirm necessary.
-			GameRegistry.registerWorldGenerator(new WorldGenBaseTree(), 0);
+			//GameRegistry.registerWorldGenerator(new WorldGenBaseTree(), 0);
 		}
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		logger.info("Init Complete.............");
