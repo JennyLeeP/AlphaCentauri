@@ -1,6 +1,5 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators.trees;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -101,15 +100,13 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		switch (type)
 		{
 		case 1: 
-			//TODO actually set the blocks for the root type.
-			System.out.println("Type 1");
+			//TODO more root designs/styles
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 0, 0, direction);
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 1, 0, direction);
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 0, direction);
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 1, direction);
 			break;
 		case 2:
-			System.out.println("Type 2");
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 1, 0, 0, direction);
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, 0, direction);
 			this.setRelativeBlockState(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), 2, 0, -1, direction);
@@ -117,7 +114,6 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 			break;
 
 		default:
-			System.out.println("Type default");
 			break;
 		}
 	}
