@@ -38,11 +38,6 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 		this.generateTree(world, new Random());// TODO fix hacky tree gen.
 	}
 
-	public void gen()
-	{
-		
-	}
-
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
