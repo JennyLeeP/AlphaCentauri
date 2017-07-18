@@ -1,7 +1,5 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators;
 
-import java.util.Random;
-
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import net.minecraft.block.Block;
@@ -11,47 +9,26 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class WorldGenBaseTree implements IWorldGenerator
+public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements IWorldGenerator
 {
-	private final boolean doBlockNotify;
-	protected final World world;
-	//protected Random rand = new Random();
-	protected final BlockPos pos;
+	//protected final BlockPos pos;
 
-	public WorldGenBaseTree(boolean notify, World world, BlockPos pos)
+	public WorldGenBaseTree(boolean notify)
     {
-        this.doBlockNotify = notify;
-        this.world = world;
-        this.pos = pos;
+        super(notify);
     }
-	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
-	{
-		
-	}
 	
-	protected void setBlockAndNotifyAdequately(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (this.doBlockNotify)
-        {
-            worldIn.setBlockState(pos, state, 3);
-        }
-        else
-        {
-            worldIn.setBlockState(pos, state, 2);
-        }
-    }
-	protected void setDirt(World worldIn, IBlockState block)
+	@Override
+	protected void setDirtAt(World worldIn, BlockPos pos)
 	{
-		if (block == ModBlocks.acGrass.getDefaultState())
+		if (worldIn.getBlockState(pos).getBlock() == ModBlocks.acGrass.getDefaultState())
 		{
 			worldIn.setBlockState(pos.down(), ModBlocks.acDirt.getDefaultState());
 		}
-		else if(block == Blocks.GRASS.getDefaultState())
+		else if(worldIn.getBlockState(pos).getBlock() == Blocks.GRASS.getDefaultState())
 		{
 			worldIn.setBlockState(pos.down(), Blocks.DIRT.getDefaultState());
 		}
@@ -138,56 +115,64 @@ public class WorldGenBaseTree implements IWorldGenerator
     }
     
     /**
-     * Sets the block in the world based on coordinates relative to base of the trunk of the tree. Positions assumed as no change for east facing
-     * @param worldIn
-     * @param blockStateIn
-     * @param x
-     * @param y
-     * @param z
-     * @param direction
+     * Sets the block in the world based on coordinates relative to base of the trunk of the tree. Relative positions are assumed for growing in east (+ve x) direction
+     * @param worldIn World of tree
+     * @param blockStateIn Block to place
+     * @param x x coord relative to tree trunk
+     * @param y y coord relative to base of tree trunk
+     * @param z z coord relative to base of tree trunk
+     * @param direction Direction root to be grown from trunk 
      */
-    protected void setRelativeBlockState(World worldIn, IBlockState blockStateIn, int x, int y, int z, EnumFacing direction)
+    protected void setRelativeBlockState(World worldIn, BlockPos treeBase, IBlockState blockStateIn, int x, int y, int z, EnumFacing direction)
     {
-    	BlockPos blockPos = new BlockPos(this.getXWithOffset(x,z,direction),this.getYWithOffset(y), this.getZWithOffset(x, z, direction));
+    	BlockPos blockPos = new BlockPos(this.getXWithOffset(treeBase, x,z,direction),this.getYWithOffset(treeBase, y), this.getZWithOffset(treeBase, x, z, direction));
     	
     	setBlockAndNotifyAdequately(worldIn, blockPos, blockStateIn);
     }
     
-    private int getXWithOffset(int x, int z, EnumFacing direction)
+    private int getXWithOffset(BlockPos treeBase, int x, int z, EnumFacing direction)
     {
 		switch(direction)
 		{
 		case NORTH:
-			return pos.getX() + z;
+			return treeBase.getX() + z;
 		case SOUTH:
-			return pos.getX() - z;
+			return treeBase.getX() - z;
 		case EAST:
-			return pos.getX() + x;
+			return treeBase.getX() + x;
 		case WEST:
-			return pos.getX() - x;
+			return treeBase.getX() - x;
 		default:
 			return x;
 		}    	
     }
-    private int getYWithOffset(int y)
+    private int getYWithOffset(BlockPos treeBase, int y)
     {
-		return pos.getY() + y;
+		return treeBase.getY() + y;
     	
     }
-    private int getZWithOffset(int x, int z, EnumFacing direction)
+    private int getZWithOffset(BlockPos treeBase, int x, int z, EnumFacing direction)
     {
     	switch(direction)
 		{
 		case NORTH:
-			return pos.getZ() - x;
+			return treeBase.getZ() - x;
 		case SOUTH:
-			return pos.getZ() + x;
+			return treeBase.getZ() + x;
 		case EAST:
-			return pos.getZ() + z;
+			return treeBase.getZ() + z;
 		case WEST:
-			return pos.getZ() - z;
+			return treeBase.getZ() - z;
 		default:
 			return z;
 		}  
     }
+
+	protected void makeTrunk(World worldIn, IBlockState trunk, BlockPos pos, int height) {
+		for (int i=0; i<=height; i++)
+		{
+			setBlockAndNotifyAdequately(worldIn, pos.up(i), trunk);
+		}
+	
+	}
 }
