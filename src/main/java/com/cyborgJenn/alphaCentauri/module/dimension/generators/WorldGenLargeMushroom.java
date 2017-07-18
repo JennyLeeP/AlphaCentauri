@@ -36,7 +36,7 @@ public class WorldGenLargeMushroom extends WorldGenerator
             block = rand.nextBoolean() ? ModBlocks.BLOCK_MUSHROOM_BLUE : ModBlocks.BLOCK_MUSHROOM_PURPLE;//TODO change to another mushroom type.
         }
 
-        int i = rand.nextInt(3) + 4;
+        int i = rand.nextInt(4) + 7;
 
         if (rand.nextInt(12) == 0)
         {

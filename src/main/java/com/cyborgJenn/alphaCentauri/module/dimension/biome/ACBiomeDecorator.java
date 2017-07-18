@@ -2,10 +2,11 @@ package com.cyborgJenn.alphaCentauri.module.dimension.biome;
 
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenACMinable;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenLargeMushroom;
 
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkProviderSettings;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenBush;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -67,18 +68,30 @@ public class ACBiomeDecorator extends BiomeDecorator
 	public WorldGenerator resonating;
 	/*     Big Reactors         */
 	public WorldGenerator yellorite;
-	
+
 	public WorldGenerator cursedNodesGen;
 	public int nodesPerChunk;
-	
+
 	public WorldGenerator flowersGen;
 	public int flowersPerChunk;
-	
+
 	public WorldGenerator methIceGen;
 	public int methIcePerChunk;
-	
+
+	/*       Mushrooms         */
+	public int mushroomsPerChunk;
+	public int bigMushroomsPerChunk;
+	public WorldGenerator mushroomBlueGen = new WorldGenBush(ModBlocks.BLUE_MUSHROOM);
+	public WorldGenerator mushroomPurpleGen = new WorldGenBush(ModBlocks.PURPLE_MUSHROOM);
+	public WorldGenerator bigMushroomGen = new WorldGenLargeMushroom();
+	/*       Trees             */
+	public int treesPerChunk;
+    public float extraTreeChance = 0.0F;
+	/*       Moss and Grass    */
+    public WorldGenerator mossGen = new WorldGenBush(ModBlocks.MOSS);
+    public int mossPerChunk;
 	public int grassPerChunk;
-	
+
 	public ACBiomeDecorator(Biome biomeGenBase) 
 	{
 		super();
@@ -164,7 +177,6 @@ public class ACBiomeDecorator extends BiomeDecorator
 	@Override
 	protected void genDecorations(Biome biomeIn, World worldIn, Random random)
 	{
-
 		MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Pre(worldIn, random, chunkPos));
 		this.generateOres(worldIn, random);
 
@@ -191,27 +203,50 @@ public class ACBiomeDecorator extends BiomeDecorator
             this.methIceGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
         }
 		 */
-		int k1 = this.treesPerChunk;
 
-		if (random.nextFloat() < this.extraTreeChance)
+		/* ------------------------------------
+		 *               Mushrooms    
+		 --------------------------------------*/
+		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM))
+	        for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2)
+	        {
+	            int l6 = random.nextInt(16) + 8;
+	            int k10 = random.nextInt(16) + 8;
+	            this.bigMushroomGen.generate(worldIn, random, worldIn.getHeight(this.chunkPos.add(l6, 0, k10)));
+	        }
+		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM))
 		{
-			++k1;
-		}
-
-		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
-			for (int j2 = 0; j2 < k1; ++j2)
+			for (int l3 = 0; l3 < this.mushroomsPerChunk; ++l3)
 			{
-				int k6 = random.nextInt(16) + 8;
-				int l5 = random.nextInt(16) + 8;
-				WorldGenAbstractTree worldgenabstracttree = biomeIn.genBigTreeChance(random);
-				worldgenabstracttree.setDecorationDefaults();
-				BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l5));
-
-				if (worldgenabstracttree.generate(worldIn, random, blockpos))
+				if (random.nextInt(4) == 0)
 				{
-					worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
+					int i8 = random.nextInt(16) + 8;
+					int l11 = random.nextInt(16) + 8;
+					BlockPos blockpos2 = worldIn.getHeight(this.chunkPos.add(i8, 0, l11));
+					this.mushroomBlueGen.generate(worldIn, random, blockpos2);
+				}
+
+				if (random.nextInt(8) == 0)
+				{
+					int j8 = random.nextInt(16) + 8;
+					int i12 = random.nextInt(16) + 8;
+					int j15 = worldIn.getHeight(this.chunkPos.add(j8, 0, i12)).getY() * 2;
+
+					if (j15 > 0)
+					{
+						int k18 = random.nextInt(j15);
+						BlockPos blockpos5 = this.chunkPos.add(j8, k18, i12);
+						this.mushroomPurpleGen.generate(worldIn, random, blockpos5);
+					}
 				}
 			}
+
+		
+		} 
+		/* -------------------------------------
+		 *               Flowers
+		 * -------------------------------------
+		 */
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS))
 			for (int l2 = 0; l2 < this.flowersPerChunk; ++l2)
 			{
@@ -231,35 +266,75 @@ public class ACBiomeDecorator extends BiomeDecorator
 						//TODO generate random flower.
 						//this.yellowFlowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
 						//this.yellowFlowerGen.generate(worldIn, random, blockpos1);
-						
+
 					}
 				}
 			}
+		for (int j = 0; j < flowersPerChunk; ++j)
+		{
+			//k = chunk_X + randomGenerator.nextInt(16) + 8;
+			//l = randomGenerator.nextInt(128);
+			//i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
+			//flowersGen.generate(worldIn, random, blockPos, l, i1);
+		}
+		for (int j = 0; j < nodesPerChunk; ++j)
+		{
+			//k = chunk_X + randomGenerator.nextInt(16) + 8;
+			//l = randomGenerator.nextInt(128);
+			// i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
+			//cursedNodesGen.generate(currentWorld, randomGenerator, k, l, i1);
+		}
 		
-        for (int j = 0; j < flowersPerChunk; ++j)
-        {
-            //k = chunk_X + randomGenerator.nextInt(16) + 8;
-            //l = randomGenerator.nextInt(128);
-            //i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            //flowersGen.generate(worldIn, random, blockPos, l, i1);
-        }
-       
-		
-        for (int j = 0; j < nodesPerChunk; ++j)
-        {
-            //k = chunk_X + randomGenerator.nextInt(16) + 8;
-            //l = randomGenerator.nextInt(128);
-           // i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-            //cursedNodesGen.generate(currentWorld, randomGenerator, k, l, i1);
-        }
-		 
+		/* --------------------------------------
+		 *                Trees 
+		 ---------------------------------------*/
+		int k1 = this.treesPerChunk;
+
+		if (random.nextFloat() < this.extraTreeChance)
+		{
+			++k1;
+		}
+
+		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
+			for (int j2 = 0; j2 < k1; ++j2)
+			{
+				int k6 = random.nextInt(16) + 8;
+				int l5 = random.nextInt(16) + 8;
+				/*
+				WorldGenBaseTree worldgenbasetree = biomeIn.genBigTreeChance(random);
+				worldgenbasetree.setDecorationDefaults();
+				BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l5));
+
+				if (worldgenbasetree.generate(worldIn, random, blockpos))
+				{
+					worldgenbasetree.generateSaplings(worldIn, random, blockpos);
+				}
+				*/
+				
+			}
+		/* ----------------------------------
+		 *           Grass and Moss
+		   ----------------------------------*/
+		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CUSTOM))
+			for (int g3 = 0; g3 < this.mossPerChunk; ++g3)
+			{
+				//TODO moss needs work, placement rules and can stay.
+				int m7 = random.nextInt(16) + 8;
+				int m11 = random.nextInt(16) + 8;
+				int m14 = worldIn.getHeight(this.chunkPos.add(m7, 0, m11)).getY() * 2;
+				if (m14 > 0)
+				{
+					int m18 = random.nextInt(m14);
+					BlockPos blockposM = this.chunkPos.add(m7, m18, m11);
+					this.mossGen.generate(worldIn, random, blockposM);
+				}
+			}
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 			for (int i3 = 0; i3 < this.grassPerChunk; ++i3)
 			{
 				int j7 = random.nextInt(16) + 8;
 				int i11 = random.nextInt(16) + 8;
 				int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
-
 				if (k14 > 0)
 				{
 					int l17 = random.nextInt(k14);
@@ -267,8 +342,8 @@ public class ACBiomeDecorator extends BiomeDecorator
 				}
 			}
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(worldIn, random, chunkPos));
-
 	}
+	
 	/**
 	 * Generates ores in the current chunk
 	 */
@@ -302,7 +377,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 		if (Loader.isModLoaded("appliedenergistics") || Config.forceOres) { genAEOres(worldIn, random); }
 		if (Loader.isModLoaded("deepresonance") || Config.forceOres) { genDROres(worldIn, random); }
 		if (Loader.isModLoaded("big-reactors") || Config.forceOres) { genBROres(worldIn, random); }
-		
+
 		net.minecraftforge.common.MinecraftForge.ORE_GEN_BUS.post(new net.minecraftforge.event.terraingen.OreGenEvent.Post(worldIn, random, chunkPos));
 
 	}
@@ -371,15 +446,13 @@ public class ACBiomeDecorator extends BiomeDecorator
 			this.genStandardOre1(worldIn, random, 2, this.platinum, 0, 32);
 		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, mithril, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
 			this.genStandardOre1(worldIn, random, 2, this.mithril, 0, 32);
-		
 	}
 	private void genRCOres(World worldIn, Random random)
 	{
 		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, saltpeter, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
 			this.genStandardOre1(worldIn, random, 4, this.saltpeter, 30, 128);
 		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, sulphur, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM))
-            this.genStandardOre1(worldIn, random, 4, this.sulphur, 30, 128);
-		
+			this.genStandardOre1(worldIn, random, 4, this.sulphur, 30, 128);
 	}
 	private void genForestryOres(World worldIn, Random random) 
 	{

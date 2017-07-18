@@ -5,6 +5,7 @@ import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.portal.BlockAlphaCentauriPortal;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -53,7 +54,7 @@ public class ModBlocks {
 	public static Block walls;
 	public static Block fences;
 
-	public static Block MOSS;
+	public static BlockBush MOSS;
 	public static Block vines;
 
 	public static Block whiteFlower;
@@ -115,8 +116,8 @@ public class ModBlocks {
 	public static Block oreResonating;
 	public static Block oreYellorite;
 	
-	public static Block PURPLE_MUSHROOM;
-	public static Block BLUE_MUSHROOM;
+	public static BlockBush PURPLE_MUSHROOM;
+	public static BlockBush BLUE_MUSHROOM;
 	public static Block FUNGUS;
 	public static Block BLOCK_MUSHROOM_PURPLE;
 	public static Block BLOCK_MUSHROOM_BLUE;

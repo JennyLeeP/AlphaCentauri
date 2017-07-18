@@ -14,12 +14,22 @@ public class DimensionEntityHandler
 	{
 		BlockPos pos = event.getEntity().getPosition();
 		Biome biome = event.getEntity().getEntityWorld().getBiomeProvider().getBiome(pos);
-		
-		if (biome != null && biome == ModBiomes.HOODOO_VALLEY)
+
+		if (biome != null)
 		{
-			event.setRed(0.481F);
-			event.setGreen(0.414F);
-			event.setBlue(0.425F);
+			if (biome == ModBiomes.PAINTED_CLIFFS)
+			{
+				event.setRed(0.481F);
+				event.setGreen(0.414F);
+				event.setBlue(0.425F);
+			}
+			if (biome == ModBiomes.FUNGALFOREST)
+			{
+				event.setRed(0.657F);
+				event.setGreen(0.528F);
+				event.setBlue(0.578F);
+			}
+
 		}	
 	}
 	@SubscribeEvent
@@ -27,10 +37,17 @@ public class DimensionEntityHandler
 	{
 		BlockPos pos = event.getEntity().getPosition();
 		Biome biome = event.getEntity().getEntityWorld().getBiomeProvider().getBiome(pos);
-		if (biome != null && biome == ModBiomes.HOODOO_VALLEY)
+		if (biome != null )
 		{
-			event.setDensity(0.007655F);
-			//event.setCanceled(true);
+			if (biome == ModBiomes.PAINTED_CLIFFS)
+			{
+				event.setDensity(0.007655F);
+			}
+			if (biome == ModBiomes.FUNGALFOREST)
+			{
+				event.setDensity(1.077655F);
+			}
+		
 		}	
 	}
 }

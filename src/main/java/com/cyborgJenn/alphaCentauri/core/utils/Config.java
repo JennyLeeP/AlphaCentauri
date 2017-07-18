@@ -56,11 +56,11 @@ public class Config
     public static int       biomeMorassID;
     public static int       biomePrimevalForestID;
     public static int       biomeMangrovesID;
-    public static int       biomeTreacherousHillsID;
-    public static int       biomeBloodMountainsID;
+    public static int       biomeHoodooValleyID;
+    public static int       biomePaintedCliffsID;
     public static int       biomeLivingOceanID;
-    public static int       desertID;
-    public static int       fungalID;
+    public static int       biomeDesertID;
+    public static int       biomeFungalID;
     public static boolean   enableTreeParticles = true;
 	
 		
@@ -171,10 +171,10 @@ public class Config
         biomeMorassID           = config.get(dimension, "BiomeMorassID", bID++).getInt();
         biomePrimevalForestID   = config.get(dimension, "BiomePrimevalForestID", bID++).getInt();
         biomeMangrovesID        = config.get(dimension, "BiomeMangrovesID", bID++).getInt();
-        biomeTreacherousHillsID = config.get(dimension, "BiomeTreacherousHillsID", bID++).getInt();
-        biomeBloodMountainsID   = config.get(dimension, "BiomeBloodMountainsID", bID++).getInt();
-        desertID                = config.get(dimension, "BiomeDesertID", bID++).getInt();
-        fungalID                = config.get(dimension, "BiomeFungalID", bID++).getInt();
+        biomeHoodooValleyID = config.get(dimension, "BiomeTreacherousHillsID", bID++).getInt();
+        biomePaintedCliffsID   = config.get(dimension, "BiomeBloodMountainsID", bID++).getInt();
+        biomeDesertID                = config.get(dimension, "BiomeDesertID", bID++).getInt();
+        biomeFungalID                = config.get(dimension, "BiomeFungalID", bID++).getInt();
 	}
 	
 	private static void configParticles(Configuration config) {

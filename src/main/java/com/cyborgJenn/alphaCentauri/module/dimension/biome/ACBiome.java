@@ -4,11 +4,8 @@ import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -18,7 +15,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 public class ACBiome extends Biome{
 	
 	private ModBlocks baseBlock;
-	
+	public BiomeDecorator biomeDecorator;
 	public ACBiome(BiomeProperties par1) {
 		super(par1);	
 	}
