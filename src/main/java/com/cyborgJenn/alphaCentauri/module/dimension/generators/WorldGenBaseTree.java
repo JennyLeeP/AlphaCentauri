@@ -107,11 +107,11 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
     protected boolean canGrowInto(Block blockType)
     {
         Material material = blockType.getDefaultState().getMaterial();
-        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS 
+        return material == Material.AIR || material == Material.LEAVES || material == Material.PLANTS || blockType == Blocks.TALLGRASS || blockType == Blocks.GRASS 
         		|| blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 
         		|| blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks.vines 
         		|| blockType == ModBlocks.SAPLINGS1 || blockType == ModBlocks.LOG1 || blockType == ModBlocks.acGrass 
-        		|| blockType == ModBlocks.acDirt;
+        		|| blockType == ModBlocks.acDirt || blockType == ModBlocks.BLOCK_MUSHROOM_BLUE || blockType == ModBlocks.BLOCK_MUSHROOM_PURPLE;  		
     }
     
     /**
@@ -126,8 +126,11 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
     protected void setRelativeBlockState(World worldIn, BlockPos treeBase, IBlockState blockStateIn, int x, int y, int z, EnumFacing direction)
     {
     	BlockPos blockPos = new BlockPos(this.getXWithOffset(treeBase, x,z,direction),this.getYWithOffset(treeBase, y), this.getZWithOffset(treeBase, x, z, direction));
+    	if (this.canGrowInto(worldIn.getBlockState(blockPos).getBlock()))
+    	{
+    		setBlockAndNotifyAdequately(worldIn, blockPos, blockStateIn);
+    	}
     	
-    	setBlockAndNotifyAdequately(worldIn, blockPos, blockStateIn);
     }
     
     private int getXWithOffset(BlockPos treeBase, int x, int z, EnumFacing direction)
