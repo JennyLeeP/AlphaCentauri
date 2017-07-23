@@ -41,8 +41,8 @@ public class ACWorldProvider extends WorldProvider{
 		this.setDimension(Config.dimensionID);
 		this.hasNoSky = false;
 		/* Use this to test your Biome Creation. Make sure to switch back to our BiomeProvider before pushing to github.*/
-		this.biomeProvider = new BiomeProviderSingle(ModBiomes.FUNGALFOREST);
-        //this.biomeProvider = new ACBiomeProvider(worldObj.getSeed(), worldObj.getWorldType(), worldObj.getWorldInfo().getGeneratorOptions());
+		//this.biomeProvider = new BiomeProviderSingle(ModBiomes.FUNGALFOREST);
+        this.biomeProvider = new ACBiomeProvider(worldObj.getSeed(), worldObj.getWorldType(), worldObj.getWorldInfo().getGeneratorOptions());
         this.generateLightBrightnessTable();
     }
 	@Override
