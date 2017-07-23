@@ -104,11 +104,9 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 		{
 		case SPIRAL:
 			treeGen = new WorldGenSpiralTree(worldIn, pos);
-			AlphaCentauri.logger.info("Generate Spiral Tree");
 			break;
 		case SPLOTCH:
 			treeGen = new WorldGenSplotchTree(worldIn, pos);
-			//AlphaCentauri.logger.info("Generate Splotch Tree");
 			break;
 		default:
 			break;
