@@ -17,7 +17,7 @@ public class WorldEventHandler
 	{
 		AlphaCentauri.logger.info("Bonemeal the things");
 		
-		if (event.getResult() == Result.DEFAULT && event.getBlock().equals(ModBlocks.SAPLINGS1))
+		if (event.getResult() == Result.ALLOW && event.getBlock() == ModBlocks.SAPLINGS1)
 		{
 			if (!event.getWorld().isRemote)
 			{

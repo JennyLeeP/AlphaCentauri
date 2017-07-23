@@ -55,7 +55,6 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		}	
 		return false;
 	}
-
 	/**
 	 * Makes a Quantity of Roots up to 4 
 	 * @param worldIn
@@ -75,38 +74,45 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	 * Makes the branches
 	 * @param quantity
 	 */
-	private void makeBranches(World worldIn, BlockPos pos, int quantity, Random rand, int height)
-	{
-		
-		
-		for (int i =0; i <= quantity; i++)
+	private void makeBranches(World worldIn, BlockPos pos, int quantity, Random rand, int treeHeight)
+	{	
+		float f = rand.nextFloat() * ((float)Math.PI * 2F); // The angle in Radians.
+		int width = rand.nextInt(2)+2;
+		int x = pos.getX();
+		int y = pos.getY() + treeHeight;
+		int z = pos.getZ();
+		if (quantity ==1)
 		{
-			for (int j = pos.getY() + height; j > pos.getY() + height + rand.nextInt(4); j -= 2 + rand.nextInt(4))
+			for (int l =1;l <4; l++)
 			{
-				float f = rand.nextFloat() * ((float)Math.PI * 2F); // angle?
-				int k = pos.getX() + (int)(0.5F + MathHelper.cos(f) * 4.0F);
-				int l = pos.getZ() + (int)(0.5F + MathHelper.sin(f) * 4.0F);
-
-				for (int i1 = 0; i1 < 5; ++i1)
+				this.growLeavesCircular(worldIn, new BlockPos( x, y+l, z),width , DEFAULT_LEAF);
+				--width;
+			}
+		}
+		else 
+		{
+			for (int t =1; t <= quantity; t++)
+			{	
+				for (int j = pos.getY() + treeHeight - 2; j > pos.getY() + treeHeight / 2; j -= 2 + rand.nextInt(4))
 				{
-					k = pos.getX() + (int)(1.5F + MathHelper.cos(f) * (float)i1);
-					l = pos.getZ() + (int)(1.5F + MathHelper.sin(f) * (float)i1);
-					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(k, j + 3 + i1 / 2, l), BARK);
-				}
-
-				int j2 = 1 + rand.nextInt(2);
-				int j1 = j;  // References y height as J.
-
-				for (int k1 = j - j2; k1 <= j1; ++k1)
-				{
-					int l1 = k1 - j1;
-					this.growLeavesCircular(worldIn, new BlockPos(k, k1 + height, l), 1 - l1, DEFAULT_LEAF);
+					//f += ((rand.nextFloat() / quantity) * ((float)Math.PI * 2F / quantity)) + ((float)Math.PI * 2F / quantity);
+					f += (((-0.5 + rand.nextFloat()) / quantity) * ((float)Math.PI * 2F / quantity)) + ((float)Math.PI * 2F / quantity);
+					for (int i1 = 0; i1 < 5; ++i1)
+					{
+						x = pos.getX() + (int)(0.5F + MathHelper.cos(f) * (float)i1);
+						z = pos.getZ() + (int)(0.5F + MathHelper.sin(f) * (float)i1);
+						this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x, j + 3 + i1 / 2, z), BARK);
+					}
+					int j2 = 1 + rand.nextInt(2);
+					for (int k1 = j - j2; k1 <= j; ++k1)
+					{
+						int l1 = k1 - j;
+						this.growLeavesCircular(worldIn, new BlockPos(x, k1+6, z), 1 - l1, DEFAULT_LEAF);
+					}
 				}
 			}
 		}
-
 	}
-
 	/**
 	 * Selects the type of Root to use.
 	 * @param worldIn
