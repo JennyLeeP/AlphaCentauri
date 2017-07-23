@@ -66,7 +66,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		for (int j=1; j<=quantity;j++)
 		{
 			EnumFacing direction = availableSides.remove(rand.nextInt(availableSides.size())); //pick a random direction and remove it from the list
-			int type = rand.nextInt(2) + 1;
+			int type = rand.nextInt(6) + 1;
 			buildRoot(worldIn, treebase, direction, type);
 		}
 	}
@@ -115,6 +115,8 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	}
 	/**
 	 * Selects the type of Root to use.
+	 * X+ or 1  = away from tree, X- or -1 = towards or behind tree.
+	 * Z+ or 1  = left, Z- or -1 = right.
 	 * @param worldIn
 	 * @param type
 	 */
@@ -135,7 +137,27 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, -1, direction);
 			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 3, 0, -1, direction);
 			break;
-
+		case 3:
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 1, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 2, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
+			break;
+		case 4:
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 3, 0, -1, direction);
+			break;
+		case 5:
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			break;
+		case 6:
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 1, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 3, 0, 0, direction);
+			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 4, 0, 1, direction);
+			break;
 		default:
 			break;
 		}
