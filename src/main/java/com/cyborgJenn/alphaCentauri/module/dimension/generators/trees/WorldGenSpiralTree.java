@@ -110,7 +110,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 					int s = 1;
 					for (int k1 = j - j2; k1 <= j; ++k1)
 					{
-						System.out.println("k1 "+ k1 + " j "+ j + " j2 "+ j2);
+						//System.out.println("k1 "+ k1 + " j "+ j + " j2 "+ j2);
 						int l1 = k1 - j;
 						this.growLeavesCircular(worldIn, new BlockPos(x, k1+6, z), 1 + s, DEFAULT_LEAF);
 						++s;
