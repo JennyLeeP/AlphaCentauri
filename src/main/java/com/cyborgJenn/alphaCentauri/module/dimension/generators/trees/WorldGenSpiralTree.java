@@ -46,7 +46,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		{
 			int height = rand.nextInt(4) + BaseHeight;
 			int quantity = rand.nextInt(4)+1;
-			this.setDirtAt(worldIn, pos.down());
+			//this.setDirtAt(worldIn, pos.down());
 
 			this.makeTrunk(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), pos, height);
 			this.makeRoots(worldIn, pos, quantity, rand);
@@ -77,38 +77,45 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	private void makeBranches(World worldIn, BlockPos pos, int quantity, Random rand, int treeHeight)
 	{	
 		float f = rand.nextFloat() * ((float)Math.PI * 2F); // The angle in Radians.
-		int width = rand.nextInt(2)+2;
+		int width = rand.nextInt(1)+1;
 		int x = pos.getX();
-		int y = pos.getY() + treeHeight;
+		int y = pos.getY() + treeHeight -2;
 		int z = pos.getZ();
 		if (quantity ==1)
 		{
 			for (int l =1;l <4; l++)
 			{
 				this.growLeavesCircular(worldIn, new BlockPos( x, y+l, z),width , DEFAULT_LEAF);
-				--width;
+				++width;
 			}
 		}
 		else 
 		{
+			
 			for (int t =1; t <= quantity; t++)
 			{	
-				for (int j = pos.getY() + treeHeight - 2; j > pos.getY() + treeHeight / 2; j -= 2 + rand.nextInt(4))
+				for (int j = pos.getY() + treeHeight - 2; j > (pos.getY() + treeHeight / 2); j -= 2 + rand.nextInt(4))
 				{
 					//f += ((rand.nextFloat() / quantity) * ((float)Math.PI * 2F / quantity)) + ((float)Math.PI * 2F / quantity);
 					f += (((-0.5 + rand.nextFloat()) / quantity) * ((float)Math.PI * 2F / quantity)) + ((float)Math.PI * 2F / quantity);
-					for (int i1 = 0; i1 < 5; ++i1)
+					for (int i1 = 0; i1 < + 5; ++i1)
 					{
-						x = pos.getX() + (int)(0.5F + MathHelper.cos(f) * (float)i1);
-						z = pos.getZ() + (int)(0.5F + MathHelper.sin(f) * (float)i1);
+						x = pos.getX() + (int)(1.0F + MathHelper.cos(f) * (float)i1);
+						z = pos.getZ() + (int)(1.0F + MathHelper.sin(f) * (float)i1);
 						this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x, j + 3 + i1 / 2, z), BARK);
 					}
+					
+					
 					int j2 = 1 + rand.nextInt(2);
+					int s = 1;
 					for (int k1 = j - j2; k1 <= j; ++k1)
 					{
+						System.out.println("k1 "+ k1 + " j "+ j + " j2 "+ j2);
 						int l1 = k1 - j;
-						this.growLeavesCircular(worldIn, new BlockPos(x, k1+6, z), 1 - l1, DEFAULT_LEAF);
+						this.growLeavesCircular(worldIn, new BlockPos(x, k1+6, z), 1 + s, DEFAULT_LEAF);
+						++s;
 					}
+					
 				}
 			}
 		}
@@ -161,5 +168,16 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		default:
 			break;
 		}
+	}
+	@Override
+	protected void makeTrunk(World worldIn, IBlockState trunk, BlockPos pos, int height) {
+		
+		setBlockAndNotifyAdequately(worldIn, pos, Blocks.AIR.getDefaultState());
+		setBlockAndNotifyAdequately(worldIn, pos.up(1), BARK);
+		for (int i=2; i<=height -1; i++)
+		{
+			setBlockAndNotifyAdequately(worldIn, pos.up(i), trunk);
+		}
+		setBlockAndNotifyAdequately(worldIn, pos.up(height), BARK);
 	}
 }
