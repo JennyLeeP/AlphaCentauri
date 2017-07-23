@@ -79,11 +79,12 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	{
 		
 		
+		float f = rand.nextFloat() * ((float)Math.PI * 2F); // angle?
 		for (int i =0; i <= quantity; i++)
 		{
 			for (int j = pos.getY() + height; j > pos.getY() + height + rand.nextInt(4); j -= 2 + rand.nextInt(4))
 			{
-				float f = rand.nextFloat() * ((float)Math.PI * 2F); // angle?
+				f += rand.nextFloat() * ((float)Math.PI * 2F / quantity); // angle?
 				int k = pos.getX() + (int)(0.5F + MathHelper.cos(f) * 4.0F);
 				int l = pos.getZ() + (int)(0.5F + MathHelper.sin(f) * 4.0F);
 
