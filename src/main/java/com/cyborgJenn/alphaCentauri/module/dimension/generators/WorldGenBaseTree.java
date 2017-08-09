@@ -1,5 +1,7 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators;
 
+import java.util.List;
+
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import net.minecraft.block.Block;
@@ -8,6 +10,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -114,15 +118,13 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
         		|| blockType == ModBlocks.acDirt || blockType == ModBlocks.BLOCK_MUSHROOM_BLUE || blockType == ModBlocks.BLOCK_MUSHROOM_PURPLE;  		
     }
     
-    /**
-     * Sets the block in the world based on coordinates relative to base of the trunk of the tree. Relative positions are assumed for growing in east (+ve x) direction
-     * @param worldIn World of tree
-     * @param blockStateIn Block to place
-     * @param x x coord relative to tree trunk
-     * @param y y coord relative to base of tree trunk
-     * @param z z coord relative to base of tree trunk
-     * @param direction Direction root to be grown from trunk 
-     */
+
+    protected void buildRoot(World worldIn, BlockPos treeBase, EnumFacing direction, IBlockState rootBlock, List<Vec3i> posList){
+    	for (Vec3i currPos: posList){
+    		setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
+    	}
+    }
+    
     protected void setRelativeBlockState(World worldIn, BlockPos treeBase, IBlockState blockStateIn, int x, int y, int z, EnumFacing direction)
     {
     	BlockPos blockPos = new BlockPos(this.getXWithOffset(treeBase, x,z,direction),this.getYWithOffset(treeBase, y), this.getZWithOffset(treeBase, x, z, direction));

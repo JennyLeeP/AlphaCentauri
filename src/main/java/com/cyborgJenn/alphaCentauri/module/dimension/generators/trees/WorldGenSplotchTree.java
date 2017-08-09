@@ -1,5 +1,6 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.generators.trees;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -47,10 +49,10 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 		if (this.isValidLocation(worldIn, pos, false))
 		{
 
-			int rootQuantity = rand.nextInt(5);
+			
 			
 			makeTrunk(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), pos, height);
-            makeRoots(worldIn, pos, rootQuantity, rand);
+            makeRoots(worldIn, pos, rand);
     		return true;
 		}
 		return false;
@@ -61,50 +63,65 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 	 * @param worldIn
 	 * @param quantity
 	 */
-	private void makeRoots(World worldIn, BlockPos treeBase, int quantity, Random rand)
+	private void makeRoots(World worldIn, BlockPos treeBase, Random rand)
 	{
+		int quantity = rand.nextInt(5);
 		List<EnumFacing> availableSides = Lists.newArrayList(EnumFacing.Plane.HORIZONTAL.facings()); //array of available sides of the tree
 		for (int j=1; j<=quantity;j++)
 		{
 			EnumFacing direction = availableSides.remove(rand.nextInt(availableSides.size())); //pick a random direction and remove it from the list
-			int type = rand.nextInt(2) + 1;
-			buildRoot(worldIn, treeBase, direction, type);
+			pickRoot(worldIn, treeBase, direction, rand);
 		}
 	}
-//	/**
-//	 * Makes the branches (might put this method in base class)
-//	 * @param quantity
-//	 */
-//	private void makeBranches(int quantity)
-//	{
-//
-//	}
 	
 	/**
 	 * Selects the type of Root to use.
 	 * @param worldIn
 	 * @param type
 	 */
-	private void buildRoot(World worldIn, BlockPos treeBase, EnumFacing direction, int type)
+	private void pickRoot(World worldIn, BlockPos treeBase, EnumFacing direction, Random rand)
 	{
+		int type = rand.nextInt(6) + 1;
+		List<Vec3i> posList = new ArrayList<Vec3i>();
 		switch (type)
 		{
 		case 1: 
-			//TODO add more root designs
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 1, 0, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 1, direction);
+			//TODO more root designs/styles DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE)
+			posList.add(new Vec3i(1, 0, 0));
+			posList.add(new Vec3i(1, 1, 0));
+			posList.add(new Vec3i(2, 0, 0));
+			posList.add(new Vec3i(2, 0, 1));
 			break;
 		case 2:
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 1, 0, 0, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, 0, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 2, 0, -1, direction);
-			this.setRelativeBlockState(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), 3, 0, -1, direction);
+			posList.add(new Vec3i(1, 0, 0));
+			posList.add(new Vec3i(2, 0, 0));
+			posList.add(new Vec3i(2, 0, -1));
+			posList.add(new Vec3i(3, 0, -1));
 			break;
-
+		case 3:
+			posList.add(new Vec3i(1, 0, 0));
+			posList.add(new Vec3i(1, 1, 0));
+			posList.add(new Vec3i(1, 2, 0));
+			posList.add(new Vec3i(2, 0, 0));
+			break;
+		case 4:
+			posList.add(new Vec3i(1, 0, 0));
+			posList.add(new Vec3i(2, 0, 0));
+			posList.add(new Vec3i(3, 0, -1));
+			break;
+		case 5:
+			posList.add(new Vec3i(1, 0, 0));
+			break;
+		case 6:
+			posList.add(new Vec3i(1, 0, 0));
+			posList.add(new Vec3i(1, 1, 0));
+			posList.add(new Vec3i(2, 0, 0));
+			posList.add(new Vec3i(3, 0, 0));
+			posList.add(new Vec3i(4, 0, 1));
+			break;
 		default:
 			break;
 		}
+		buildRoot(worldIn, treeBase, direction, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE), posList);
 	}
 }
