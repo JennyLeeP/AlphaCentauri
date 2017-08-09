@@ -75,6 +75,7 @@ public class ModBlocks {
 	public static Block blackFlower;
 
 	public static Block LOG1;
+	public static Block LOG2;
 	public static Block leaves;
 	public static Block SAPLINGS1;
 	public static Block PLANKS1;
@@ -195,6 +196,7 @@ public class ModBlocks {
 		
 		/*  Trees Leaves Saplings  */
 		LOG1            = new BlockACLog1("log1");
+		LOG2 			= new BlockACLog2("log2");
 		PLANKS1         = new BlockACPlanks1();
 		SAPLINGS1       = new BlockACSaplings1();
 		
