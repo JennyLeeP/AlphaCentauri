@@ -40,7 +40,8 @@ public class BlockFungus extends Block
         this.setHarvestLevel("shovel", 2);
         this.setResistance(25.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
-		Registry.registerBlock(this, name);
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)

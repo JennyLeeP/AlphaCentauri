@@ -1,36 +1,15 @@
 package com.cyborgJenn.alphaCentauri.core.handlers;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.core.proxy.CommonProxy;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class CyborgEventHandler 
 {
 	public static int dimension;
-	
-	@SubscribeEvent    
-	public void playerLoggedInEvent (PlayerEvent.PlayerLoggedInEvent event)
-	{    
-		Side side = FMLCommonHandler.instance().getEffectiveSide();        
-		if (side == Side.SERVER)
-		{
-			EventHandlerEntity.syncSchedule.add(event.player.getEntityId());
-		}
-	}
-
-	public static void syncaccessories(EntityPlayer player)
-	{
-		for (int i = 0; i < 8; i++) {
-			PlayerHandler.getPlayerAccessories(player).syncSlotToClients(i);
-		}
-	}
 
 	/*
 	 * Gets the MinecraftForge WorldEvent.
@@ -51,7 +30,7 @@ public class CyborgEventHandler
 		if (dimension == 0){
 			switch(event.getType()){
 			case CAVE:
-				event.setNewGen(AlphaCentauri.caveGen); //= CyborgUtils.caveGen;
+				event.setNewGen(CommonProxy.caveGen); //= CyborgUtils.caveGen;
 				break;
 			case CUSTOM:
 				break;

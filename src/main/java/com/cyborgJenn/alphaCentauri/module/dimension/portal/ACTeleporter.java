@@ -1,16 +1,12 @@
 package com.cyborgJenn.alphaCentauri.module.dimension.portal;
 
-import java.util.Iterator;
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
@@ -50,9 +46,9 @@ public class ACTeleporter extends Teleporter
 		}
 		else
 		{
-			int i = MathHelper.floor_double(entityIn.posX);
-			int j = MathHelper.floor_double(entityIn.posY) - 1;
-			int k = MathHelper.floor_double(entityIn.posZ);
+			int i = MathHelper.floor(entityIn.posX);
+			int j = MathHelper.floor(entityIn.posY) - 1;
+			int k = MathHelper.floor(entityIn.posZ);
 			byte b0 = 1;
 			byte b1 = 0;
 
@@ -82,8 +78,8 @@ public class ACTeleporter extends Teleporter
 	{
 		short short1 = 128;
 		double d0 = -1.0D;
-		int j = MathHelper.floor_double(entityIn.posX);
-		int k = MathHelper.floor_double(entityIn.posZ);
+		int j = MathHelper.floor(entityIn.posX);
+		int k = MathHelper.floor(entityIn.posZ);
 		boolean flag = true;
         BlockPos blockpos = BlockPos.ORIGIN;
         long l = ChunkPos.asLong(j, k);
@@ -140,7 +136,7 @@ public class ACTeleporter extends Teleporter
             BlockPattern.PatternHelper blockpattern$patternhelper = ModBlocks.alphaCentauriPortal.createPatternHelper(this.worldServerInstance, blockpos);
             boolean flag1 = blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
             double d2 = blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
-            double d6 = (double)(blockpattern$patternhelper.getFrontTopLeft().getY() + 1) - entityIn.getLastPortalVec().yCoord * (double)blockpattern$patternhelper.getHeight();
+            double d6 = (double)(blockpattern$patternhelper.getFrontTopLeft().getY() + 1) - entityIn.getLastPortalVec().y * (double)blockpattern$patternhelper.getHeight();
 
             if (flag1)
             {
@@ -149,11 +145,11 @@ public class ACTeleporter extends Teleporter
 
             if (blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X)
             {
-                d7 = d2 + (1.0D - entityIn.getLastPortalVec().xCoord) * (double)blockpattern$patternhelper.getWidth() * (double)blockpattern$patternhelper.getForwards().rotateY().getAxisDirection().getOffset();
+                d7 = d2 + (1.0D - entityIn.getLastPortalVec().x) * (double)blockpattern$patternhelper.getWidth() * (double)blockpattern$patternhelper.getForwards().rotateY().getAxisDirection().getOffset();
             }
             else
             {
-                d5 = d2 + (1.0D - entityIn.getLastPortalVec().xCoord) * (double)blockpattern$patternhelper.getWidth() * (double)blockpattern$patternhelper.getForwards().rotateY().getAxisDirection().getOffset();
+                d5 = d2 + (1.0D - entityIn.getLastPortalVec().x) * (double)blockpattern$patternhelper.getWidth() * (double)blockpattern$patternhelper.getForwards().rotateY().getAxisDirection().getOffset();
             }
 
             float f = 0.0F;
@@ -207,9 +203,9 @@ public class ACTeleporter extends Teleporter
 	{
 		int i = 16;
         double d0 = -1.0D;
-        int j = MathHelper.floor_double(entityIn.posX);
-        int k = MathHelper.floor_double(entityIn.posY);
-        int l = MathHelper.floor_double(entityIn.posZ);
+        int j = MathHelper.floor(entityIn.posX);
+        int k = MathHelper.floor(entityIn.posY);
+        int l = MathHelper.floor(entityIn.posZ);
         int i1 = j;
         int j1 = k;
         int k1 = l;
@@ -355,7 +351,7 @@ public class ACTeleporter extends Teleporter
 
         if (d0 < 0.0D)
         {
-            j1 = MathHelper.clamp_int(j1, 70, this.worldServerInstance.getActualHeight() - 10);
+            j1 = MathHelper.clamp(j1, 70, this.worldServerInstance.getActualHeight() - 10);
             k2 = j1;
 
             for (int j7 = -1; j7 <= 1; ++j7)
@@ -398,7 +394,7 @@ public class ACTeleporter extends Teleporter
                     int i12 = k2 + i10;
                     int l12 = k6 + (i9 - 1) * i3;
                     BlockPos blockpos = new BlockPos(i11, i12, l12);
-                    this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock());
+                    this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock(), false);
                 }
             }
         }

@@ -5,7 +5,6 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenACMinable;
-import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenLargeMushroom;
 
 import net.minecraft.block.BlockFlower;
@@ -14,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.ChunkProviderSettings;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenBush;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +21,7 @@ import net.minecraftforge.fml.common.Loader;
 
 public class ACBiomeDecorator extends BiomeDecorator 
 {
-	public ChunkProviderSettings chunkProviderSettings;
+	public ChunkGeneratorSettings chunkProviderSettings;
 
 	/*    Vanilla    */
 	public WorldGenerator dirt;
@@ -105,7 +104,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 		}
 		else
 		{
-			this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
+			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
 			this.dirt = new WorldGenACMinable(ModBlocks.acDirt.getDefaultState(), this.chunkProviderSettings.dirtSize);
 			this.gravel = new WorldGenACMinable(ModBlocks.blueGravel.getDefaultState(), this.chunkProviderSettings.gravelSize);
@@ -181,18 +180,18 @@ public class ACBiomeDecorator extends BiomeDecorator
 		this.generateOres(worldIn, random);
 
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND))
-			for (int i = 0; i < this.sandPerChunk; ++i)
+			for (int i = 0; i < this.sandPatchesPerChunk; ++i)
 			{
 				int j = random.nextInt(16) + 8;
 				int k = random.nextInt(16) + 8;
 				this.sandGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
 			}
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2))
-			for (int j1 = 0; j1 < this.sandPerChunk2; ++j1)
+			for (int j1 = 0; j1 < this.gravelPatchesPerChunk; ++j1)
 			{
 				int i2 = random.nextInt(16) + 8;
 				int j6 = random.nextInt(16) + 8;
-				this.gravelAsSandGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
+				this.gravelGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
 			}
 		/*
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, CLAY);

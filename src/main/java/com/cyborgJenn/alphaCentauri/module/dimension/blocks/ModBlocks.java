@@ -2,18 +2,16 @@ package com.cyborgJenn.alphaCentauri.module.dimension.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
-import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.portal.BlockAlphaCentauriPortal;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 
@@ -25,6 +23,7 @@ public class ModBlocks {
 	public static BlockACGrass darkGrass;
 	public static Block beachGrass;
 	public static Block acDirt;
+	@GameRegistry.ObjectHolder("alphacentauri:acstone")
 	public static Block acStone;
 	public static Block acCobble;
 	public static Block basalt;
@@ -148,6 +147,7 @@ public class ModBlocks {
 		/* Sand & Gravel Blocks  */
 		lightSand     = new FallingBlock(0, Material.SAND, "sand_light");
 		darkSand      = new FallingBlock(0, Material.SAND, "sand_dark");
+		
 		blueGravel    = new FallingBlock(1, Material.GROUND, "gravel_blue");
 		redGravel     = new FallingBlock(1, Material.GROUND, "gravel_red");
 		darkGravel    = new FallingBlock(1, Material.GROUND, "gravel_dark");

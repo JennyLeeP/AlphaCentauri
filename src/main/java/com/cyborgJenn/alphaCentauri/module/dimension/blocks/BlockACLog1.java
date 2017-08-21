@@ -10,7 +10,6 @@ import com.cyborgJenn.alphaCentauri.module.dimension.items.ItemBlockACLog1;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -19,8 +18,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -45,8 +42,7 @@ public class BlockACLog1 extends BlockLog
 		this.blockSoundType = SoundType.WOOD;
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlockACLog1(this), new ResourceLocation(Reference.MODID, name));
+		this.setRegistryName(name);
 	}
 	
 	/**
@@ -57,6 +53,8 @@ public class BlockACLog1 extends BlockLog
     {
     	list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPIRAL.getMetadata())); // Meta 0
 		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPLOTCH.getMetadata())); // Meta 1
+		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.MANGROVE.getMetadata())); // Meta 2
+		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.ADANSONIA.getMetadata())); // Meta 3
     }
     
 	@Override

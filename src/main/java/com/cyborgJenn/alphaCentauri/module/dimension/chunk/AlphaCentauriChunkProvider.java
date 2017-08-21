@@ -25,7 +25,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
@@ -74,7 +74,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		{
 			for (int j = -2; j <= 2; ++j)
 			{
-				float f = 10.0F / MathHelper.sqrt_float((float)(i * i + j * j) + 0.2F);
+				float f = 10.0F / MathHelper.sqrt((float)(i * i + j * j) + 0.2F);
 				this.biomeWeights[i + 2 + (j + 2) * 5] = f;
 			}
 		}
@@ -179,7 +179,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	 * 
 	 */
 	@Override
-	public Chunk provideChunk(int x, int z) 
+	public Chunk generateChunk(int x, int z) 
 	{
 		this.random.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -289,7 +289,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 					double d7 = this.minLimitRegion[l] / 512.0D;
 					double d8 = this.maxLimitRegion[l] / 512.0D;
 					double d9 = (this.mainNoiseRegion[l] / 10.0D + 1.0D) / 2.0D;
-					double d10 = MathHelper.denormalizeClamp(d7, d8, d9) - d6;
+					double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
 
 					if (j2 > 29) 
 					{
@@ -365,15 +365,21 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
-	@Nullable
-	@Override
-	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) 
-	{
-		return null;
-	}
+	
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z) 
 	{
 
+	}
+	@Override
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
+			boolean findUnexplored) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

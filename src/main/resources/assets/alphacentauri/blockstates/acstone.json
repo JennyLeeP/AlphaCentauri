@@ -1,5 +1,10 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "alphacentauri:acstone"
+  },
   "variants": {
-    "normal": { "model": "alphacentauri:acstone" }
+    "normal": [{}],
+    "inventory": [{}]
   }
 }

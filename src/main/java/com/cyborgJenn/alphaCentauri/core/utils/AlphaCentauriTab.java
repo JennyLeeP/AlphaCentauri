@@ -1,10 +1,13 @@
 package com.cyborgJenn.alphaCentauri.core.utils;
 
 import com.cyborgJenn.alphaCentauri.core.item.ModItems;
+import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class AlphaCentauriTab extends CreativeTabs{
 
@@ -16,14 +19,8 @@ public class AlphaCentauriTab extends CreativeTabs{
 	  }
 	
 	@Override
-	public Item getTabIconItem() {
-		if (Config.enableModuleAccessories)
-		{
-			return ModItems.Sextant;
-		}else {
-			return Items.DIAMOND_SWORD;
-		}
-		
+	public ItemStack getTabIconItem() {
+		return new ItemStack(Item.getItemFromBlock(ModBlocks.gateAlphaCentauri));	
 	}
 	@Override
 	public boolean hasSearchBar()

@@ -30,9 +30,8 @@ public class FallingBlock extends BlockFalling{
 			this.setResistance(5.0F);
 		}
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 
 }

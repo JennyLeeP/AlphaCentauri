@@ -11,7 +11,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -53,12 +53,12 @@ public class WorldGenACMinable extends WorldGenerator implements IWorldGenerator
             double d9 = rand.nextDouble() * (double)this.numberOfBlocks / 16.0D;
             double d10 = (double)(MathHelper.sin((float)Math.PI * f1) + 1.0F) * d9 + 1.0D;
             double d11 = (double)(MathHelper.sin((float)Math.PI * f1) + 1.0F) * d9 + 1.0D;
-            int j = MathHelper.floor_double(d6 - d10 / 2.0D);
-            int k = MathHelper.floor_double(d7 - d11 / 2.0D);
-            int l = MathHelper.floor_double(d8 - d10 / 2.0D);
-            int i1 = MathHelper.floor_double(d6 + d10 / 2.0D);
-            int j1 = MathHelper.floor_double(d7 + d11 / 2.0D);
-            int k1 = MathHelper.floor_double(d8 + d10 / 2.0D);
+            int j = MathHelper.floor(d6 - d10 / 2.0D);
+            int k = MathHelper.floor(d7 - d11 / 2.0D);
+            int l = MathHelper.floor(d8 - d10 / 2.0D);
+            int i1 = MathHelper.floor(d6 + d10 / 2.0D);
+            int j1 = MathHelper.floor(d7 + d11 / 2.0D);
+            int k1 = MathHelper.floor(d8 + d10 / 2.0D);
 
             for (int l1 = j; l1 <= i1; ++l1)
             {

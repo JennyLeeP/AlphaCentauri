@@ -46,9 +46,7 @@ public class BlockACGrass extends Block implements IGrowable
         this.setResistance(25.0F);
         this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		//this.setRegistryName(name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		this.setRegistryName(name);
     }
 	/**
      * Get the actual Block state of this Block at the given position. This applies properties not visible in the

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
 
 import net.minecraft.block.Block;
@@ -34,7 +35,8 @@ public class BlockAlienMushroom extends Block
 		this.smallblock = smallBlockIn;
 		this.setHardness(0.2F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockHugeMushroom.EnumType.ALL_OUTSIDE));
-		Registry.registerBlock(this, name);
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 	/**
 	 * Returns the quantity of items to drop on block destruction.
@@ -63,7 +65,7 @@ public class BlockAlienMushroom extends Block
 	 * IBlockstate
 	 */
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState();
 	}

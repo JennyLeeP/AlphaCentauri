@@ -2,13 +2,13 @@ package com.cyborgJenn.alphaCentauri.core.integration;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 
-import mezz.jei.api.IItemRegistry;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 
 @JEIPlugin
@@ -24,7 +24,7 @@ public class JEICyborgCorePlugin implements IModPlugin{
 
 	@Override
 	public void register(IModRegistry registry) {
-		IItemRegistry itemRegistry = registry.getItemRegistry();
+		IIngredientRegistry itemRegistry = registry.getIngredientRegistry();
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
 		AlphaCentauri.logger.info("Initializing AlphaCentauri JEI plugin...");

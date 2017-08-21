@@ -24,7 +24,6 @@ public class AlienShroom extends BlockBush implements IGrowable
 	{
 		super(Material.PLANTS);
 		this.blockSoundType = SoundType.PLANT;
-		Registry.registerBlock(this, name);
 	}
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{

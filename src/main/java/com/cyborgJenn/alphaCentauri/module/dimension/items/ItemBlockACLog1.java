@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockACLog1 extends ItemBlock 
 {
 	private final static String[] subNames = {
-			"spiral", "splotch"
+			"spiral", "splotch", "mangrove", "adonsonia"
 		};
 	public ItemBlockACLog1(Block block) 
 	{

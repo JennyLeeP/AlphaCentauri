@@ -6,12 +6,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.event.terraingen.BiomeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBiomes {
-	public static final RegistryNamespaced<ResourceLocation, Biome> REGISTRY = net.minecraftforge.fml.common.registry.GameData.getBiomeRegistry();
+	public static final IForgeRegistry<Biome> REGISTRY =  net.minecraftforge.fml.common.registry.ForgeRegistries.BIOMES;
 	
 	public static Biome LUSHHILLS;
 	public static Biome GREENRIVER;
@@ -64,8 +69,9 @@ public class ModBiomes {
     }
     public static void registerBiome(int id, String name, Biome biome, Type ... types)
     {
-    	REGISTRY.register(id, new ResourceLocation(name), biome);
-    	BiomeDictionary.registerBiomeType(biome, types);
+    	biome.setRegistryName(name);
+    	ForgeRegistries.BIOMES.register(biome);
+    	BiomeDictionary.addTypes(biome, types);
 		BiomeManager.addSpawnBiome(biome);
     }
 }
