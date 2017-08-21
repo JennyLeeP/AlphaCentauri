@@ -24,9 +24,8 @@ public class PlantBlock extends BlockBush implements IPlantable{
 		super(Material.PLANTS);
 		this.blockSoundType = SoundType.PLANT;
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 	
 	@Override

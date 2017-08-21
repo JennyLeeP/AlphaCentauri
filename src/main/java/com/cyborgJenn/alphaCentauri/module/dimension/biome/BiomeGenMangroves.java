@@ -24,8 +24,8 @@ public class BiomeGenMangroves extends ACBiome
         this.spawnableCreatureList.clear();
         //this.setTemperatureRainfall(0.2F, 0.3F);
         //this.setColor(8900670);
-        theBiomeDecorator = new ACBiomeDecorator(this);
-        customBiomeDecorator = (ACBiomeDecorator)theBiomeDecorator;
+        biomeDecorator = new ACBiomeDecorator(this);
+        customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
         this.customBiomeDecorator.treesPerChunk = 7;
         this.customBiomeDecorator.nodesPerChunk = 1;
 	}

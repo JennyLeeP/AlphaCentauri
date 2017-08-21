@@ -22,7 +22,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,19 +36,19 @@ public class ACWorldProvider extends WorldProvider{
     private final float[] colorsSunriseSunset = new float[4];
 	
 	@Override
-    protected void createBiomeProvider()
+    protected void init()
     {
 		this.setDimension(Config.dimensionID);
-		this.hasNoSky = false;
+		this.hasSkyLight = true;
 		/* Use this to test your Biome Creation. Make sure to switch back to our BiomeProvider before pushing to github.*/
 		//this.biomeProvider = new BiomeProviderSingle(ModBiomes.FUNGALFOREST);
-        this.biomeProvider = new ACBiomeProvider(worldObj.getSeed(), worldObj.getWorldType(), worldObj.getWorldInfo().getGeneratorOptions());
+        this.biomeProvider = new ACBiomeProvider(world.getSeed(), world.getWorldType(), world.getWorldInfo().getGeneratorOptions());
         this.generateLightBrightnessTable();
     }
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new AlphaCentauriChunkProvider(worldObj);
+		return new AlphaCentauriChunkProvider(world);
 	}
 	@Override
 	public DimensionType getDimensionType() 
@@ -151,7 +151,7 @@ public class ACWorldProvider extends WorldProvider{
     public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
     {
         float f = MathHelper.cos(p_76562_1_ * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+        f = MathHelper.clamp(f, 0.0F, 1.0F);
         float red = 0.7529412F; // R
         float green = 0.84705883F;// G
         float blue = 1.0F;       // B
@@ -189,13 +189,15 @@ public class ACWorldProvider extends WorldProvider{
     public boolean canCoordinateBeSpawn(int x, int z)
     {
         BlockPos blockpos = new BlockPos(x, 0, z);
-        return this.worldObj.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.worldObj.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.acGrass;
+        return this.world.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.world.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.acGrass;
     }
+	/*
 	@Override
-	public boolean getHasNoSky()
+	public boolean getHasSkylight()
     {
-        return this.hasNoSky;
+        return this.hasSkyLight;
     }
+    */
 	@Override
     public float[] getLightBrightnessTable()
     {

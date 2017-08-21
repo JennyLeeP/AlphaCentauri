@@ -43,7 +43,9 @@ public class GenericBlock extends Block
 		}
 		else {}
 
-		Registry.registerBlock(this, name);
+		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 
 	}
 }

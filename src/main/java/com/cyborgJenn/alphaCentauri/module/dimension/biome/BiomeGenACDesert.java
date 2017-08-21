@@ -20,10 +20,10 @@ public class BiomeGenACDesert extends ACBiome
         this.spawnableCreatureList.clear();
         this.topBlock = ModBlocks.lightSand.getDefaultState();
         this.fillerBlock = ModBlocks.lightSand.getDefaultState();
-        this.theBiomeDecorator.treesPerChunk = -999;
-        this.theBiomeDecorator.deadBushPerChunk = 2;
-        this.theBiomeDecorator.reedsPerChunk = 50;
-        this.theBiomeDecorator.cactiPerChunk = 10;
+        //this.biomeDecorator.treesPerChunk = 0;
+        //this.biomeDecorator.deadBushPerChunk = 2;
+        //this.biomeDecorator.reedsPerChunk = 50;
+        //this.biomeDecorator.cactiPerChunk = 10;
         this.spawnableCreatureList.clear();
         //this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 4, 2, 3));//TODO Bunnies ? Aliens ?
 	}

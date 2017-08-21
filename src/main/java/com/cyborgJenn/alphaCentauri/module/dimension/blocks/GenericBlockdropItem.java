@@ -12,18 +12,17 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GenericBlockdropItem extends Block {
 
-	public GenericBlockdropItem(Material materialIn) {
+	public GenericBlockdropItem(Material materialIn) 
+	{
 		super(materialIn);
-		// TODO Auto-generated constructor stub
 	}
 
 	public GenericBlockdropItem(int i, Material materialIn, String name, Item item) 
 	{
 		super(materialIn);
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 
 }

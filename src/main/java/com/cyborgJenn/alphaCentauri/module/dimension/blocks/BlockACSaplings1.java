@@ -6,6 +6,8 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.WorldGenBaseTree;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenAdonsoniaTree;
+import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenMangroveTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.generators.trees.WorldGenSplotchTree;
 import com.cyborgJenn.alphaCentauri.module.dimension.items.ItemSaplingBlock1;
@@ -21,14 +23,12 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -42,12 +42,11 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	public BlockACSaplings1() 
 	{
 		super(Material.PLANTS);
-		String name = "saplings1";
+		final String name = "saplings1";
 		this.blockSoundType = SoundType.PLANT;
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemSaplingBlock1(this), new ResourceLocation(Reference.MODID, name));
+		this.setRegistryName(name);
 	}
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -106,17 +105,52 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			treeGen = new WorldGenSpiralTree(worldIn, pos);
 			break;
 		case SPLOTCH:
-			treeGen = new WorldGenSplotchTree(worldIn, pos);
+			labelSplo:
+				
+			for (i = 0; i >= -1; --i)
+            {
+                for (j = 0; j >= -1; --j)
+                {
+					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.ADANSONIA)) {
+						treeGen = new WorldGenSplotchTree(worldIn, pos);
+						break labelSplo;
+					}
+                }
+            }
 			break;
+			
+		case MANGROVE:
+			treeGen = new WorldGenMangroveTree(worldIn, pos);
+			break;
+		case ADANSONIA:
+			labelAdon:
+				
+				for (i = 0; i >= -1; --i)
+                {
+                    for (j = 0; j >= -1; --j)
+                    {
+						if (isThreeByThree(worldIn, pos, i, j, BlockACPlanks1.EnumType.ADANSONIA)) {
+							treeGen = new WorldGenAdonsoniaTree(worldIn, pos);
+							break labelAdon;
+						}
+                    }
+                }
+			break;
+			
 		default:
+			AlphaCentauri.logger.warn("Saplings tried to grow a tree that does not exist");
 			break;
 		}
 	}
-	private boolean isTwoByTwoOfType(World worldIn, BlockPos pos, int X, int Z, BlockACPlanks1.EnumType type)
+	private boolean isTwoByTwo(World worldIn, BlockPos pos, int X, int Z, BlockACPlanks1.EnumType type)
 	{
 		return this.isTypeAt(worldIn, pos.add(X, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 1), type);
 	}
-
+	private boolean isThreeByThree(World worldIn, BlockPos pos, int X, int Z, BlockACPlanks1.EnumType type) {
+		return this.isTypeAt(worldIn, pos.add(X, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 2, 0, Z), type) 
+				&& this.isTypeAt(worldIn, pos.add(X, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X, 0, Z + 2), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 1), type)
+				&& this.isTypeAt(worldIn, pos.add(X + 2, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X + 2, 0, Z + 2), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 2), type);
+	}
 	/**
 	 * Check whether the given BlockPos has a Sapling of the given type
 	 */

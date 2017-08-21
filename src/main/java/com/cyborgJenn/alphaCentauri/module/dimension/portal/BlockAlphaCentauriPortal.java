@@ -52,9 +52,8 @@ public class BlockAlphaCentauriPortal extends BlockBreakable{
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.X));
 		this.setTickRandomly(true);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -195,6 +194,7 @@ public class BlockAlphaCentauriPortal extends BlockBreakable{
 	 */
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
+		/*
 		if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP thePlayer = (EntityPlayerMP)entityIn;
@@ -212,6 +212,7 @@ public class BlockAlphaCentauriPortal extends BlockBreakable{
 				thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, new ACTeleporter(thePlayer.mcServer.worldServerForDimension(0), Config.dimensionID));
 			}
 		}
+		*/
 	}
 	@Nullable
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)

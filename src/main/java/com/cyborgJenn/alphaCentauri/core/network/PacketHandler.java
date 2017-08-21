@@ -12,10 +12,7 @@ public class PacketHandler{
 
 	public static void init()
     {
-        INSTANCE.registerMessage(PacketOpenAccessoryInventory.class, PacketOpenAccessoryInventory.class, 0, Side.SERVER);
-        //INSTANCE.registerMessage(PacketOpenNormalInventory.class, PacketOpenNormalInventory.class, 1, Side.SERVER);
-        INSTANCE.registerMessage(PacketSyncAccessory.class, PacketSyncAccessory.class, 2, Side.CLIENT);
-        INSTANCE.registerMessage(PacketResetFallDistance.class, PacketResetFallDistance.class, 3, Side.SERVER);
+       
     }
 
 }

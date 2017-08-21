@@ -20,58 +20,57 @@ import net.minecraft.util.text.TextFormatting;
 
 public class TeleportCommand extends CommandBase{
 
-	public TeleportCommand(){
-        aliases = Lists.newArrayList(Reference.MODID, "TP", "tp");
-    }
+	public TeleportCommand() 
+	{
+		aliases = Lists.newArrayList(Reference.MODID, "TP", "tp");
+	}
+	private final List<String> aliases;
+	@Override
+	@Nonnull
+	public List<String> getAliases() {
+		return aliases;
+	}
 
-    private final List<String> aliases;
+	@Override
+	public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args) throws CommandException {
+		if (args.length < 1) {
+			return;
+		}
+		String s = args[0];
+		int dim;
+		try {
+			dim = Integer.parseInt(s);
+		} catch (NumberFormatException e) {
+			sender.sendMessage(new TextComponentString(TextFormatting.RED + "Error parsing dimension!"));
+			return;
+		}
 
-    @Override
-    @Nonnull
-    public String getCommandName() {
-        return "tpd";
-    }
+		if (sender instanceof EntityPlayer) {
+			//TODO send to current player coords, in new dim. Maybe check ground height there.
+			CustomTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+		}
+	}
 
-    @Override
-    @Nonnull
-    public String getCommandUsage(@Nonnull ICommandSender sender) {
-        return "tpd <id>";
-    }
+	@Override
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+		return true;
+	}
 
-    @Override
-    @Nonnull
-    public List<String> getCommandAliases() {
-        return aliases;
-    }
+	@Override
+	@Nonnull
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+		return Collections.emptyList();
+	}
 
-    @Override
-    public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args) throws CommandException {
-        if (args.length < 1) {
-            return;
-        }
-        String s = args[0];
-        int dim;
-        try {
-            dim = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            sender.addChatMessage(new TextComponentString(TextFormatting.RED + "Error parsing dimension!"));
-            return;
-        }
+	@Override
+	public String getName() 
+	{
+		return "tpd";
+	}
 
-        if (sender instanceof EntityPlayer) {
-        	//TODO send to current player coords, in new dim. Maybe check ground height there.
-            CustomTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
-        }
-    }
-
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-        return true;
-    }
-
-    @Override
-    @Nonnull
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
-        return Collections.emptyList();
-    }
+	@Override
+	public String getUsage(ICommandSender sender) 
+	{
+		return "tpd <id>";
+	}
 }

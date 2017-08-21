@@ -32,13 +32,13 @@ public class BiomeGenVioletBoscage extends ACBiome{
 		this.spawnableMonsterList.clear();
 		
 		/* Trees and Plants */
-		theBiomeDecorator = new ACBiomeDecorator(this);
-		customBiomeDecorator = (ACBiomeDecorator)theBiomeDecorator;
+		biomeDecorator = new ACBiomeDecorator(this);
+		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
 		this.worldGeneratorTrees = new WorldGenTrees(false);
 		this.customBiomeDecorator.treesPerChunk = 7;
 		this.customBiomeDecorator.nodesPerChunk = 3;
-		this.customBiomeDecorator.sandPerChunk = 4;
-		this.customBiomeDecorator.sandPerChunk2 = 4;
+		this.customBiomeDecorator.sandPatchesPerChunk = 4;
+		//this.customBiomeDecorator.sandPerChunk2 = 4;
 	}
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)

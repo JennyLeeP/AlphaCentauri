@@ -2,21 +2,18 @@ package com.cyborgJenn.alphaCentauri.module.dimension.blocks;
 
 import javax.annotation.Nullable;
 
-import com.cyborgJenn.alphaCentauri.module.dimension.util.Registry;
+import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -30,11 +27,8 @@ public class MossBlock extends BlockBush{
 		this.setHardness(0.2F);
 		this.setLightOpacity(0);
 		this.setSoundType(SoundType.PLANT);
-		Registry.registerBlock(this, name);
-	}
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+		this.setUnlocalizedName(Reference.MODID +"."+name);
+		this.setRegistryName(name);
 	}
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
@@ -58,7 +52,7 @@ public class MossBlock extends BlockBush{
 	}
 	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}

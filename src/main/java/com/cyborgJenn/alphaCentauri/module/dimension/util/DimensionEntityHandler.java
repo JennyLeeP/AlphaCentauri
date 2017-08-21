@@ -5,12 +5,13 @@ import com.cyborgJenn.alphaCentauri.module.dimension.biome.ModBiomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+@Mod.EventBusSubscriber
 public class DimensionEntityHandler 
 {
 	@SubscribeEvent
-	public void updateBiomeFogColor(EntityViewRenderEvent.FogColors event)
+	public static void updateBiomeFogColor(EntityViewRenderEvent.FogColors event)
 	{
 		BlockPos pos = event.getEntity().getPosition();
 		Biome biome = event.getEntity().getEntityWorld().getBiomeProvider().getBiome(pos);
@@ -33,7 +34,7 @@ public class DimensionEntityHandler
 		}	
 	}
 	@SubscribeEvent
-	public void updateBiomeFogDensity(EntityViewRenderEvent.FogDensity event)
+	public static void updateBiomeFogDensity(EntityViewRenderEvent.FogDensity event)
 	{
 		BlockPos pos = event.getEntity().getPosition();
 		Biome biome = event.getEntity().getEntityWorld().getBiomeProvider().getBiome(pos);

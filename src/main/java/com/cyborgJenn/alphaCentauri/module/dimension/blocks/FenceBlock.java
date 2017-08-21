@@ -5,6 +5,7 @@ package com.cyborgJenn.alphaCentauri.module.dimension.blocks;
 import java.util.List;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.core.utils.Reference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
@@ -26,42 +27,7 @@ public class FenceBlock extends BlockFence{
 		this.setResistance(5.0F);
 		this.blockSoundType = SoundType.WOOD;
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
+		//this.setUnlocalizedName(Reference.MODID +"."+name);
+		//this.setRegistryName(name);
 	}
-	/**
-	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-	 */
-
-
-
-	
-	public static boolean canConnectFenceTo(int par0)
-	{
-		return true;
-	}
-
-	
-
-	public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
-	{
-		return true;
-	}
-	
-
-	/**
-	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-	 */
-	@Override
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List)
-	{
-		for(int i = 0; i < TreeTypes.length; i++)
-		{
-			par3List.add(new ItemStack(par1, 1, i));
-		}
-	}
-	/*
-	public int getRenderType()
-	{
-		return ZetaFenceRender.fenceModel;
-	}
-	*/
 }

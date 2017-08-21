@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Reference;
-import com.cyborgJenn.alphaCentauri.module.dimension.items.ItemBlockACLog1;
 import com.cyborgJenn.alphaCentauri.module.dimension.items.ItemBlockACPlank1;
 
 import net.minecraft.block.Block;
@@ -34,8 +33,7 @@ public class BlockACPlanks1 extends Block
 		this.blockSoundType = SoundType.WOOD;
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		//GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		//GameRegistry.register(new ItemBlockACPlank1(this), new ResourceLocation(Reference.MODID, name));
+		this.setRegistryName(name);
 	}
 	
 	/**
@@ -63,7 +61,7 @@ public class BlockACPlanks1 extends Block
     }
 
     /**
-     * Convert the given metadata into a BlockState for this Block
+     * Convert the given meta-data into a BlockState for this Block
      */
     public IBlockState getStateFromMeta(int meta)
     {
@@ -86,7 +84,9 @@ public class BlockACPlanks1 extends Block
 	public static enum EnumType implements IStringSerializable
     {
         SPIRAL(0, "spiral"),
-        SPLOTCH(1, "splotch");
+        SPLOTCH(1, "splotch"),
+		MANGROVE(2, "mangrove"),
+		ADANSONIA(3, "adansonia");
         private static final BlockACPlanks1.EnumType[] META_LOOKUP = new BlockACPlanks1.EnumType[values().length];
         private final int meta;
         private final String name;

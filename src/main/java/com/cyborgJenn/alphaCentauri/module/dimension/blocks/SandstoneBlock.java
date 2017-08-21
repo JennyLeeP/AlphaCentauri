@@ -25,17 +25,5 @@ public class SandstoneBlock extends Block {
 		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 
 	}
-
-	/**
-	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-	 */
-	@Override
-	public void getSubBlocks(Item item, CreativeTabs creativetab, List list)
-	{
-		//list.add(arg0);
-	}
-	/**
-	 * Determines the damage on the item the block drops. Used in metaType blocks.
-	 */
 	
 }

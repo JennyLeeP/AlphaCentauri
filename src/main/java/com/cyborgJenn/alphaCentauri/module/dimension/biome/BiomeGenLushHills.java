@@ -16,8 +16,8 @@ public class BiomeGenLushHills extends ACBiome{
 	private ACBiomeDecorator customBiomeDecorator;
 	public BiomeGenLushHills(BiomeProperties biomeProperties) {
 		super(biomeProperties);
-		theBiomeDecorator = new ACBiomeDecorator(this);
-		customBiomeDecorator = (ACBiomeDecorator)theBiomeDecorator;
+		biomeDecorator = new ACBiomeDecorator(this);
+		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableMonsterList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));

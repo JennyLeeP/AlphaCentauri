@@ -25,10 +25,12 @@ public class Sword1 extends ItemSword
 		this.setUnlocalizedName(name);
 		this.attackDamage = 4.0F + material.getDamageVsEntity();
 	}
+	/*
 	@SideOnly(Side.CLIENT)
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {
 		tooltip.add(TextFormatting.DARK_PURPLE + "This is a sword, hit things with it");
     }
+    */
 }

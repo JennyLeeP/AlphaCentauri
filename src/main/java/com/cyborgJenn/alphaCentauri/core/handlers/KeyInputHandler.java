@@ -2,12 +2,8 @@ package com.cyborgJenn.alphaCentauri.core.handlers;
 
 import org.lwjgl.input.Keyboard;
 
-import com.cyborgJenn.alphaCentauri.core.network.PacketHandler;
-import com.cyborgJenn.alphaCentauri.core.network.PacketOpenAccessoryInventory;
-
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -31,9 +27,7 @@ public class KeyInputHandler
 	{
 		if (event.side == Side.SERVER) return;
 		if (event.phase == Phase.START ) {
-			if (key.isPressed() && FMLClientHandler.instance().getClient().inGameHasFocus) {
-					PacketHandler.INSTANCE.sendToServer(new PacketOpenAccessoryInventory(event.player));
-			}
+			
 		}
 	}
 	

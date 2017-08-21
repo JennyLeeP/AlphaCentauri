@@ -15,9 +15,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 
-public class BlockACDirt extends Block
+public class BlockACDirt extends Block 
 {  
-    protected BlockACDirt(String name)
+    protected BlockACDirt(String name) 
     {
         super(Material.GROUND);
         this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
@@ -26,11 +26,9 @@ public class BlockACDirt extends Block
 		this.setHarvestLevel("shovel", 2);
 		this.setResistance(25.0F);
         this.setUnlocalizedName(Reference.MODID +"."+ name);
-        GameRegistry.register(this, new ResourceLocation(Reference.MODID, name));
-		GameRegistry.register(new ItemBlock(this), new ResourceLocation(Reference.MODID, name));
     }   
     @Override
-	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) 
     {
 		return true;
     }

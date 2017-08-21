@@ -31,15 +31,6 @@ public class Registry
 		DimensionManager.registerDimension(Config.dimensionID, DIMENSION);
 	}
 	
-	public static void registerBlock(Block block, String name)
-	{
-		block.setUnlocalizedName(Reference.MODID +"."+ name);
-		block.setRegistryName(name);
-		block.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		GameRegistry.register(block);
-		GameRegistry.register(new ItemBlock(block), block.getRegistryName());
-	}
-	
 	public static void blockModelRegister(Block block)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));

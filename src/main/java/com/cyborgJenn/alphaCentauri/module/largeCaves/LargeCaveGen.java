@@ -6,6 +6,7 @@ import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.core.utils.Config;
 import com.cyborgJenn.alphaCentauri.module.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.module.dimension.blocks.ModBlocks;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import net.minecraft.block.material.Material;
@@ -106,12 +107,12 @@ public class LargeCaveGen extends MapGenCaves
 
 				if (posX >= d4 - 16.0D - d6 * 2.0D && posZ >= d5 - 16.0D - d6 * 2.0D && posX <= d4 + 16.0D + d6 * 2.0D && posZ <= d5 + 16.0D + d6 * 2.0D)
 				{
-					int i4 = MathHelper.floor_double(posX - d6) - chunkX * 16 - 1;
-					int l1 = MathHelper.floor_double(posX + d6) - chunkX * 16 + 1;
-					int j4 = MathHelper.floor_double(posY - d7) - 1;
-					int i2 = MathHelper.floor_double(posY + d7) + 1;
-					int k4 = MathHelper.floor_double(posZ - d6) - chunkZ * 16 - 1;
-					int j2 = MathHelper.floor_double(posZ + d6) - chunkZ * 16 + 1;
+					int i4 = MathHelper.floor(posX - d6) - chunkX * 16 - 1;
+					int l1 = MathHelper.floor(posX + d6) - chunkX * 16 + 1;
+					int j4 = MathHelper.floor(posY - d7) - 1;
+					int i2 = MathHelper.floor(posY + d7) + 1;
+					int k4 = MathHelper.floor(posZ - d6) - chunkZ * 16 - 1;
+					int j2 = MathHelper.floor(posZ + d6) - chunkZ * 16 + 1;
 
 					if (i4 < 0)
 					{
@@ -197,7 +198,7 @@ public class LargeCaveGen extends MapGenCaves
 										if (d12 > -0.7D && d13 * d13 + d12 * d12 + d14 * d14 < 1.0D)
 										{
 											IBlockState iblockstate1 = chunkprimer.getBlockState(k2, l3, j3);
-											IBlockState iblockstate2 = (IBlockState)Objects.firstNonNull(chunkprimer.getBlockState(k2, l3 + 1, j3), Blocks.AIR.getDefaultState());
+											IBlockState iblockstate2 = (IBlockState)MoreObjects.firstNonNull(chunkprimer.getBlockState(k2, l3 + 1, j3), Blocks.AIR.getDefaultState());
 
 											if (isTopBlock(chunkprimer, k2, l3, j3, chunkX, chunkZ))
 											{
@@ -291,7 +292,7 @@ public class LargeCaveGen extends MapGenCaves
 	//Vanilla bugs to make sure that we generate the map the same way vanilla does.
 	private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
 	{
-		net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+		net.minecraft.world.biome.Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
 		IBlockState state = data.getBlockState(x, y, z);
 		return (isExceptionBiome(biome) ? state.getBlock() == Blocks.GRASS.getDefaultState() : state.getBlock().getDefaultState() == biome.topBlock);
 	}
@@ -312,7 +313,7 @@ public class LargeCaveGen extends MapGenCaves
 	 */
 	protected void digBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop, IBlockState state, IBlockState up)
 	{
-		net.minecraft.world.biome.Biome biome = worldObj.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
+		net.minecraft.world.biome.Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
 		IBlockState top = biome.topBlock;
 		IBlockState filler = biome.fillerBlock;
 
