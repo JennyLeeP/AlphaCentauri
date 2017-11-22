@@ -48,19 +48,6 @@ public class Config
 	public static boolean   useThaumcraftRecipes;
 	/* Dimension Options */
 	public static int       dimensionID;
-	public static int       biomeLushHillsID;
-	public static int       biomeGreenRiverID;
-	public static int       biomeLivingPlateauID;
-    public static int       biomeBeachID;
-    public static int       biomeVioletBoscageID;
-    public static int       biomeMorassID;
-    public static int       biomePrimevalForestID;
-    public static int       biomeMangrovesID;
-    public static int       biomeHoodooValleyID;
-    public static int       biomePaintedCliffsID;
-    public static int       biomeLivingOceanID;
-    public static int       biomeDesertID;
-    public static int       biomeFungalID;
     public static boolean   enableTreeParticles = true;
 	
 		
@@ -163,18 +150,6 @@ public class Config
 		String dimension        = "Dimension";
 		config.addCustomCategoryComment(dimension, "These settings are for the dimension module.");
 		dimensionID             = config.get(dimension, "Dimension ID", 444).getInt();
-        biomeLushHillsID        = config.get(dimension, "BiomeLushHillsID", bID++).getInt();
-        biomeGreenRiverID       = config.get(dimension, "BiomeGreenRiverID", bID++).getInt();
-        biomeLivingPlateauID    = config.get(dimension, "BiomeLivingPlateauID", bID++).getInt();
-        biomeBeachID            = config.get(dimension, "BiomeBeachID", bID++).getInt();
-        biomeVioletBoscageID    = config.get(dimension, "BiomeVioletBoscageID", bID++).getInt();
-        biomeMorassID           = config.get(dimension, "BiomeMorassID", bID++).getInt();
-        biomePrimevalForestID   = config.get(dimension, "BiomePrimevalForestID", bID++).getInt();
-        biomeMangrovesID        = config.get(dimension, "BiomeMangrovesID", bID++).getInt();
-        biomeHoodooValleyID = config.get(dimension, "BiomeTreacherousHillsID", bID++).getInt();
-        biomePaintedCliffsID   = config.get(dimension, "BiomeBloodMountainsID", bID++).getInt();
-        biomeDesertID                = config.get(dimension, "BiomeDesertID", bID++).getInt();
-        biomeFungalID                = config.get(dimension, "BiomeFungalID", bID++).getInt();
 	}
 	
 	private static void configParticles(Configuration config) {

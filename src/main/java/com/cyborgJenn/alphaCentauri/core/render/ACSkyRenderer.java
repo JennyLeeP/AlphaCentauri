@@ -24,6 +24,7 @@ public class ACSkyRenderer extends IRenderHandler {
 
 	private static final ResourceLocation moonTextures = new ResourceLocation(Reference.TEXTURE + "textures/environment/moonphases.png");
 	private static final ResourceLocation sunTexture = new ResourceLocation(Reference.TEXTURE + "textures/environment/blue_sun.png"); 
+	private static final ResourceLocation sunBTexture = new ResourceLocation(Reference.TEXTURE + "textures/environment/sun.png");
 	private int starGLCallList;
 	private int glSkyList;
 	private int glSkyList2;
@@ -139,7 +140,7 @@ public class ACSkyRenderer extends IRenderHandler {
 		bufferBuilder.pos((double)f17, 100.0D, (double)f17).tex(1.0D, 1.0D).endVertex();
 		bufferBuilder.pos((double)(-f17), 100.0D, (double)f17).tex(0.0D, 1.0D).endVertex();
 		tessellator1.draw(); // Draw sun
-		
+
 		/*    Begin Moon    */
 		f17 = 25.0F; // Size of moon from center
 		mc.renderEngine.bindTexture(moonTextures);
@@ -156,6 +157,24 @@ public class ACSkyRenderer extends IRenderHandler {
 		bufferBuilder.pos((double)f17, -100.0D, (double)(-f17)).tex((double)f22, (double)f23).endVertex();
 		bufferBuilder.pos((double)(-f17), -100.0D, (double)(-f17)).tex((double)f24, (double)f23).endVertex();
 		tessellator1.draw();  // Draw Moon
+		
+		/* Alpha Centauri B   */
+		//TODO add second Star
+		
+		float sunB = 1.0F - world.getRainStrength(partialTicks);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, sunB);
+		GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
+		
+		float sunb2 = 15.0F;// Size of sun from center
+		mc.renderEngine.bindTexture(sunBTexture);
+		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferBuilder.pos((double)(-sunb2), 100.0D, (double)(-sunb2)).tex(0.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sunb2, 100.0D, (double)(-sunb2)).tex(1.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sunb2, 100.0D, (double)sunb2).tex(1.0D, 1.0D).endVertex();
+		bufferBuilder.pos((double)(-sunb2), 100.0D, (double)sunb2).tex(0.0D, 1.0D).endVertex();
+		tessellator1.draw(); // Draw sun
+		
 		GlStateManager.disableTexture2D();
 		float f15 = world.getStarBrightness(partialTicks) * f16;
 		if (f15 > 0.0F)

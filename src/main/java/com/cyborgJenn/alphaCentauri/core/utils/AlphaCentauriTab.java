@@ -9,22 +9,22 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class AlphaCentauriTab extends CreativeTabs{
-
+public class AlphaCentauriTab extends CreativeTabs
+{
 	public AlphaCentauriTab(int id, String name)
-	  {
-	    super(id, name);
-	    this.setBackgroundImageName("cyborgutils_search.png");
-	    
-	  }
-	
+	{
+		super(id, name);
+		this.setNoTitle();
+		this.setBackgroundImageName("cyborgutils.png");  
+	}
 	@Override
-	public ItemStack getTabIconItem() {
+	public ItemStack getTabIconItem() 
+	{
 		return new ItemStack(Item.getItemFromBlock(ModBlocks.gateAlphaCentauri));	
 	}
 	@Override
 	public boolean hasSearchBar()
 	{
-		return true;
+		return false;
 	}
 }

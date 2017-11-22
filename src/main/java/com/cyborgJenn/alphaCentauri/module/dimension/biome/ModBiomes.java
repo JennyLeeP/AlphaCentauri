@@ -54,20 +54,20 @@ public class ModBiomes {
     }
     public static void registerBiomes()
     {
-    	registerBiome(Config.biomeLushHillsID, "LushHills", LUSHHILLS, Type.HILLS, Type.LUSH);
-    	registerBiome(Config.biomeGreenRiverID, "GreenRiver", GREENRIVER, Type.RIVER);
-    	registerBiome(Config.biomeLivingPlateauID, "LivingPlateau", LIVINGPLATEAU, Type.MESA);
-    	registerBiome(Config.biomeBeachID, "Beach", BEACH, Type.BEACH);
-    	registerBiome(Config.biomeVioletBoscageID, "VioletBoscage", VioletBoscage, Type.CONIFEROUS);
-    	registerBiome(Config.biomeMorassID, "Morass", Morass, Type.WET);
-    	registerBiome(Config.biomePrimevalForestID, "PrimevalForest", PrimevalForest, Type.JUNGLE);
-    	registerBiome(Config.biomeMangrovesID, "Mangroves", Mangroves, Type.BEACH);
-    	registerBiome(Config.biomeHoodooValleyID, "HoodooValley", HOODOOVALLEY, Type.DEAD);
-    	registerBiome(Config.biomePaintedCliffsID, "PaintedCliffs", PAINTED_CLIFFS, Type.MOUNTAIN);
-    	registerBiome(Config.biomeDesertID, "Desert", DESERT, Type.HOT);
-    	registerBiome(Config.biomeFungalID, "FungalForest", FUNGALFOREST, Type.MUSHROOM);
+    	registerBiome("LushHills", LUSHHILLS, Type.HILLS, Type.LUSH);
+    	registerBiome("GreenRiver", GREENRIVER, Type.RIVER);
+    	registerBiome("LivingPlateau", LIVINGPLATEAU, Type.MESA);
+    	registerBiome("Beach", BEACH, Type.BEACH);
+    	registerBiome("VioletBoscage", VioletBoscage, Type.CONIFEROUS);
+    	registerBiome("Morass", Morass, Type.WET);
+    	registerBiome("PrimevalForest", PrimevalForest, Type.JUNGLE);
+    	registerBiome("Mangroves", Mangroves, Type.BEACH);
+    	registerBiome("HoodooValley", HOODOOVALLEY, Type.DEAD);
+    	registerBiome("PaintedCliffs", PAINTED_CLIFFS, Type.MOUNTAIN);
+    	registerBiome("Desert", DESERT, Type.HOT);
+    	registerBiome("FungalForest", FUNGALFOREST, Type.MUSHROOM);
     }
-    public static void registerBiome(int id, String name, Biome biome, Type ... types)
+    public static void registerBiome(String name, Biome biome, Type ... types)
     {
     	biome.setRegistryName(name);
     	ForgeRegistries.BIOMES.register(biome);
