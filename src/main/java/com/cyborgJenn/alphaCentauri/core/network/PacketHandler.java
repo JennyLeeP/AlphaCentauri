@@ -1,6 +1,6 @@
 package com.cyborgJenn.alphaCentauri.core.network;
 
-import com.cyborgJenn.alphaCentauri.core.utils.Reference;
+import com.cyborgJenn.alphaCentauri.utils.Reference;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
