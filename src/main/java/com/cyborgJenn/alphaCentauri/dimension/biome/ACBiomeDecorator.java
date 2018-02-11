@@ -2,8 +2,8 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockVanillaOres;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACMinable;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenLargeMushroom;
 import com.cyborgJenn.alphaCentauri.utils.Config;

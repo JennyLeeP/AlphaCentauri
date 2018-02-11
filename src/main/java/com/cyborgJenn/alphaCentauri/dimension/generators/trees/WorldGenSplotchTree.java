@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockACLog1;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockACPlanks1;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACLog1;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACPlanks1;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
 import com.google.common.collect.Lists;
 

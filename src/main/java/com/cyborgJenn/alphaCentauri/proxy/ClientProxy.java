@@ -1,9 +1,9 @@
 package com.cyborgJenn.alphaCentauri.proxy;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockVanillaOres;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
-import com.cyborgJenn.alphaCentauri.dimension.util.BlockColorHandler;
+import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.handlers.EventHandlerEntity;
+import com.cyborgJenn.alphaCentauri.utils.BlockColorHandler;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 
 import net.minecraft.client.Minecraft;

@@ -3,13 +3,13 @@ package com.cyborgJenn.alphaCentauri.dimension.world;
 
 import javax.annotation.Nullable;
 
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ACBiomeProvider;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.chunk.AlphaCentauriChunkProvider;
-import com.cyborgJenn.alphaCentauri.dimension.util.Registry;
 import com.cyborgJenn.alphaCentauri.render.ACSkyRenderer;
 import com.cyborgJenn.alphaCentauri.utils.Config;
+import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;

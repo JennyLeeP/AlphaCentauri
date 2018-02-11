@@ -3,9 +3,9 @@ package com.cyborgJenn.alphaCentauri.dimension.generators.trees;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockACLog1;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockACPlanks1;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACLog1;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACPlanks1;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
 
 import net.minecraft.block.BlockLeaves;

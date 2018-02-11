@@ -3,7 +3,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Arrays;
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockDirt;

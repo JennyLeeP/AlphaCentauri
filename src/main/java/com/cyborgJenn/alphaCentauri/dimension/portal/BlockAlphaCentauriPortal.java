@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
 import com.google.common.cache.LoadingCache;

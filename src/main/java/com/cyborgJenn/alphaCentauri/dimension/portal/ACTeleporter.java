@@ -2,7 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.portal;
 
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;

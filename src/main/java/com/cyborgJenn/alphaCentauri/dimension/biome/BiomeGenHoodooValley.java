@@ -2,7 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBoulders;
 
 import net.minecraft.util.math.BlockPos;

@@ -1,6 +1,6 @@
 package com.cyborgJenn.alphaCentauri.utils;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.item.ModItems;
 
 import net.minecraft.creativetab.CreativeTabs;

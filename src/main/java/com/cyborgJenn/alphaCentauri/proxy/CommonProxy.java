@@ -1,15 +1,15 @@
 package com.cyborgJenn.alphaCentauri.proxy;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
-import com.cyborgJenn.alphaCentauri.dimension.util.Registry;
 import com.cyborgJenn.alphaCentauri.handlers.CyborgEventHandler;
 import com.cyborgJenn.alphaCentauri.handlers.WorldEventHandler;
 import com.cyborgJenn.alphaCentauri.item.ModItems;
 import com.cyborgJenn.alphaCentauri.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
+import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

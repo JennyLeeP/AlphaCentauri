@@ -1,8 +1,8 @@
 package com.cyborgJenn.alphaCentauri.handlers;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.BlockACSaplings1;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSaplings1;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.Mod;

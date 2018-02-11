@@ -2,7 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.generators;
 
 import java.util.Random;
 
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;

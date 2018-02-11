@@ -7,8 +7,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
-import com.cyborgJenn.alphaCentauri.dimension.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACLakes;
 import com.cyborgJenn.alphaCentauri.largeCaves.LargeCaveGen;
 
