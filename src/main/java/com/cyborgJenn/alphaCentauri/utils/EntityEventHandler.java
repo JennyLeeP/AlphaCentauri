@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
-public class DimensionEntityHandler 
+public class EntityEventHandler 
 {
 	@SubscribeEvent
 	public static void updateBiomeFogColor(EntityViewRenderEvent.FogColors event)

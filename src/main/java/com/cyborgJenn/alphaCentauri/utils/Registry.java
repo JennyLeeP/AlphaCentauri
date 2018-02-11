@@ -28,10 +28,5 @@ public class Registry
 	{
 		DimensionManager.registerDimension(Config.dimensionID, DIMENSION);
 	}
-	
-	public static void blockModelRegister(Block block)
-	{
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
-	}
 }
 

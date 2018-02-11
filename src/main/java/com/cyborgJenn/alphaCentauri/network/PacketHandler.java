@@ -1,4 +1,4 @@
-package com.cyborgJenn.alphaCentauri.core.network;
+package com.cyborgJenn.alphaCentauri.network;
 
 import com.cyborgJenn.alphaCentauri.utils.Reference;
 
