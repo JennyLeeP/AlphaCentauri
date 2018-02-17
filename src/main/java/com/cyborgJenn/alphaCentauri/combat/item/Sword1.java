@@ -1,16 +1,9 @@
 package com.cyborgJenn.alphaCentauri.combat.item;
 
-import java.util.List;
-
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Sword1 extends ItemSword 
 {

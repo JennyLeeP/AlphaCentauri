@@ -6,9 +6,6 @@ import com.cyborgJenn.alphaCentauri.utils.Reference;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FallingBlock extends BlockFalling{
 

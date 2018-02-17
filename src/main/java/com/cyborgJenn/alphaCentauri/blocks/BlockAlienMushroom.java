@@ -5,8 +5,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.utils.Reference;
-import com.cyborgJenn.alphaCentauri.utils.Registry;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.SoundType;

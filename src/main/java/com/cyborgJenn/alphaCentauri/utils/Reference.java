@@ -6,7 +6,7 @@ public class Reference {
 	public static final String MODID = "alphacentauri";
 	public static final String NAME = "AlphaCentauri";
 	public static final String VERSION = "@VERSION@";
-	public static final String PROXY = "com.cyborgJenn.alphaCentauri.core.proxy.";
+	public static final String PROXY = "com.cyborgJenn.alphaCentauri.proxy.";
 	public static final String CLIENTPROXY =  PROXY + "ClientProxy";
 	public static final String SERVERPROXY = PROXY + "ServerProxy";
 	public static final String TEXTURE = MODID + ":";

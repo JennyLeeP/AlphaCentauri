@@ -3,15 +3,9 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
-import com.cyborgJenn.alphaCentauri.utils.Registry;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GenericBlock extends Block
 {

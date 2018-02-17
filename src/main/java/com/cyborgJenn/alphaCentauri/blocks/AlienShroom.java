@@ -3,7 +3,6 @@ package com.cyborgJenn.alphaCentauri.blocks;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenLargeMushroom;
-import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;

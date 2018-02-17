@@ -3,7 +3,6 @@ package com.cyborgJenn.alphaCentauri.blocks;
 import java.util.List;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.item.ItemBlockACPlank1;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
 
 import net.minecraft.block.Block;
@@ -17,8 +16,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -48,7 +45,7 @@ public class BlockACPlanks1 extends Block
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
     	BlockACPlanks1.EnumType[] aenumtype = BlockACPlanks1.EnumType.values();
         int i = aenumtype.length;

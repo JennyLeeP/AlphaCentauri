@@ -4,7 +4,6 @@ import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.handlers.CyborgEventHandler;
-import com.cyborgJenn.alphaCentauri.handlers.WorldEventHandler;
 import com.cyborgJenn.alphaCentauri.item.ModItems;
 import com.cyborgJenn.alphaCentauri.largeCaves.LargeCaveGen;
 import com.cyborgJenn.alphaCentauri.utils.Config;

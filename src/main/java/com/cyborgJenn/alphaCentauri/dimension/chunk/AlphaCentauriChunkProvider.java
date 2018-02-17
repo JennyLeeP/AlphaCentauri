@@ -5,8 +5,6 @@ import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACLakes;
@@ -60,7 +58,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		this.worldObj = worldObj;
 		long seed = worldObj.getSeed();
 		this.random = new Random((seed + 516) * 314);
-		this.terrainType = terrainType.DEFAULT;
+		this.terrainType = WorldType.DEFAULT;
 		this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.random, 16);
 		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.random, 16);
 		this.mainPerlinNoise = new NoiseGeneratorOctaves(this.random, 8);
@@ -134,7 +132,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ModBlocks.ACSTONE.getDefaultState());
 								}
-								else if (i2 * 8 + j2 < this.sealevel)
+								else if (i2 * 8 + j2 < sealevel)
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.oceanBlock);
 								}

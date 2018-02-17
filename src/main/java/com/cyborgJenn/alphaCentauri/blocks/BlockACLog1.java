@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.item.ItemBlockACLog1;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
 import com.google.common.base.Predicate;
 
@@ -18,8 +17,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -49,7 +46,7 @@ public class BlockACLog1 extends BlockLog
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
     	list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPIRAL.getMetadata())); // Meta 0
 		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPLOTCH.getMetadata())); // Meta 1

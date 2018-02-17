@@ -1,6 +1,5 @@
 package com.cyborgJenn.alphaCentauri.handlers;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.blocks.BlockACSaplings1;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
