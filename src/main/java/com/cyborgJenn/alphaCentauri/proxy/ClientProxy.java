@@ -75,7 +75,6 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public <T extends Item & IItemWithMeshDefinition> void _registerSpecificItemVariantsWithBakery(T item, ItemStack variantStack) {
 		ItemMeshDefinition def = ((IItemWithMeshDefinition)item).getMeshDefinition();
-		//TODO: delay?
 		ModelBakery.registerItemVariants(item, def.getModelLocation(variantStack));
 		ModelLoader.setCustomMeshDefinition(item, def);
 	}
