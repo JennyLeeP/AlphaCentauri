@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.blocks.BlockACLog1;
 import com.cyborgJenn.alphaCentauri.blocks.BlockACPlanks1;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
@@ -20,8 +21,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldGenSplotchTree extends WorldGenBaseTree 
 {
@@ -55,6 +56,7 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
             makeRoots(worldIn, pos, rand);
     		return true;
 		}
+		AlphaCentauri.logger.info("Growing Splotch Tree");
 		return false;
 	}
 

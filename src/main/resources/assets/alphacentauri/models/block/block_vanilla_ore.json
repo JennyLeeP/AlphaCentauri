@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "variant=ore_gold": "alphacentauri:blocks/ore_gold"
+    }
+}

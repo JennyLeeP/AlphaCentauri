@@ -1,6 +1,5 @@
 package com.cyborgJenn.alphaCentauri.handlers;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.blocks.BlockACSaplings1;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
@@ -16,11 +15,11 @@ public class WorldEventHandler
 	@SubscribeEvent
 	public static void onBoneMeal(BonemealEvent event)
 	{
-		if (event.getResult() == Result.ALLOW && event.getBlock() == ModBlocks.SAPLINGS1)
+		if (event.getResult() == Result.DEFAULT && event.getBlock().getBlock() == ModBlocks.SAPLINGS1)
 		{
 			if (!event.getWorld().isRemote)
 			{
-				((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), ModBlocks.SAPLINGS1.getDefaultState());
+				((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), event.getBlock());
 			}
 			event.setResult(Result.ALLOW);
 		}

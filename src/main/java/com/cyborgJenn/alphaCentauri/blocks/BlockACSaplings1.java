@@ -1,6 +1,5 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
@@ -9,8 +8,6 @@ import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenAdonsonia
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenMangroveTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSplotchTree;
-import com.cyborgJenn.alphaCentauri.item.ItemSaplingBlock1;
-import com.cyborgJenn.alphaCentauri.utils.Reference;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -22,14 +19,13 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,11 +38,7 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	public BlockACSaplings1() 
 	{
 		super(Material.PLANTS);
-		final String name = "saplings1";
 		this.blockSoundType = SoundType.PLANT;
-		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		this.setRegistryName(name);
 	}
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -89,16 +81,18 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			this.generateTree(worldIn, pos, state, rand);
 		}
 	}
+	public void grow(World world, BlockPos pos, IBlockState state) 
+	{
+		Random rand = new Random();
+		this.grow(world, rand, pos, state);
+
+	}
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) //TODO looks like this isnt finished
 	{
 		WorldGenBaseTree treeGen;
 		int i = 0;
         int j = 0;
-		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
-		{
-			return;
-		}
-		
+		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
 		{
 		case SPIRAL:
@@ -111,7 +105,7 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
             {
                 for (j = 0; j >= -1; --j)
                 {
-					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.ADANSONIA)) {
+					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.SPLOTCH)) {
 						treeGen = new WorldGenSplotchTree(worldIn, pos);
 						break labelSplo;
 					}
@@ -171,12 +165,13 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
 	 */
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+	@Override
+    @SideOnly(Side.CLIENT)
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
 		for (BlockACPlanks1.EnumType blockplanks$enumtype : BlockACPlanks1.EnumType.values())
 		{
-			list.add(new ItemStack(itemIn, 1, blockplanks$enumtype.getMetadata()));
+			items.add(new ItemStack(this, 1, blockplanks$enumtype.getMetadata()));
 		}
 	}
 	/**
@@ -201,11 +196,5 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] {VARIANT, STAGE});
-	}
-	public void grow(World world, BlockPos pos, IBlockState defaultState) 
-	{
-		Random rand = new Random();
-		this.grow(world, rand, pos, defaultState);
-
 	}
 }

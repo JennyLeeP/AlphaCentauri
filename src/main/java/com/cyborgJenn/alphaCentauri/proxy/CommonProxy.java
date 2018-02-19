@@ -1,118 +1,171 @@
 package com.cyborgJenn.alphaCentauri.proxy;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
-import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
-import com.cyborgJenn.alphaCentauri.handlers.CyborgEventHandler;
-import com.cyborgJenn.alphaCentauri.handlers.WorldEventHandler;
-import com.cyborgJenn.alphaCentauri.item.ModItems;
-import com.cyborgJenn.alphaCentauri.largeCaves.LargeCaveGen;
-import com.cyborgJenn.alphaCentauri.utils.Config;
+import com.cyborgJenn.alphaCentauri.interfaces.IItemWithMeshDefinition;
+import com.cyborgJenn.alphaCentauri.utils.IMetaLookup;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
-import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 @Mod.EventBusSubscriber
+@ObjectHolder(Reference.MODID)
 public class CommonProxy {
 
-	public static LargeCaveGen 		caveGen;
+	private List<Block> blocksToReg = new ArrayList<Block>();
+	private List<Item>  itemsToReg  = new ArrayList<Item>();
+	protected HashMap<Block,Item> blockItems = new HashMap<Block,Item>();
 	
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		event.getModMetadata().version = Reference.VERSION;
-		Config.init(event.getSuggestedConfigurationFile());
-		
-		MinecraftForge.EVENT_BUS.register(new CyborgEventHandler());
-		if (Config.enableModuleLargeCaves)
-		{
-			caveGen = new LargeCaveGen(); 
-			MinecraftForge.TERRAIN_GEN_BUS.register(new CyborgEventHandler()); 
-		}
-		if(Config.enableModuleDimension)
-		{
-			ModBlocks.init();
-			ModBiomes.initBiomes();
-		}
-		AlphaCentauri.logger.info("Pre Init Complete..........");
-    }
-
-    public void init(FMLInitializationEvent e) 
-    {
-    	if(Config.enableModuleCombat)
-		{
-			ModItems.initCombatItems();
-		}
-		if(Config.enableModuleDimension)
-		{
-			Registry.registerDimensionTypes();
-			Registry.registerDimension();
-			//OreDictionary.registerOres();
-		}
-		AlphaCentauri.logger.info("Init Complete.............");
-    }
-
-    public void postInit(FMLPostInitializationEvent e) 
-    {
-    	AlphaCentauri.logger.info("Post Init Complete.............");
-    }
-	
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event)
-	{
-		event.getRegistry().register(ModBlocks.ACSTONE);
-		event.getRegistry().register(ModBlocks.VANILLA_ORES);
-		/*
-		event.getRegistry().register(ModBlocks.acDirt);
-		event.getRegistry().register(ModBlocks.acCobble);
-		event.getRegistry().register(ModBlocks.basalt);
-		event.getRegistry().register(ModBlocks.BLOCK_MUSHROOM_PURPLE);
-		event.getRegistry().register(ModBlocks.BLOCK_MUSHROOM_BLUE);
-		event.getRegistry().register(ModBlocks.BLUE_MUSHROOM);
-		event.getRegistry().register(ModBlocks.FLOWERS1);
-		event.getRegistry().register(ModBlocks.FUNGUS);
-		event.getRegistry().register(ModBlocks.GRAVEL);
-		event.getRegistry().register(ModBlocks.LOG1);
-		event.getRegistry().register(ModBlocks.MOSS);
-		event.getRegistry().register(ModBlocks.ORE_VANITEM);
-		event.getRegistry().register(ModBlocks.ORE_ALPHACE);
-		event.getRegistry().register(ModBlocks.PLANTS1);
-		event.getRegistry().register(ModBlocks.PLANKS1);
-		event.getRegistry().register(ModBlocks.PURPLE_MUSHROOM);
-		event.getRegistry().register(ModBlocks.SAND);
-		event.getRegistry().register(ModBlocks.SANDSTONE);
-		event.getRegistry().register(ModBlocks.SAPLINGS1);
-		*/
-		
-		/*             Mod Support Blocks                 */
-		//event.getRegistry().register(ModBlocks.ORE_THERMAL);
-		//event.getRegistry().register(ModBlocks.ORE_PROJRED);
-		//event.getRegistry().register(ModBlocks.ORE_TECHREB);
-		//event.getRegistry().register(ModBlocks.ORE_APPLIED);
-		//event.getRegistry().register(ModBlocks.ORE_BIGREAC);
-		//event.getRegistry().register(ModBlocks.ORE_RAILCRA);
-		//event.getRegistry().register(ModBlocks.ORE_FORESTY);
-		//event.getRegistry().register(ModBlocks.ORE_MFFFFFS);
-		//event.getRegistry().register(ModBlocks.ORE_DEEPRES);
-		AlphaCentauri.logger.info("Block Register Complete.............");
+	/**
+	 * Registers simple Block, with no item.
+	 * Nothing is added to CreativeTab.
+	 * @param block
+	 * @param registryname
+	 */
+	public static void registerBlock(Block block, String registryname) {
+		AlphaCentauri.proxy._registerBlock(block, registryname);
 	}
-	@SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) 
+	/**
+	 * Registers Block with ItemBlocks.
+	 * This is the typical goto Registry for most blocks.
+	 * Block is automatically added to CreativeTab
+	 * @param block
+	 * @param registryname
+	 */
+	public static void registerBlockWithItem(Block block, String registryname) {
+		AlphaCentauri.proxy._registerBlockWithItem(block, registryname);
+	}
+	/**
+	 * Register Blocks with custom item, I.E for example custom ItemBlock.class.
+	 * Block and variants are automatically added to CreativeTab
+	 * @param block
+	 * @param iBlock
+	 * @param registryname
+	 */
+	public static void registerBlockWithCustomItem(Block block, ItemBlock iBlock, String registryname) {
+		AlphaCentauri.proxy._registerBlockWithCustomItem(block, iBlock, registryname);
+	}
+	/**
+	 * Register Item's
+	 * @param item
+	 * @param registryname
+	 */
+	public static void registerItem(Item item, String registryname) {
+		AlphaCentauri.proxy._registerItem(item, registryname);
+	}
+	/**
+	 * Register Item with Variants
+	 * @param item
+	 * @param registryname
+	 * @param variant
+	 */
+	public static <T extends IMetaLookup> void registerItemWithVariants(Item item, String registryname, T variant) {
+		AlphaCentauri.proxy._registerItemWithVariants(item, registryname, variant);
+	}
+	/**
+	 * Register Item with Resource location and Unlocalized name.
+	 * @param item
+	 * @param registryname
+	 * @param unlocalized
+	 */
+	public static void registerItem(Item item, ResourceLocation registryname, String unlocalized) {
+		AlphaCentauri.proxy._registerItem(item, registryname, unlocalized);
+	}
+	/**
+	 * Registers a specific model for variant item stack.
+	 * @param item - Must implement IItemWithMeshDefinition
+	 * @param variantStack
+	 */
+	public static <T extends Item & IItemWithMeshDefinition> void registerSpecificItemVariantsWithBakery(T item, ItemStack variantStack) {
+		AlphaCentauri.proxy._registerSpecificItemVariantsWithBakery(item, variantStack);
+	}
+	
+	/*===========================================================================
+	 * 
+	 * Below are Internal proxy methods, 
+	 * 	not called from outside CommonProxy or ClientProxy.
+	 * 
+	 */
+	public void _registerBlock(Block block, String registryname) 
 	{
-		event.getRegistry().register(new ItemBlock(ModBlocks.ACSTONE).setRegistryName(ModBlocks.ACSTONE.getRegistryName()));
-		event.getRegistry().register(new ItemBlock(ModBlocks.VANILLA_ORES).setRegistryName(ModBlocks.VANILLA_ORES.getRegistryName()));
-    }
-	public World getClientWorld() {
-		return null;
+		block.setRegistryName(registryname);
+		block.setUnlocalizedName(block.getRegistryName().toString());
+		block.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
+		blocksToReg.add(block);
+	}
+	
+	public void _registerBlockWithItem(Block block, String registryname) 
+	{
+		block.setRegistryName(registryname);
+		block.setUnlocalizedName(block.getRegistryName().toString());
+		ItemBlock ib = new ItemBlock(block);
+		ib.setRegistryName(registryname);
+		blocksToReg.add(block);
+		itemsToReg.add(ib);
+		blockItems.put(block, ib);
+	}
+	public void _registerBlockWithCustomItem(Block block, ItemBlock iBlock, String registryname) {
+		block.setRegistryName(registryname);
+		block.setUnlocalizedName(block.getRegistryName().toString());
+		iBlock.setRegistryName(registryname);
+		block.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
+		blocksToReg.add(block);
+		itemsToReg.add(iBlock);
+		blockItems.put(block, iBlock);
+	}
+	
+	public void _registerItem(Item item, String registryname) 
+	{
+		item.setRegistryName(registryname);
+		item.setUnlocalizedName(item.getRegistryName().toString());
+		itemsToReg.add(item);
+	}
+	
+	public <T extends Item & IItemWithMeshDefinition> void _registerSpecificItemVariantsWithBakery(T item, ItemStack variantStack) {
+		//client only
+	}
+	
+	public <T extends IMetaLookup> void _registerItemWithVariants(Item item, String registryname, T variant) 
+	{
+		item.setRegistryName(registryname);
+		item.setUnlocalizedName(item.getRegistryName().toString());
+		itemsToReg.add(item);
+	}
+	
+	public void _registerItem(Item item, ResourceLocation registryname, String unlocalized) {
+		item.setRegistryName(registryname);
+		item.setUnlocalizedName(unlocalized);
+		itemsToReg.add(item);
+	}
+	/**
+	 * Does the actual work of Registering Blocks.
+	 * @param event
+	 */
+	@SubscribeEvent
+	public void registerAllBlocks(RegistryEvent.Register<Block> event)
+	{
+		event.getRegistry().registerAll(blocksToReg.toArray(new Block[blocksToReg.size()]));
+		AlphaCentauri.logger.info("Registered " + blocksToReg.size() + " Blocks");
+	}
+	/**
+	 * Does the actual work of Registering Items.
+	 * @param event
+	 */
+	@SubscribeEvent
+    public void registerAllItems(RegistryEvent.Register<Item> event) 
+	{
+		event.getRegistry().registerAll(itemsToReg.toArray(new Item[itemsToReg.size()]));
+		AlphaCentauri.logger.info("Registered " + itemsToReg.size() + " Items");
 	}
 }

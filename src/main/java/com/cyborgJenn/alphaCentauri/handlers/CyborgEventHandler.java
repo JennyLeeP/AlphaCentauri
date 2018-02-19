@@ -18,7 +18,6 @@ public class CyborgEventHandler
 	public void getWorldEvent(WorldEvent event)
 	{
 		dimension = event.getWorld().provider.getDimension();
-		//System.out.println("Is this working ?");
 	}
 
 	/*
@@ -30,7 +29,7 @@ public class CyborgEventHandler
 		if (dimension == 0){
 			switch(event.getType()){
 			case CAVE:
-				event.setNewGen(CommonProxy.caveGen); //= CyborgUtils.caveGen;
+				//TODO fix cave Gen event.setNewGen(CommonProxy.caveGen); //= CyborgUtils.caveGen;
 				break;
 			case CUSTOM:
 				break;
@@ -48,7 +47,7 @@ public class CyborgEventHandler
 				break;
 			case VILLAGE:
 				break;
-			case OCEAN_MONUMENT: //TODO Uncomment this line for MC 1.8
+			case OCEAN_MONUMENT:
 				break;
 			default:
 				break;

@@ -21,8 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldGenSpiralTree extends WorldGenBaseTree
 {
@@ -33,17 +33,16 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	public WorldGenSpiralTree(World world,BlockPos pos)
 	{
 		super(true);
-		this.generate(world, new Random(), pos);// TODO fix hacky tree gen.
+		this.generate(world, new Random(), pos);
 	}
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		//this.generateTree(world, random); TODO see if this is needed
+		
 	}
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos pos)
 	{
-
 		if (this.isValidLocation(worldIn, pos, false))
 		{
 			int height = rand.nextInt(4) + BaseHeight;

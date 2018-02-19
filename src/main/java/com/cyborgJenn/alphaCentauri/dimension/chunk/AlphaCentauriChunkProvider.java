@@ -5,12 +5,9 @@ import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACLakes;
-import com.cyborgJenn.alphaCentauri.largeCaves.LargeCaveGen;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -52,7 +49,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	double[] maxLimitRegion;
 	double[] depthRegion;
 	private static int sealevel = 63;
-	private MapGenBase caveGenerator = new LargeCaveGen();
+	private MapGenBase caveGenerator;
 
 	public AlphaCentauriChunkProvider(World worldObj) 
 	{

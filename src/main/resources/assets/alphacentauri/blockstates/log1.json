@@ -6,6 +6,12 @@
     "axis=none,variant=splotch": {
       "model": "alphacentauri:splotch_bark"
     },
+    "axis=none,variant=adansonia": {
+      "model": "alphacentauri:adansonia_bark"
+    },
+    "axis=none,variant=mangrove": {
+      "model": "alphacentauri:mangrove_bark"
+    },
     "axis=x,variant=spiral": {
       "model": "alphacentauri:spiral_log",
       "x": 90,
@@ -16,11 +22,27 @@
       "x": 90,
       "y": 90
     },
+    "axis=x,variant=adansonia": {
+      "model": "alphacentauri:adansonia_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,variant=mangrove": {
+      "model": "alphacentauri:mangrove_log",
+      "x": 90,
+      "y": 90
+    },
     "axis=y,variant=spiral": {
       "model": "alphacentauri:spiral_log"
     },
     "axis=y,variant=splotch": {
       "model": "alphacentauri:splotch_log"
+    },
+    "axis=y,variant=adansonia": {
+      "model": "alphacentauri:adansonia_log"
+    },
+    "axis=y,variant=mangrove": {
+      "model": "alphacentauri:mangrove_log"
     },
     "axis=z,variant=spiral": {
       "model": "alphacentauri:spiral_log",
@@ -28,6 +50,14 @@
     },
     "axis=z,variant=splotch": {
       "model": "alphacentauri:splotch_log",
+      "x": 90
+    },
+    "axis=z,variant=adonsonia": {
+      "model": "alphacentauri:adansonia_log",
+      "x": 90
+    },
+    "axis=z,variant=mangrove": {
+      "model": "alphacentauri:mangrove_log",
       "x": 90
     }
   }

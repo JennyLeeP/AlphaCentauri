@@ -2,6 +2,11 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog1;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockVanillaOres;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemSaplingBlock1;
+import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 
 import net.minecraft.block.Block;
@@ -122,27 +127,20 @@ public class ModBlocks {
 	public static Block FUNGUS;
 	public static Block BLOCK_MUSHROOM_PURPLE;
 	public static Block BLOCK_MUSHROOM_BLUE;
-	
-	public static void init()
-	{
-		initBlocks();
-		InitCompatOres();
-		addFireSpreadInfo();
-	}
 
 	public static void initBlocks()
 	{
 		// TODO Trees and plants.
 		
 		/* Gate Blocks */
-		gateAlphaCentauri       = new GenericBlock(0, Material.ROCK, "acgate");
+		//gateAlphaCentauri       = new GenericBlock(0, Material.ROCK, "acgate");
 		alphaCentauriPortal     = (BlockAlphaCentauriPortal) new BlockAlphaCentauriPortal("acportal");
 
 		/*  GROUND type  Blocks  */
 		acGrass       = (BlockACGrass) new BlockACGrass();
 		//beachGrass    = new BeachGrassBlock("beachGrass");
 		acDirt        = new BlockACDirt("acdirt");
-		peat          = new GenericBlock(2, Material.GROUND, "peat");
+		//peat          = new GenericBlock(2, Material.GROUND, "peat");
 		//bogg          = new BlockBogg();
 
 		/* Sand & Gravel Blocks  */
@@ -156,19 +154,20 @@ public class ModBlocks {
 		rustyGravel   = new FallingBlock(1, Material.GROUND, "gravel_rusty");
 
 		/* Stone Blocks */
-		ACSTONE       = new GenericBlock(1, Material.ROCK, "acstone");
-		acCobble      = new GenericBlock(1, Material.ROCK, "accobble");
-		basalt        = new GenericBlock(1, Material.ROCK, "basalt");
-		basaltCobble  = new GenericBlock(1, Material.ROCK, "basalt_cobble");
-		marble        = new GenericBlock(1, Material.ROCK, "marble");
-		granite       = new GenericBlock(1, Material.ROCK, "granite");
+		ACSTONE       = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(ACSTONE, "acstone");
+		//acCobble      = new GenericBlock(1, Material.ROCK, "accobble");
+		//basalt        = new GenericBlock(1, Material.ROCK, "basalt");
+		//basaltCobble  = new GenericBlock(1, Material.ROCK, "basalt_cobble");
+		//marble        = new GenericBlock(1, Material.ROCK, "marble");
+		//granite       = new GenericBlock(1, Material.ROCK, "granite");
 		lightSandstone= new SandstoneBlock("sandstone_light");
 		darkSandstone = new SandstoneBlock("sandstone_dark");
 
 		/* Misc */
 		//chalk         = new BlockChalk().setRegistryName("chalk");
 		//shells        = new GenericBlock(1, Material.ROCK, "shells");
-		cursedStone     = new GenericBlock(1, Material.ROCK, "cursedStone");
+		//cursedStone     = new GenericBlock(1, Material.ROCK, "cursedStone");
 
 		/* Fences and Walls */
 		//walls         = new WallBlock(beachGrass).setRegistryName("terraWalls");
@@ -196,10 +195,15 @@ public class ModBlocks {
 		vines           = new VineBlock("bluemoss");
 		
 		/*  Trees Leaves Saplings  */
-		LOG1            = new BlockACLog1("log1");
+		LOG1            = new BlockACLog1();
+		CommonProxy.registerBlockWithCustomItem(LOG1, new ItemBlockACLog1(LOG1),"log1");
+		
 		LOG2 			= new BlockACLog2("log2");
+		
 		PLANKS1         = new BlockACPlanks1();
+		CommonProxy.registerBlockWithCustomItem(PLANKS1, new ItemBlockACPlank1(PLANKS1),"planks");
 		SAPLINGS1       = new BlockACSaplings1();
+		CommonProxy.registerBlockWithCustomItem(SAPLINGS1, new ItemSaplingBlock1(SAPLINGS1),"saplings1");
 		
 		
 		ALIEN_PLANTS_1 = new BlockAlienPlants1("alien_plants");
@@ -213,8 +217,8 @@ public class ModBlocks {
 		
 		/* Ores  */
 		VANILLA_ORES      = new BlockVanillaOres();
-		
-		oreMethane   = new GenericBlock(1, Material.ROCK, "ore_methane");
+		CommonProxy.registerBlockWithCustomItem(VANILLA_ORES, new ItemBlockVanillaOres(VANILLA_ORES),"block_vanilla_ore");
+		//oreMethane   = new GenericBlock(1, Material.ROCK, "ore_methane");
 	}
 	public static void InitCompatOres()
 	{
@@ -225,63 +229,63 @@ public class ModBlocks {
 		if (Loader.isModLoaded("thermalfoundation") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello ThermalFoundation, Initializing Ores");
-			oreAluminum  = new GenericBlock(1, Material.ROCK, "ore_aluminum");
-			oreCopper    = new GenericBlock(1, Material.ROCK, "ore_copper");
-			oreNickel    = new GenericBlock(1, Material.ROCK, "ore_nickel");
-			oreSilver    = new GenericBlock(1, Material.ROCK, "ore_silver");
-			oreLead      = new GenericBlock(1, Material.ROCK, "ore_lead");
-			oreTin       = new GenericBlock(1, Material.ROCK, "ore_tin");
-			oreIridium   = new GenericBlock(1, Material.ROCK, "ore_iridium");
-			orePlatinum  = new GenericBlock(1, Material.ROCK, "ore_platinum");
-			oreMithril   = new GenericBlock(1, Material.ROCK, "ore_mithril");
+			//oreAluminum  = new GenericBlock(1, Material.ROCK, "ore_aluminum");
+			//oreCopper    = new GenericBlock(1, Material.ROCK, "ore_copper");
+			//oreNickel    = new GenericBlock(1, Material.ROCK, "ore_nickel");
+			//oreSilver    = new GenericBlock(1, Material.ROCK, "ore_silver");
+			//oreLead      = new GenericBlock(1, Material.ROCK, "ore_lead");
+			//oreTin       = new GenericBlock(1, Material.ROCK, "ore_tin");
+			//oreIridium   = new GenericBlock(1, Material.ROCK, "ore_iridium");
+			//orePlatinum  = new GenericBlock(1, Material.ROCK, "ore_platinum");
+			//oreMithril   = new GenericBlock(1, Material.ROCK, "ore_mithril");
 		}
 		if (Loader.isModLoaded("railcraft") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello Railcraft, Initializing Ores");
-			oreSaltpeter = new GenericBlock(1, Material.ROCK, "ore_saltpeter");
-			oreSulfur    = new GenericBlock(1, Material.ROCK, "ore_sulfur");
+			//oreSaltpeter = new GenericBlock(1, Material.ROCK, "ore_saltpeter");
+			//oreSulfur    = new GenericBlock(1, Material.ROCK, "ore_sulfur");
 		}
 		if (Loader.isModLoaded("techreborn") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello TechReborn, Initializing Ore's");
-			oreUranium    = new GenericBlock(1, Material.ROCK, "ore_uranium");
-			oreBauxite    = new GenericBlock(1, Material.ROCK, "ore_bauxite");
-			oreGalena     = new GenericBlock(1, Material.ROCK, "ore_galena");
-			oreGarneirite = new GenericBlock(1, Material.ROCK, "ore_garneirite");
+			//oreUranium    = new GenericBlock(1, Material.ROCK, "ore_uranium");
+			//oreBauxite    = new GenericBlock(1, Material.ROCK, "ore_bauxite");
+			//oreGalena     = new GenericBlock(1, Material.ROCK, "ore_galena");
+			//oreGarneirite = new GenericBlock(1, Material.ROCK, "ore_garneirite");
 			
 		}
 		if (Loader.isModLoaded("forestry") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello Forestry, Initializing Ore");
-			oreApatite   = new GenericBlock(1, Material.ROCK, "ore_apatite");
+			//oreApatite   = new GenericBlock(1, Material.ROCK, "ore_apatite");
 		}
 		if (Loader.isModLoaded("mffs") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello MFFS, Initializing Ore");
-			oreMonazit   = new GenericBlock(1, Material.ROCK, "ore_monazit");
+			//oreMonazit   = new GenericBlock(1, Material.ROCK, "ore_monazit");
 		}
 		if (Loader.isModLoaded("projectred") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello ProjectRed, Initializing Ore's");
-			oreElectrotine = new GenericBlock(1, Material.ROCK, "ore_electrotine");
-			orePeridot     = new GenericBlock(1, Material.ROCK, "ore_peridot");
-			oreRuby        = new GenericBlock(1, Material.ROCK, "ore_ruby");
-			oreSaphire     = new GenericBlock(1, Material.ROCK, "ore_saphire");
+			//oreElectrotine = new GenericBlock(1, Material.ROCK, "ore_electrotine");
+			//orePeridot     = new GenericBlock(1, Material.ROCK, "ore_peridot");
+			//oreRuby        = new GenericBlock(1, Material.ROCK, "ore_ruby");
+			//oreSaphire     = new GenericBlock(1, Material.ROCK, "ore_saphire");
 		}
 		if (Loader.isModLoaded("appliedenergistics") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello Applied Energistics, Initializing Ore");
-			oreCertus = new GenericBlock(1, Material.ROCK, "ore_certus");
+			//oreCertus = new GenericBlock(1, Material.ROCK, "ore_certus");
 		}
 		if (Loader.isModLoaded("deepresonance") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello Deep Resonance, Initializing Ore");
-			oreResonating = new GenericBlock(1, Material.ROCK, "ore_resonating");
+			//oreResonating = new GenericBlock(1, Material.ROCK, "ore_resonating");
 		}
 		if (Loader.isModLoaded("big-reactors") || Config.forceOres)
 		{
 			AlphaCentauri.logger.info("Hello BigReactors, Initializing Ore");
-			oreYellorite = new GenericBlock(1, Material.ROCK, "ore_yellorite");
+			//oreYellorite = new GenericBlock(1, Material.ROCK, "ore_yellorite");
 		}
 		
 		

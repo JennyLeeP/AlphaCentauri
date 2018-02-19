@@ -1,0 +1,8 @@
+{
+  "variants": {
+     "variant=spiral": { "model": "alphacentauri:plank_spiral" },
+     "variant=splotch": { "model": "alphacentauri:plank_splotch" },
+     "variant=mangrove": { "model": "alphacentauri:plank_mangrove" },
+     "variant=adansonia": { "model": "alphacentauri:plank_adansonia" }
+   }
+}

@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GenericBlock extends Block
 {
-	public GenericBlock(int type, Material material, String name) 
+	public GenericBlock(int type, Material material) 
 	{
 		super(material);
 
@@ -42,10 +42,5 @@ public class GenericBlock extends Block
 			this.setResistance(25.0F);
 		}
 		else {}
-
-		this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+name);
-		this.setRegistryName(name);
-
 	}
 }

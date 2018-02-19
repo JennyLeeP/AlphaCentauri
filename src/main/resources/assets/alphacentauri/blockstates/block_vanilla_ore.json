@@ -1,0 +1,11 @@
+{
+  "variants": {
+     "variant=gold": { "model": "alphacentauri:ore_gold" },
+     "variant=iron": { "model": "alphacentauri:ore_iron" },
+     "variant=lapis": { "model": "alphacentauri:ore_lapis" },
+     "variant=coal": { "model": "alphacentauri:ore_coal" },
+     "variant=diamond": { "model": "alphacentauri:ore_diamond" },
+     "variant=emerald": { "model": "alphacentauri:ore_emerald" },
+     "variant=redstone": { "model": "alphacentauri:ore_redstone" }
+   }
+}

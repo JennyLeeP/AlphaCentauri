@@ -6,11 +6,23 @@
         "stage=0,variant=splotch": {
           "model": "alphacentauri:splotch_sapling"
         },
+        "stage=0,variant=adansonia": {
+          "model": "alphacentauri:adansonia_sapling"
+        },
+        "stage=0,variant=mangrove": {
+          "model": "alphacentauri:mangrove_sapling"
+        },
         "stage=1,variant=spiral": {
         "model": "alphacentauri:spiral_sapling"
         },
         "stage=1,variant=splotch": {
         "model": "alphacentauri:splotch_sapling"
+        },
+        "stage=1,variant=adansonia": {
+        "model": "alphacentauri:adansonia_sapling"
+        },
+        "stage=1,variant=mangrove": {
+        "model": "alphacentauri:mangrove_sapling"
         }
     }
 }
