@@ -1,7 +1,5 @@
 package com.cyborgJenn.alphaCentauri.handlers;
 
-import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
-
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;

@@ -1,11 +1,5 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
-import java.util.List;
-
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
-import com.cyborgJenn.alphaCentauri.utils.Reference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,12 +8,9 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
