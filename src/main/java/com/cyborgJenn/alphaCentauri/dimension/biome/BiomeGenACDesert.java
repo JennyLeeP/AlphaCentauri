@@ -4,11 +4,8 @@ import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenFossils;
 

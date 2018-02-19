@@ -19,7 +19,7 @@ public class WorldEventHandler
 		{
 			if (!event.getWorld().isRemote)
 			{
-				((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), event.getBlock());
+				((BlockACSaplings1)ModBlocks.SAPLINGS1).grow(event.getWorld(), event.getPos(), ModBlocks.SAPLINGS1.getDefaultState());
 			}
 			event.setResult(Result.ALLOW);
 		}

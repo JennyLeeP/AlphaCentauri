@@ -5,22 +5,16 @@ import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ACBiomeProvider;
-import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.dimension.chunk.AlphaCentauriChunkProvider;
 import com.cyborgJenn.alphaCentauri.render.ACSkyRenderer;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 import com.cyborgJenn.alphaCentauri.utils.Registry;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;

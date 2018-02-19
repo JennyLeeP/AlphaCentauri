@@ -1,17 +1,8 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
-import java.util.List;
-
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.utils.Reference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SandstoneBlock extends Block {
 

@@ -24,7 +24,7 @@ public class ACTeleporter extends Teleporter
 	private final WorldServer worldServerInstance;
 	private int dimensionID;
 	private final Random random;
-	private final Long2ObjectMap<ACTeleporter.AlphaCentauriPortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
+	private final Long2ObjectMap<ACTeleporter.AlphaCentauriPortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<ACTeleporter.AlphaCentauriPortalPosition>(4096);
 
 	public ACTeleporter(WorldServer par1WorldServer, int dimID) {
 		super(par1WorldServer);

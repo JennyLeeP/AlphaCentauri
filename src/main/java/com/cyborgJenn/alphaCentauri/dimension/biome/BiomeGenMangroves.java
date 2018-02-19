@@ -5,8 +5,6 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenerator;

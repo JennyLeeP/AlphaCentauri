@@ -39,7 +39,8 @@ public class ClientProxy extends CommonProxy
 	protected List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
 	
 	@Override
-	public void _registerBlock(Block block, String registryname) {
+	public void _registerBlock(Block block, String registryname) 
+	{
 		super._registerBlock(block, registryname);
 	}
 
@@ -100,11 +101,13 @@ public class ClientProxy extends CommonProxy
 		}
 	}
 	
-	private void _registerItemModel(Item item) {
+	private void _registerItemModel(Item item) 
+	{
 		_registerItemModel(item, item.getRegistryName().toString());
 	}
 	
-	private void _registerItemModel(Item item, String modelLocation) {
+	private void _registerItemModel(Item item, String modelLocation) 
+	{
 		final ModelResourceLocation fullModelLocation = new ModelResourceLocation(modelLocation, "inventory");
 		_registerItemModel(item, fullModelLocation);
 	}
