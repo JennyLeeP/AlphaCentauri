@@ -22,7 +22,7 @@ public class BiomeGenPaintedCliffs extends ACBiome
 {
 	protected static final IBlockState COARSE_DIRT = ModBlocks.ACDIRT.getDefaultState();
     protected static final IBlockState GRASS = ModBlocks.ACGRASS.getDefaultState();
-    protected static final IBlockState STONE = ModBlocks.basaltCobble.getDefaultState();
+    protected static final IBlockState STONE = ModBlocks.BASALTCOBBLE.getDefaultState();
     protected static final IBlockState BLUE_HARDENED_CLAY = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLUE);
     protected static final IBlockState PURPLE_HARDENED_CLAY = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.PURPLE);
     protected static final IBlockState GRAY_HARDENED_CLAY = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.PURPLE);

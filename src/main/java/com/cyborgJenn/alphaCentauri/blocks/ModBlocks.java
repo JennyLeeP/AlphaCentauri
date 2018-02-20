@@ -36,9 +36,9 @@ public class ModBlocks {
 	public static Block ACSTONE;
 	public static Block ACCOBBLE;
 	public static Block BASALT;
-	public static Block basaltCobble;
-	public static Block marble;
-	public static Block granite;
+	public static Block BASALTCOBBLE;
+	public static Block MARBLE;
+	public static Block GRANITE;
 	
 	public static Block lightSandstone;
 	public static Block darkSandstone;
@@ -158,9 +158,13 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithItem(ACCOBBLE, "accobble");
 		BASALT        = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(BASALT, "basalt");
-		//basaltCobble  = new GenericBlock(1, Material.ROCK, "basalt_cobble");
-		//marble        = new GenericBlock(1, Material.ROCK, "marble");
-		//granite       = new GenericBlock(1, Material.ROCK, "granite");
+		BASALTCOBBLE  = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(BASALTCOBBLE, "basalt_cobble");
+		MARBLE        = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(MARBLE, "marble");
+		GRANITE       = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(GRANITE, "granite");
+		
 		lightSandstone= new SandstoneBlock("sandstone_light");
 		darkSandstone = new SandstoneBlock("sandstone_dark");
 
