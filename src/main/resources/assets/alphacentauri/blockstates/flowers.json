@@ -1,0 +1,20 @@
+{
+  "variants": {
+     "variant=white": { "model": "alphacentauri:flower_white" },
+     "variant=orange": { "model": "alphacentauri:flower_orange" },
+     "variant=magenta": { "model": "alphacentauri:flower_magenta" },
+     "variant=lightblue": { "model": "alphacentauri:flower_lightblue" },
+     "variant=yellow": { "model": "alphacentauri:flower_yellow" },
+     "variant=lime": { "model": "alphacentauri:flower_lime" },
+     "variant=pink": { "model": "alphacentauri:flower_pink" },
+     "variant=gray": { "model": "alphacentauri:flower_gray" },
+     "variant=lightgray": { "model": "alphacentauri:flower_lightgray" },
+     "variant=cyan": { "model": "alphacentauri:flower_cyan" },
+     "variant=purple": { "model": "alphacentauri:flower_purple" },
+     "variant=blue": { "model": "alphacentauri:flower_blue" },
+     "variant=brown": { "model": "alphacentauri:flower_brown" },
+     "variant=green": { "model": "alphacentauri:flower_green" },
+     "variant=red": { "model": "alphacentauri:flower_red" },
+     "variant=black": { "model": "alphacentauri:flower_black" }
+   }
+}

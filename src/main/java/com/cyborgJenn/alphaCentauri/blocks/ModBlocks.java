@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACFlowers;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACGravel;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLeaves1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog1;
@@ -58,22 +59,7 @@ public class ModBlocks {
 	public static BlockBush MOSS;
 	public static Block vines;
 
-	public static Block whiteFlower;
-	public static Block orangeFlower;
-	public static Block magentaFlower;
-	public static Block lightBlueFlower;
-	public static Block yellowFlower;
-	public static Block limeFlower;
-	public static Block pinkFlower;
-	public static Block grayFlower;
-	public static Block lightGrayFlower;
-	public static Block cyanFlower;
-	public static Block purpleFlower;
-	public static Block blueFlower;
-	public static Block brownFlower;
-	public static Block greenFlower;
-	public static Block redFlower;
-	public static Block blackFlower;
+	public static Block FLOWERS;
 
 	public static Block LOG1;
 	public static Block LOG2;
@@ -178,6 +164,9 @@ public class ModBlocks {
 		//fences        = new FenceBlock().setRegistryName("terraFences");
 
 		/* Flowers  and Plants */
+		FLOWERS         = new BlockACFlowers();
+		CommonProxy.registerBlockWithCustomItem(FLOWERS, new ItemBlockACFlowers(FLOWERS),"flowers");
+		/*
 		whiteFlower     = new PlantBlock("flower_white");
 		orangeFlower    = new PlantBlock("flower_orange");
 		magentaFlower   = new PlantBlock("flower_magenta");
@@ -194,7 +183,7 @@ public class ModBlocks {
 		greenFlower     = new PlantBlock("flower_green");
 		redFlower       = new PlantBlock("flower_red");
 		blackFlower     = new PlantBlock("flower_black");
-
+		 */
 		MOSS    		= new MossBlock("moss");
 		vines           = new VineBlock("bluemoss");
 		
