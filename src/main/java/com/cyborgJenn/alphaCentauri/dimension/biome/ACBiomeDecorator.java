@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
 import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACMinable;
@@ -107,8 +108,8 @@ public class ACBiomeDecorator extends BiomeDecorator
 		{
 			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
-			this.dirt = new WorldGenACMinable(ModBlocks.acDirt.getDefaultState(), this.chunkProviderSettings.dirtSize);
-			this.gravel = new WorldGenACMinable(ModBlocks.blueGravel.getDefaultState(), this.chunkProviderSettings.gravelSize);
+			this.dirt     = new WorldGenACMinable(ModBlocks.ACDIRT.getDefaultState(), this.chunkProviderSettings.dirtSize);
+			this.gravel   = new WorldGenACMinable(ModBlocks.GRAVEL.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.BLUE), this.chunkProviderSettings.gravelSize);
 			this.iron     = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.IRON), this.chunkProviderSettings.ironSize);
 			this.gold     = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.GOLD), this.chunkProviderSettings.goldSize);
 			this.diamond  = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.DIAMOND), this.chunkProviderSettings.diamondSize);

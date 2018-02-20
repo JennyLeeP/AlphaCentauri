@@ -41,7 +41,7 @@ public class ModBiomes {
         PrimevalForest = new BiomeGenPrimevalForest(new BiomeProperties("PrimevalForest").setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
         Mangroves      = new BiomeGenMangroves(     new BiomeProperties("Mangroves"     ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
         HOODOOVALLEY   = new BiomeGenHoodooValley(  new BiomeProperties("HoodooValley"  ).setTemperature(2.0f).setBaseHeight(0.8f  ).setHeightVariation(1.2f ).setRainfall(1.0f).setWaterColor(2216227));
-        PAINTED_CLIFFS = new BiomeGenPaintedCliffs( new BiomeProperties("PaintedCliffs" ).setTemperature(1.7f).setBaseHeight(0.7f  ).setHeightVariation(1.1f ).setRainfall(0.1f).setWaterColor(8888844));
+        //PAINTED_CLIFFS = new BiomeGenPaintedCliffs( new BiomeProperties("PaintedCliffs" ).setTemperature(1.7f).setBaseHeight(0.7f  ).setHeightVariation(1.1f ).setRainfall(0.1f).setWaterColor(8888844));
         DESERT         = new BiomeGenACDesert(      new BiomeProperties("Desert"        ).setTemperature(2.0F).setBaseHeight(0.125F).setHeightVariation(0.05F).setRainfall(0.0F).setRainDisabled());
         FUNGALFOREST   = new BiomeFungalForest(     new BiomeProperties("FungalForest"  ).setTemperature(1.0F).setBaseHeight(0.125F).setHeightVariation(0.08F).setRainfall(2.0F).setWaterColor(0x222a38));
     }
@@ -56,7 +56,7 @@ public class ModBiomes {
     	registerBiome("PrimevalForest", PrimevalForest, Type.JUNGLE);
     	registerBiome("Mangroves", Mangroves, Type.BEACH);
     	registerBiome("HoodooValley", HOODOOVALLEY, Type.DEAD);
-    	registerBiome("PaintedCliffs", PAINTED_CLIFFS, Type.MOUNTAIN);
+    	//registerBiome("PaintedCliffs", PAINTED_CLIFFS, Type.MOUNTAIN);
     	registerBiome("Desert", DESERT, Type.HOT);
     	registerBiome("FungalForest", FUNGALFOREST, Type.MUSHROOM);
     }

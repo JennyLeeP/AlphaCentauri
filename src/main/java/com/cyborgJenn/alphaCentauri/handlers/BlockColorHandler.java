@@ -42,7 +42,7 @@ public class BlockColorHandler extends BlockColors
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);
 		};
 
-		blockColors.registerBlockColorHandler(grassColourHandler, ModBlocks.acGrass);
+		blockColors.registerBlockColorHandler(grassColourHandler, ModBlocks.ACGRASS);
 	}
 	/**
 	 * Register the {@link IItemColor} handlers
@@ -58,6 +58,6 @@ public class BlockColorHandler extends BlockColors
 			return blockColors.colorMultiplier(state, null, null, tintIndex);
 		};
 
-		itemColors.registerItemColorHandler(itemBlockColourHandler, ModBlocks.acGrass);
+		itemColors.registerItemColorHandler(itemBlockColourHandler, ModBlocks.ACGRASS);
 	}
 }

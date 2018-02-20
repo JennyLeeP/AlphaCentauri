@@ -30,16 +30,12 @@ public class BlockACGrass extends Block implements IGrowable
 	public BlockACGrass() 
 	{
         super(Material.GRASS);
-        String name = "acgrass";
         //this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         this.setTickRandomly(true);
         this.setHardness(1.0F);
         this.blockSoundType = SoundType.PLANT;
         this.setHarvestLevel("shovel", 2);
         this.setResistance(25.0F);
-        this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
-		this.setUnlocalizedName(Reference.MODID +"."+ name);
-		this.setRegistryName(name);
     }
 	/**
      * Get the actual Block state of this Block at the given position. This applies properties not visible in the
@@ -60,7 +56,7 @@ public class BlockACGrass extends Block implements IGrowable
         {
             if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2)
             {
-                worldIn.setBlockState(pos, ModBlocks.acDirt.getDefaultState());
+                worldIn.setBlockState(pos, ModBlocks.ACDIRT.getDefaultState());
             }
             else
             {
@@ -78,9 +74,9 @@ public class BlockACGrass extends Block implements IGrowable
                         IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
                         IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 
-                        if (iblockstate1.getBlock() == ModBlocks.acDirt /*&& iblockstate1.getValue(BlockACDirt.VARIANT) == BlockACDirt.DirtType.ACDIRT*/ && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
+                        if (iblockstate1.getBlock() == ModBlocks.ACDIRT /*&& iblockstate1.getValue(BlockACDirt.VARIANT) == BlockACDirt.DirtType.ACDIRT*/ && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
                         {
-                            worldIn.setBlockState(blockpos, ModBlocks.acGrass.getDefaultState());
+                            worldIn.setBlockState(blockpos, ModBlocks.ACGRASS.getDefaultState());
                         }
                     }
                 }
@@ -93,7 +89,7 @@ public class BlockACGrass extends Block implements IGrowable
    @Nullable
    public Item getItemDropped(IBlockState state, Random rand, int fortune)
    {
-       return ModBlocks.acDirt.getItemDropped(ModBlocks.acDirt.getDefaultState(), rand, fortune);
+       return ModBlocks.ACDIRT.getItemDropped(ModBlocks.ACDIRT.getDefaultState(), rand, fortune);
        //return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
    }
 

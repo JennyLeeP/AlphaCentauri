@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "axis=none,variant=peylal": {
+      "model": "alphacentauri:peylal_bark"
+    },
+    "axis=none,variant=nefralia": {
+      "model": "alphacentauri:nefralia_bark"
+    },
+    "axis=none,variant=beratuzia": {
+      "model": "alphacentauri:beratuzia_bark"
+    },
+    "axis=x,variant=peylal": {
+      "model": "alphacentauri:peylal_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,variant=nefralia": {
+      "model": "alphacentauri:nefralia_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,variant=beratuzia": {
+      "model": "alphacentauri:beratuzia_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,variant=peylal": {
+      "model": "alphacentauri:peylal_log"
+    },
+    "axis=y,variant=nefralia": {
+      "model": "alphacentauri:nefralia_log"
+    },
+    "axis=y,variant=beratuzia": {
+      "model": "alphacentauri:beratuzia_log"
+    },
+    "axis=z,variant=peylal": {
+      "model": "alphacentauri:peylal_log",
+      "x": 90
+    },
+    "axis=z,variant=nefralia": {
+      "model": "alphacentauri:nefralia_log",
+      "x": 90
+    },
+    "axis=z,variant=beratuzia": {
+      "model": "alphacentauri:beratuzia_log",
+      "x": 90
+    }
+  }
+}

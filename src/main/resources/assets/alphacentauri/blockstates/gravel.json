@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "variant=blue": { "model": "alphacentauri:gravel_blue" },
+    "variant=red": { "model": "alphacentauri:gravel_red" },
+    "variant=dark": { "model": "alphacentauri:gravel_dark" },
+    "variant=purple": { "model": "alphacentauri:gravel_purple" },
+    "variant=rusty": { "model": "alphacentauri:gravel_rusty" }
+  }
+}

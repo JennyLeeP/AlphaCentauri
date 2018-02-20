@@ -7,10 +7,12 @@ import org.apache.logging.log4j.Logger;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.command.TeleportCommand;
+import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
 import com.cyborgJenn.alphaCentauri.utils.AlphaCentauriTab;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
+import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,28 +44,28 @@ public class AlphaCentauri {
 	public void preInit(FMLPreInitializationEvent event)throws IOException
 	{
 		logger = event.getModLog();
+		Config.init(event.getSuggestedConfigurationFile());
 		ModBlocks.initBlocks();
-        MinecraftForge.EVENT_BUS.register(proxy);
+		ModBiomes.initBiomes();
+		MinecraftForge.EVENT_BUS.register(proxy);
 	}
 
 	@Mod.EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
-		
+		Registry.registerDimensionTypes();
+		Registry.registerDimension();
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		
+
 	}
 
 	@Mod.EventHandler
 	public void onServerStarting(FMLServerStartingEvent event) throws IOException
 	{
-		if (Config.enableModuleDimension)
-		{
-			event.registerServerCommand(new TeleportCommand());
-		}
+		event.registerServerCommand(new TeleportCommand());
 	}
 }

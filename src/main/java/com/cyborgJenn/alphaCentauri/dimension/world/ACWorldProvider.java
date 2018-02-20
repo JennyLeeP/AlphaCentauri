@@ -183,7 +183,7 @@ public class ACWorldProvider extends WorldProvider{
     public boolean canCoordinateBeSpawn(int x, int z)
     {
         BlockPos blockpos = new BlockPos(x, 0, z);
-        return this.world.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.world.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.acGrass;
+        return this.world.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.world.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.ACGRASS;
     }
 	/*
 	@Override

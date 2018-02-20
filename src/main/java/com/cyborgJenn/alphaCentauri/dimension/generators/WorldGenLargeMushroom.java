@@ -87,7 +87,7 @@ public class WorldGenLargeMushroom extends WorldGenerator
             {
                 Block block1 = worldIn.getBlockState(position.down()).getBlock();
 
-                if (block1 != ModBlocks.acDirt && block1 != ModBlocks.acGrass && block1 != ModBlocks.FUNGUS)
+                if (block1 != ModBlocks.ACDIRT && block1 != ModBlocks.ACGRASS && block1 != ModBlocks.FUNGUS)
                 {
                     return false;
                 }

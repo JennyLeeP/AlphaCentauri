@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "variant=light": { "model": "alphacentauri:sand_light" },
+    "variant=medium": { "model": "alphacentauri:sand_medium" },
+    "variant=dark": { "model": "alphacentauri:sand_dark" }
+  }
+}

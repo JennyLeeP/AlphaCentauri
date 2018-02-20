@@ -20,7 +20,7 @@ public class BiomeFungalForest extends ACBiome
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
         this.topBlock = ModBlocks.FUNGUS.getDefaultState();
-        this.fillerBlock = ModBlocks.acDirt.getDefaultState();
+        this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
         this.biomeDecorator = new ACBiomeDecorator(this);
         biomeDecorator = (ACBiomeDecorator)biomeDecorator;
         this.biomeDecorator.mossPerChunk = 5;

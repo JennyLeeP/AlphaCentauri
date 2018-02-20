@@ -29,8 +29,8 @@ public class BiomeGenMangroves extends ACBiome
 	}
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {      
-            this.topBlock = ModBlocks.acGrass.getDefaultState();
-            this.fillerBlock = ModBlocks.acDirt.getDefaultState();
+            this.topBlock = ModBlocks.ACGRASS.getDefaultState();
+            this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
 
             this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
     }

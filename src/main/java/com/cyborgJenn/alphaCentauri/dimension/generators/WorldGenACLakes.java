@@ -121,7 +121,7 @@ public class WorldGenACLakes extends WorldGenerator
                         {
                             BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-                            if (worldIn.getBlockState(blockpos).getBlock() == ModBlocks.acDirt && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
+                            if (worldIn.getBlockState(blockpos).getBlock() == ModBlocks.ACDIRT && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
                             {
                                 Biome biome = worldIn.getBiome(blockpos);
 
@@ -131,7 +131,7 @@ public class WorldGenACLakes extends WorldGenerator
                                 }
                                 else
                                 {
-                                    worldIn.setBlockState(blockpos, ModBlocks.acGrass.getDefaultState(), 2);
+                                    worldIn.setBlockState(blockpos, ModBlocks.ACGRASS.getDefaultState(), 2);
                                 }
                             }
                         }

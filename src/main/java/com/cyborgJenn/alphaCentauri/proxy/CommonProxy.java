@@ -111,6 +111,7 @@ public class CommonProxy {
 		block.setUnlocalizedName(block.getRegistryName().toString());
 		ItemBlock ib = new ItemBlock(block);
 		ib.setRegistryName(registryname);
+		block.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		blocksToReg.add(block);
 		itemsToReg.add(ib);
 		blockItems.put(block, ib);

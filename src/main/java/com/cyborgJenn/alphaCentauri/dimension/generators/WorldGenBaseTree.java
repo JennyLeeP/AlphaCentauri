@@ -27,9 +27,9 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
 	@Override
 	protected void setDirtAt(World worldIn, BlockPos pos)
 	{
-		if (worldIn.getBlockState(pos).getBlock() == ModBlocks.acGrass.getDefaultState())
+		if (worldIn.getBlockState(pos).getBlock() == ModBlocks.ACGRASS.getDefaultState())
 		{
-			worldIn.setBlockState(pos.down(), ModBlocks.acDirt.getDefaultState());
+			worldIn.setBlockState(pos.down(), ModBlocks.ACDIRT.getDefaultState());
 		}
 		else if(worldIn.getBlockState(pos).getBlock() == Blocks.GRASS.getDefaultState())
 		{
@@ -113,8 +113,8 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
         return material == Material.AIR || material == Material.LEAVES || material == Material.PLANTS || blockType == Blocks.TALLGRASS || blockType == Blocks.GRASS 
         		|| blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 
         		|| blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks.vines 
-        		|| blockType == ModBlocks.SAPLINGS1 || blockType == ModBlocks.LOG1 || blockType == ModBlocks.acGrass 
-        		|| blockType == ModBlocks.acDirt || blockType == ModBlocks.BLOCK_MUSHROOM_BLUE || blockType == ModBlocks.BLOCK_MUSHROOM_PURPLE;  		
+        		|| blockType == ModBlocks.SAPLINGS1 || blockType == ModBlocks.LOG1 || blockType == ModBlocks.ACGRASS 
+        		|| blockType == ModBlocks.ACDIRT || blockType == ModBlocks.BLOCK_MUSHROOM_BLUE || blockType == ModBlocks.BLOCK_MUSHROOM_PURPLE;  		
     }
     
 

@@ -2,6 +2,8 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.util.math.BlockPos;
@@ -14,8 +16,8 @@ public class BiomeGenBeach extends ACBiome
 	public BiomeGenBeach(Biome.BiomeProperties properties) 
 	{
 		super(properties);
-		this.topBlock = ModBlocks.darkSand.getDefaultState();
-        this.fillerBlock = ModBlocks.purpleGravel.getDefaultState();
+		this.topBlock = ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.DARK);
+        this.fillerBlock = ModBlocks.GRAVEL.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.PURPLE);
         this.spawnableCreatureList.clear();    
 	}
 	@Override

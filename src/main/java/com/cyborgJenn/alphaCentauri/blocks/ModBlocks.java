@@ -2,8 +2,13 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACGravel;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLeaves1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog1;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank2;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACSand;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemSaplingBlock1;
 import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
@@ -23,14 +28,14 @@ public class ModBlocks {
 
 	public static BlockAlphaCentauriPortal alphaCentauriPortal;
 
-	public static BlockACGrass acGrass;
+	public static BlockACGrass ACGRASS;
 	public static BlockACGrass darkGrass;
 	public static Block beachGrass;
-	public static Block acDirt;
+	public static Block ACDIRT;
 	@GameRegistry.ObjectHolder("alphacentauri:acstone")
 	public static Block ACSTONE;
-	public static Block acCobble;
-	public static Block basalt;
+	public static Block ACCOBBLE;
+	public static Block BASALT;
 	public static Block basaltCobble;
 	public static Block marble;
 	public static Block granite;
@@ -38,16 +43,9 @@ public class ModBlocks {
 	public static Block lightSandstone;
 	public static Block darkSandstone;
 	
-	public static Block lightSand;
-	public static Block darkSand;
-	
-	public static Block blueGravel;
-	public static Block redGravel;
-	public static Block darkGravel;
-	public static Block purpleGravel;
-	public static Block rustyGravel;
-
-	public static Block peat;
+	public static Block SAND;
+	public static Block GRAVEL;
+	public static Block PEAT;
 	public static Block bogg;
 
 	public static Block chalk;
@@ -79,9 +77,10 @@ public class ModBlocks {
 
 	public static Block LOG1;
 	public static Block LOG2;
-	public static Block leaves;
+	public static Block LEAVES1;
 	public static Block SAPLINGS1;
 	public static Block PLANKS1;
+	public static Block PLANKS2;
 	
 	public static Block ALIEN_PLANTS_1;
 
@@ -136,27 +135,29 @@ public class ModBlocks {
 		alphaCentauriPortal     = (BlockAlphaCentauriPortal) new BlockAlphaCentauriPortal("acportal");
 
 		/*  GROUND type  Blocks  */
-		acGrass       = (BlockACGrass) new BlockACGrass();
+		ACGRASS       = (BlockACGrass) new BlockACGrass();
+		CommonProxy.registerBlockWithItem(ACGRASS, "acgrass");
 		//beachGrass    = new BeachGrassBlock("beachGrass");
-		acDirt        = new BlockACDirt("acdirt");
-		//peat          = new GenericBlock(2, Material.GROUND, "peat");
+		ACDIRT        = new BlockACDirt();
+		CommonProxy.registerBlockWithItem(ACDIRT, "acdirt");
+		PEAT          = new GenericBlock(2, Material.GROUND);
+		CommonProxy.registerBlockWithItem(PEAT, "peat");
 		//bogg          = new BlockBogg();
 
 		/* Sand & Gravel Blocks  */
-		lightSand     = new FallingBlock(0, Material.SAND, "sand_light");
-		darkSand      = new FallingBlock(0, Material.SAND, "sand_dark");
+		SAND          = new BlockACSand();
+		CommonProxy.registerBlockWithCustomItem(SAND, new ItemBlockACSand(SAND),"sand");
+		GRAVEL        = new BlockACGravel();
+		CommonProxy.registerBlockWithCustomItem(GRAVEL, new ItemBlockACGravel(GRAVEL),"gravel");
 		
-		blueGravel    = new FallingBlock(1, Material.GROUND, "gravel_blue");
-		redGravel     = new FallingBlock(1, Material.GROUND, "gravel_red");
-		darkGravel    = new FallingBlock(1, Material.GROUND, "gravel_dark");
-		purpleGravel  = new FallingBlock(1, Material.GROUND, "gravel_purple");
-		rustyGravel   = new FallingBlock(1, Material.GROUND, "gravel_rusty");
 
 		/* Stone Blocks */
 		ACSTONE       = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(ACSTONE, "acstone");
-		//acCobble      = new GenericBlock(1, Material.ROCK, "accobble");
-		//basalt        = new GenericBlock(1, Material.ROCK, "basalt");
+		ACCOBBLE      = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(ACCOBBLE, "accobble");
+		BASALT        = new GenericBlock(1, Material.ROCK);
+		CommonProxy.registerBlockWithItem(BASALT, "basalt");
 		//basaltCobble  = new GenericBlock(1, Material.ROCK, "basalt_cobble");
 		//marble        = new GenericBlock(1, Material.ROCK, "marble");
 		//granite       = new GenericBlock(1, Material.ROCK, "granite");
@@ -196,11 +197,14 @@ public class ModBlocks {
 		/*  Trees Leaves Saplings  */
 		LOG1            = new BlockACLog1();
 		CommonProxy.registerBlockWithCustomItem(LOG1, new ItemBlockACLog1(LOG1),"log1");
-		
-		LOG2 			= new BlockACLog2("log2");
-		
+		LOG2 			= new BlockACLog2();
+		CommonProxy.registerBlockWithCustomItem(LOG2, new ItemBlockACLog2(LOG2),"log2");
+		LEAVES1          = new BlockACLeaves1();
+		//CommonProxy.registerBlockWithCustomItem(LEAVES1, new ItemBlockACLeaves1(LEAVES1),"leaves1");
 		PLANKS1         = new BlockACPlanks1();
 		CommonProxy.registerBlockWithCustomItem(PLANKS1, new ItemBlockACPlank1(PLANKS1),"planks");
+		PLANKS2         = new BlockACPlanks2();
+		CommonProxy.registerBlockWithCustomItem(PLANKS2, new ItemBlockACPlank2(PLANKS2),"planks2");
 		SAPLINGS1       = new BlockACSaplings1();
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS1, new ItemSaplingBlock1(SAPLINGS1),"saplings1");
 		
@@ -212,7 +216,6 @@ public class ModBlocks {
 		BLUE_MUSHROOM   = new AlienShroom("blue_mushroom");
 		BLOCK_MUSHROOM_PURPLE = new BlockAlienMushroom("block_mushroom_purple", MapColor.PURPLE, PURPLE_MUSHROOM);
 		BLOCK_MUSHROOM_BLUE   = new BlockAlienMushroom("block_mushroom_blue", MapColor.BLUE, BLUE_MUSHROOM);
-		//leaves          = new ZetaLeafBlock();
 		
 		/* Ores  */
 		VANILLA_ORES      = new BlockVanillaOres();
@@ -292,7 +295,7 @@ public class ModBlocks {
 	}
 	private static void addFireSpreadInfo() 
 	{
-		Blocks.FIRE.setFireInfo(ModBlocks.leaves, 30, 60);
+		Blocks.FIRE.setFireInfo(ModBlocks.LEAVES1, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS1, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.LOG1, 30, 60);
 		// TODO finish adding fire spread info;

@@ -15,8 +15,8 @@ public class BiomeGenLivingPlateau extends ACBiome{
         this.spawnableCaveCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = ModBlocks.acGrass.getDefaultState();
-        this.fillerBlock = ModBlocks.acDirt.getDefaultState();
+        this.topBlock = ModBlocks.ACGRASS.getDefaultState();
+        this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
         
 	}
 	@Override

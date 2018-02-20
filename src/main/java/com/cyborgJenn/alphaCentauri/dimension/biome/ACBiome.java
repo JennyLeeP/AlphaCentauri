@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.block.material.Material;
@@ -114,7 +115,7 @@ public class ACBiome extends Biome{
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
-                        if (j == 0 && iblockstate1.getBlock() == ModBlocks.lightSand && k > 1)
+                        if (j == 0 && iblockstate1.getBlock() == ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT) && k > 1)
                         {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
                             //TODO iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;

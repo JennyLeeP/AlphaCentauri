@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.world.World;
@@ -25,8 +26,8 @@ public class BiomeGenLivingOcean extends ACBiome{
 
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{      
-		this.topBlock = ModBlocks.blueGravel.getDefaultState();
-		this.fillerBlock = ModBlocks.peat.getDefaultState();
+		this.topBlock = ModBlocks.GRAVEL.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.BLUE);
+		this.fillerBlock = ModBlocks.PEAT.getDefaultState();
 		this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 }

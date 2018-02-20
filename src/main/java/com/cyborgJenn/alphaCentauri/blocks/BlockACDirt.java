@@ -14,15 +14,13 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockACDirt extends Block 
 {  
-    protected BlockACDirt(String name) 
+    protected BlockACDirt() 
     {
         super(Material.GROUND);
-        this.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
         this.setSoundType(SoundType.GROUND);
 		this.setHardness(1.0F);
 		this.setHarvestLevel("shovel", 2);
 		this.setResistance(25.0F);
-        this.setUnlocalizedName(Reference.MODID +"."+ name);
     }   
     @Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) 

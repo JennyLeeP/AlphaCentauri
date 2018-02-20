@@ -22,7 +22,7 @@ public class TeleportCommand extends CommandBase{
 
 	public TeleportCommand() 
 	{
-		aliases = Lists.newArrayList(Reference.MODID, "TP", "tp");
+		aliases = Lists.newArrayList(Reference.MODID, "TPD", "tpd");
 	}
 	private final List<String> aliases;
 	@Override

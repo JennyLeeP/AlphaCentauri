@@ -1,4 +1,4 @@
-package com.cyborgJenn.alphaCentauri.blocks;
+package com.cyborgJenn.alphaCentauri.fluids;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import net.minecraft.block.material.Material;

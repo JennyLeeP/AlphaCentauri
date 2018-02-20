@@ -15,8 +15,8 @@ public class BiomeGenGreenRiver extends ACBiome{
 	{
 		super(properties);
         this.spawnableCreatureList.clear();
-        this.topBlock = ModBlocks.acGrass.getDefaultState();
-        this.fillerBlock = ModBlocks.acDirt.getDefaultState();
+        this.topBlock = ModBlocks.ACGRASS.getDefaultState();
+        this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
 	}
     /**
      * Allocate a new BiomeDecorator for this BiomeGenBase

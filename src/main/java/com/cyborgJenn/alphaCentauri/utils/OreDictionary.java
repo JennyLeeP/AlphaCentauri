@@ -1,5 +1,7 @@
 package com.cyborgJenn.alphaCentauri.utils;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
@@ -16,13 +18,14 @@ public class OreDictionary
 		net.minecraftforge.oredict.OreDictionary.registerOre("oreDiamond" , ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.DIAMOND).getBlock());
 		net.minecraftforge.oredict.OreDictionary.registerOre("oreRedstone", ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.REDSTONE).getBlock());
 		net.minecraftforge.oredict.OreDictionary.registerOre("oreEmerald" , ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.EMERALD).getBlock());
-		net.minecraftforge.oredict.OreDictionary.registerOre("sand"       , ModBlocks.lightSand);
-		net.minecraftforge.oredict.OreDictionary.registerOre("sand"       , ModBlocks.darkSand);
-		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.blueGravel);
-		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.purpleGravel);
-		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.redGravel);
-		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.rustyGravel);
-		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.darkGravel);
+		net.minecraftforge.oredict.OreDictionary.registerOre("sand"       , ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("sand"       , ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.MEDIUM).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("sand"       , ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.DARK).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.SAND.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.BLUE).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.SAND.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.RED).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.SAND.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.DARK).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.SAND.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.PURPLE).getBlock());
+		net.minecraftforge.oredict.OreDictionary.registerOre("gravel"     , ModBlocks.SAND.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.RUSTY).getBlock());
 		
 		if (Loader.isModLoaded("thermalfoundation") || Config.forceOres)
 		{

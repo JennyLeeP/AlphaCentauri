@@ -24,6 +24,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
+import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -49,7 +50,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	double[] maxLimitRegion;
 	double[] depthRegion;
 	private static int sealevel = 63;
-	private MapGenBase caveGenerator;
+	private MapGenBase caveGenerator = new MapGenCaves();
 
 	public AlphaCentauriChunkProvider(World worldObj) 
 	{

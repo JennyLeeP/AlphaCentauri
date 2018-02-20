@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 
 import java.util.Random;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +16,8 @@ public class BiomeGenACDesert extends ACBiome
 	{
 		super(properties);
         this.spawnableCreatureList.clear();
-        this.topBlock = ModBlocks.lightSand.getDefaultState();
-        this.fillerBlock = ModBlocks.lightSand.getDefaultState();
+        this.topBlock = ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT);
+        this.fillerBlock = ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT);
         //this.biomeDecorator.treesPerChunk = 0;
         //this.biomeDecorator.deadBushPerChunk = 2;
         //this.biomeDecorator.reedsPerChunk = 50;

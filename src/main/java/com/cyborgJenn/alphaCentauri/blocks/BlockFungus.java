@@ -79,7 +79,7 @@ public class BlockFungus extends Block
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ModBlocks.acDirt.getItemDropped(ModBlocks.acDirt.getDefaultState(), rand, fortune);
+        return ModBlocks.ACDIRT.getItemDropped(ModBlocks.ACDIRT.getDefaultState(), rand, fortune);
     }
 
     /**

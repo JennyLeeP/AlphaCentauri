@@ -1,0 +1,7 @@
+{
+  "variants": {
+     "variant=peylal": { "model": "alphacentauri:plank_peylal" },
+     "variant=nefralia": { "model": "alphacentauri:plank_nefralia" },
+     "variant=beratuzia": { "model": "alphacentauri:plank_beratuzia" }
+   }
+}
