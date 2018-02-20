@@ -1,4 +1,4 @@
-package com.cyborgJenn.alphaCentauri.combat.item;
+package com.cyborgJenn.alphaCentauri.item;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 

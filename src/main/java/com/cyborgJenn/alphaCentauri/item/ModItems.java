@@ -1,7 +1,5 @@
 package com.cyborgJenn.alphaCentauri.item;
 
-import com.cyborgJenn.alphaCentauri.combat.item.Sword1;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
