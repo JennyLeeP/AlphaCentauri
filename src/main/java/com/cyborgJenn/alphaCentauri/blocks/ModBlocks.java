@@ -4,7 +4,6 @@ import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACFlowers;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACGravel;
-import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLeaves1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
@@ -57,7 +56,7 @@ public class ModBlocks {
 	public static Block fences;
 
 	public static BlockBush MOSS;
-	public static Block vines;
+	public static Block VINES;
 
 	public static Block FLOWERS;
 
@@ -164,28 +163,12 @@ public class ModBlocks {
 		//fences        = new FenceBlock().setRegistryName("terraFences");
 
 		/* Flowers  and Plants */
-		FLOWERS         = new BlockACFlowers();
+		FLOWERS = new BlockACFlowers();
 		CommonProxy.registerBlockWithCustomItem(FLOWERS, new ItemBlockACFlowers(FLOWERS),"flowers");
-		/*
-		whiteFlower     = new PlantBlock("flower_white");
-		orangeFlower    = new PlantBlock("flower_orange");
-		magentaFlower   = new PlantBlock("flower_magenta");
-		lightBlueFlower = new PlantBlock("flower_lightblue");
-		yellowFlower    = new PlantBlock("flower_yellow");
-		limeFlower      = new PlantBlock("flower_lime");
-		pinkFlower      = new PlantBlock("flower_pink");
-		grayFlower      = new PlantBlock("flower_gray");
-		lightGrayFlower = new PlantBlock("flower_lightgray");
-		cyanFlower      = new PlantBlock("flower_cyan");
-		purpleFlower    = new PlantBlock("flower_purple");
-		blueFlower      = new PlantBlock("flower_blue");
-		brownFlower     = new PlantBlock("flower_brown");
-		greenFlower     = new PlantBlock("flower_green");
-		redFlower       = new PlantBlock("flower_red");
-		blackFlower     = new PlantBlock("flower_black");
-		 */
-		MOSS    		= new MossBlock("moss");
-		vines           = new VineBlock("bluemoss");
+		MOSS    = new MossBlock();
+		CommonProxy.registerBlockWithItem(MOSS, "moss");
+		VINES   = new VineBlock("bluemoss");
+		CommonProxy.registerBlockWithItem(VINES, "bluemoss");
 		
 		/*  Trees Leaves Saplings  */
 		LOG1            = new BlockACLog1();
@@ -290,7 +273,8 @@ public class ModBlocks {
 	{
 		Blocks.FIRE.setFireInfo(ModBlocks.LEAVES1, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS1, 30, 60);
+		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS2, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.LOG1, 30, 60);
-		// TODO finish adding fire spread info;
+		Blocks.FIRE.setFireInfo(ModBlocks.LOG2, 30, 60);
 	}
 }

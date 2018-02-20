@@ -1,8 +1,5 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
-import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.utils.Reference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

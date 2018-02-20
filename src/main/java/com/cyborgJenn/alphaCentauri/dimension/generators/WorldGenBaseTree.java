@@ -112,7 +112,7 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
         Material material = blockType.getDefaultState().getMaterial();
         return material == Material.AIR || material == Material.LEAVES || material == Material.PLANTS || blockType == Blocks.TALLGRASS || blockType == Blocks.GRASS 
         		|| blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 
-        		|| blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks.vines 
+        		|| blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks.VINES 
         		|| blockType == ModBlocks.SAPLINGS1 || blockType == ModBlocks.LOG1 || blockType == ModBlocks.ACGRASS 
         		|| blockType == ModBlocks.ACDIRT || blockType == ModBlocks.BLOCK_MUSHROOM_BLUE || blockType == ModBlocks.BLOCK_MUSHROOM_PURPLE;  		
     }

@@ -2,8 +2,6 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import javax.annotation.Nullable;
 
-import com.cyborgJenn.alphaCentauri.utils.Reference;
-
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,14 +19,12 @@ public class MossBlock extends BlockBush{
 
 	protected static final AxisAlignedBB MOSS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1D, 1.0D);
 
-	protected MossBlock(String name) 
+	protected MossBlock() 
 	{
 		super(Material.PLANTS);
 		this.setHardness(0.2F);
 		this.setLightOpacity(0);
 		this.setSoundType(SoundType.PLANT);
-		this.setUnlocalizedName(Reference.MODID +"."+name);
-		this.setRegistryName(name);
 	}
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {

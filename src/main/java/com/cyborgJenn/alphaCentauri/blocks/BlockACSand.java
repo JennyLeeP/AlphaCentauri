@@ -60,7 +60,8 @@ public class BlockACSand extends BlockFalling
     /**
      * Convert the BlockState into the correct metadata value
      */
-    public int getMetaFromState(IBlockState state)
+    @SuppressWarnings("unchecked")
+	public int getMetaFromState(IBlockState state)
     {
         return ((BlockACSand.EnumType)state.getValue(VARIANT)).getMetadata();
     }
