@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SuppressWarnings("unused")
 public class BlockACGrass extends Block implements IGrowable
 {
 	//public static final PropertyBool SNOWY = PropertyBool.create("snowy");

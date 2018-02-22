@@ -1,7 +1,0 @@
-{
-    "parent": "block/column_side",
-    "textures": {
-        "end": "alphacentauri:blocks/log_splotch_top",
-        "side": "alphacentauri:blocks/log_splotch"
-    }
-}

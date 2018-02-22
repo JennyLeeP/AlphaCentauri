@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockACPlanks1 extends Block 
 {
-	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockACPlanks1.EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACPlanks1.EnumType.class);
 	
 	public BlockACPlanks1() 
 	{

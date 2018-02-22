@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockACFlowers extends BlockBush implements IPlantable {
 
-	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockACFlowers.EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACFlowers.EnumType.class);
 	public BlockACFlowers() {
 		super(Material.PLANTS);
 		this.blockSoundType = SoundType.PLANT;

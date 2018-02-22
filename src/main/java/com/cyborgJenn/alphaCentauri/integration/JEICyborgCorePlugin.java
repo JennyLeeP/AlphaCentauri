@@ -12,9 +12,7 @@ import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 
 @JEIPlugin
-public class JEICyborgCorePlugin implements IModPlugin{
-	
-	private IJeiHelpers jeiHelpers;
+public class JEICyborgCorePlugin implements IModPlugin {
 	
 	@Override
 	public void onRuntimeAvailable(IJeiRuntime arg0) {
@@ -24,6 +22,7 @@ public class JEICyborgCorePlugin implements IModPlugin{
 
 	@Override
 	public void register(IModRegistry registry) {
+		@SuppressWarnings("unused")
 		IIngredientRegistry itemRegistry = registry.getIngredientRegistry();
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 

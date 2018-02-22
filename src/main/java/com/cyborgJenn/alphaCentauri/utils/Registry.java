@@ -9,10 +9,6 @@ public class Registry
 {
     public static DimensionType DIMENSION;
 
-	private static void registerTileEntities() 
-	{
-
-	}
 	public static void registerDimensionTypes() 
 	{
 		DIMENSION = DimensionType.register(Reference.MODID, "_alphacentauri", Config.dimensionID, ACWorldProvider.class, false);

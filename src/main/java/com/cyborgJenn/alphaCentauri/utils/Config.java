@@ -56,7 +56,7 @@ public class Config
 		config.addCustomCategoryComment(debug, "Use these settings to Enable Dev Debug Options");
 		enableDebugging 		= config.get(debug, "enable Debugging", false).getBoolean();
 		enableStructureDebug 	= config.get(debug, "enableStructureDebug", false).getBoolean();
-		forceOres               = config.get(debug, "forceOres", false).getBoolean();;
+		forceOres               = config.get(debug, "forceOres", false).getBoolean();
 
 	}
 	private static void configDimensionOptions(Configuration config)
@@ -66,6 +66,7 @@ public class Config
 		dimensionID             = config.get(dimension, "Dimension ID", 444).getInt();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void configParticles(Configuration config) {
     	Property particles = config.get("Particle Settings", "enableTreeParticles", enableTreeParticles);
     	enableTreeParticles = particles.getBoolean(enableTreeParticles);

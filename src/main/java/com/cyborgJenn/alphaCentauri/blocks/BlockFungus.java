@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.cyborgJenn.alphaCentauri.utils.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -26,7 +25,7 @@ public class BlockFungus extends Block
 {
 	public static final PropertyBool SNOWY = PropertyBool.create("snowy");
 	
-	public BlockFungus(String name) 
+	public BlockFungus() 
 	{
 		super(Material.GROUND);
 		this.setHardness(1.0F);
@@ -34,8 +33,6 @@ public class BlockFungus extends Block
         this.setHarvestLevel("shovel", 2);
         this.setResistance(25.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
-		this.setUnlocalizedName(Reference.MODID +"."+name);
-		this.setRegistryName(name);
 	}
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)

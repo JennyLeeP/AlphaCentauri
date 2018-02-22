@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockACGravel extends BlockFalling {
 
-	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockACGravel.EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACGravel.EnumType.class);
 	
 	public BlockACGravel() 
 	{

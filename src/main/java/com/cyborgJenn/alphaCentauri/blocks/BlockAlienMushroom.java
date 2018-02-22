@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.cyborgJenn.alphaCentauri.utils.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.SoundType;
@@ -26,15 +25,14 @@ public class BlockAlienMushroom extends Block
 	public static final PropertyEnum<BlockHugeMushroom.EnumType> VARIANT = PropertyEnum.<BlockHugeMushroom.EnumType>create("variant", BlockHugeMushroom.EnumType.class);
 	private final Block smallblock;
 	
-	public BlockAlienMushroom(String name, MapColor color, Block smallBlockIn) 
+	public BlockAlienMushroom(MapColor color, Block smallBlockIn) 
 	{
 		super(Material.WOOD, color);
 		this.blockSoundType = SoundType.CLOTH;
 		this.smallblock = smallBlockIn;
 		this.setHardness(0.2F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockHugeMushroom.EnumType.ALL_OUTSIDE));
-		this.setUnlocalizedName(Reference.MODID +"."+name);
-		this.setRegistryName(name);
+		
 	}
 	/**
 	 * Returns the quantity of items to drop on block destruction.

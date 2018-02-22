@@ -19,7 +19,7 @@ public class AlienShroom extends BlockBush implements IGrowable
 {
 	protected static final AxisAlignedBB MUSHROOM_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.8, 0.699999988079071D);
 
-	public AlienShroom(String name)
+	public AlienShroom()
 	{
 		super(Material.PLANTS);
 		this.blockSoundType = SoundType.PLANT;

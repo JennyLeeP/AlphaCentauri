@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockACSand extends BlockFalling 
 {
-	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockACSand.EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACSand.EnumType.class);
 	public BlockACSand() 
 	{
 		super(Material.SAND);
@@ -60,7 +60,6 @@ public class BlockACSand extends BlockFalling
     /**
      * Convert the BlockState into the correct metadata value
      */
-    @SuppressWarnings("unchecked")
 	public int getMetaFromState(IBlockState state)
     {
         return ((BlockACSand.EnumType)state.getValue(VARIANT)).getMetadata();

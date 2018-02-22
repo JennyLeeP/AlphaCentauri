@@ -9,8 +9,11 @@ import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACSand;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockAlienPlants;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockBeachGrass;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemSaplingBlock1;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemSaplingBlock2;
 import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 
@@ -25,12 +28,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModBlocks {
 
 	public static Block gateAlphaCentauri;
-
 	public static BlockAlphaCentauriPortal alphaCentauriPortal;
 
 	public static BlockACGrass ACGRASS;
 	public static BlockACGrass darkGrass;
-	public static Block beachGrass;
+	public static Block BEACHGRASS;
 	public static Block ACDIRT;
 	@GameRegistry.ObjectHolder("alphacentauri:acstone")
 	public static Block ACSTONE;
@@ -39,37 +41,36 @@ public class ModBlocks {
 	public static Block BASALTCOBBLE;
 	public static Block MARBLE;
 	public static Block GRANITE;
-	
-	public static Block lightSandstone;
-	public static Block darkSandstone;
-	
 	public static Block SAND;
 	public static Block GRAVEL;
 	public static Block PEAT;
+	
+	public static Block lightSandstone;
+	public static Block darkSandstone;
 	public static Block bogg;
-
 	public static Block chalk;
 	public static Block shells;
 	public static Block cursedStone;
-
 	public static Block walls;
 	public static Block fences;
 
 	public static BlockBush MOSS;
 	public static Block VINES;
-
 	public static Block FLOWERS;
-
 	public static Block LOG1;
 	public static Block LOG2;
 	public static Block LEAVES1;
 	public static Block SAPLINGS1;
+	public static Block SAPLINGS2;
 	public static Block PLANKS1;
 	public static Block PLANKS2;
-	
 	public static Block ALIEN_PLANTS_1;
-
 	public static Block VANILLA_ORES;
+	public static BlockBush PURPLE_MUSHROOM;
+	public static BlockBush BLUE_MUSHROOM;
+	public static Block FUNGUS;
+	public static Block BLOCK_MUSHROOM_PURPLE;
+	public static Block BLOCK_MUSHROOM_BLUE;
 	
 	
 	public static Block oreAluminum;
@@ -77,13 +78,8 @@ public class ModBlocks {
 	public static Block oreArdite;
 	public static Block oreCobalt;
 	public static Block oreCopper;
-	
-	
-	
-	
 	public static Block oreLead;
 	public static Block oreNickel;
-	
 	public static Block oreSaltpeter;
 	public static Block oreSilver;
 	public static Block oreSulfur;
@@ -105,16 +101,8 @@ public class ModBlocks {
 	public static Block oreResonating;
 	public static Block oreYellorite;
 	
-	public static BlockBush PURPLE_MUSHROOM;
-	public static BlockBush BLUE_MUSHROOM;
-	public static Block FUNGUS;
-	public static Block BLOCK_MUSHROOM_PURPLE;
-	public static Block BLOCK_MUSHROOM_BLUE;
-
 	public static void initBlocks()
 	{
-		// TODO Trees and plants.
-		
 		/* Gate Blocks */
 		//gateAlphaCentauri       = new GenericBlock(0, Material.ROCK, "acgate");
 		alphaCentauriPortal     = (BlockAlphaCentauriPortal) new BlockAlphaCentauriPortal("acportal");
@@ -122,7 +110,8 @@ public class ModBlocks {
 		/*  GROUND type  Blocks  */
 		ACGRASS       = (BlockACGrass) new BlockACGrass();
 		CommonProxy.registerBlockWithItem(ACGRASS, "acgrass");
-		//beachGrass    = new BeachGrassBlock("beachGrass");
+		BEACHGRASS    = new BeachGrassBlock();
+		CommonProxy.registerBlockWithCustomItem(BEACHGRASS, new ItemBlockBeachGrass(BEACHGRASS), "beachgrass");
 		ACDIRT        = new BlockACDirt();
 		CommonProxy.registerBlockWithItem(ACDIRT, "acdirt");
 		PEAT          = new GenericBlock(2, Material.GROUND);
@@ -135,7 +124,6 @@ public class ModBlocks {
 		GRAVEL        = new BlockACGravel();
 		CommonProxy.registerBlockWithCustomItem(GRAVEL, new ItemBlockACGravel(GRAVEL),"gravel");
 		
-
 		/* Stone Blocks */
 		ACSTONE       = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(ACSTONE, "acstone");
@@ -183,15 +171,22 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithCustomItem(PLANKS2, new ItemBlockACPlank2(PLANKS2),"planks2");
 		SAPLINGS1       = new BlockACSaplings1();
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS1, new ItemSaplingBlock1(SAPLINGS1),"saplings1");
+		SAPLINGS2       = new BlockACSaplings2();
+		CommonProxy.registerBlockWithCustomItem(SAPLINGS2, new ItemSaplingBlock2(SAPLINGS2),"saplings2");
 		
 		
-		ALIEN_PLANTS_1 = new BlockAlienPlants1("alien_plants");
-		
-		FUNGUS 		    = new BlockFungus("fungus");
-		PURPLE_MUSHROOM = new AlienShroom("purple_mushroom");
-		BLUE_MUSHROOM   = new AlienShroom("blue_mushroom");
-		BLOCK_MUSHROOM_PURPLE = new BlockAlienMushroom("block_mushroom_purple", MapColor.PURPLE, PURPLE_MUSHROOM);
-		BLOCK_MUSHROOM_BLUE   = new BlockAlienMushroom("block_mushroom_blue", MapColor.BLUE, BLUE_MUSHROOM);
+		ALIEN_PLANTS_1 = new BlockAlienPlants1();
+		CommonProxy.registerBlockWithCustomItem(ALIEN_PLANTS_1, new ItemBlockAlienPlants(ALIEN_PLANTS_1), "alienplants");
+		FUNGUS 		    = new BlockFungus();
+		CommonProxy.registerBlockWithItem(FUNGUS, "fungus");
+		PURPLE_MUSHROOM = new AlienShroom();
+		CommonProxy.registerBlockWithItem(PURPLE_MUSHROOM, "purple_mushroom");
+		BLUE_MUSHROOM   = new AlienShroom();
+		CommonProxy.registerBlockWithItem(BLUE_MUSHROOM, "blue_mushroom");
+		BLOCK_MUSHROOM_PURPLE = new BlockAlienMushroom(MapColor.PURPLE, PURPLE_MUSHROOM);
+		CommonProxy.registerBlockWithItem(BLOCK_MUSHROOM_PURPLE, "block_mushroom_purple");
+		BLOCK_MUSHROOM_BLUE   = new BlockAlienMushroom(MapColor.BLUE, BLUE_MUSHROOM);
+		CommonProxy.registerBlockWithItem(BLOCK_MUSHROOM_BLUE, "block_mushroom_blue");
 		
 		/* Ores  */
 		VANILLA_ORES      = new BlockVanillaOres();

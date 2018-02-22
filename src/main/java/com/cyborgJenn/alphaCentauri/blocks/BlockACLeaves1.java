@@ -11,14 +11,14 @@ import net.minecraft.world.IBlockAccess;
 public class BlockACLeaves1 extends BlockLeaves {
 
 	@Override
-	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		// TODO Auto-generated method stub
+	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) 
+	{
 		return null;
 	}
 
 	@Override
-	public EnumType getWoodType(int meta) {
-		// TODO Auto-generated method stub
+	public EnumType getWoodType(int meta) 
+	{
 		return null;
 	}
 
