@@ -1,0 +1,6 @@
+{
+  "variants": {
+     "variant=phileptu": { "model": "alphacentauri:alienplant_phileptu" },
+     "variant=dousiou": { "model": "alphacentauri:alienplant_dousiou" }
+   }
+}

@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+     "model": "alphacentauri:beachgrass"
+     },
+    "variants": {
+        "variant=full": { "model": "alphacentauri:beachgrass_full" },
+        "variant=med": { "model": "alphacentauri:beachgrass_med" },
+        "variant=low": { "model": "alphacentauri:beachgrass_low" },
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

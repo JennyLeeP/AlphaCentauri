@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "alphacentauri:blocks/beachgrass_alt1",
+        "cross": "alphacentauri:blocks/beachgrass_alt1"
+    }
+}

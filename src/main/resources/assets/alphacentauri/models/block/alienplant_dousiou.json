@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "alphacentauri:blocks/plant_dousiou",
+        "cross": "alphacentauri:blocks/plant_dousiou"
+    }
+}

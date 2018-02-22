@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "stage=0,variant=peylal": { 
+          "model": "alphacentauri:peylal_sapling"
+        },
+        "stage=0,variant=nefralia": {
+          "model": "alphacentauri:nefralia_sapling"
+        },
+        "stage=0,variant=beratuzia": {
+          "model": "alphacentauri:beratuzia_sapling"
+        },
+        "stage=1,variant=peylal": {
+        "model": "alphacentauri:peylal_sapling"
+        },
+        "stage=1,variant=nefralia": {
+        "model": "alphacentauri:nefralia_sapling"
+        },
+        "stage=1,variant=beratuzia": {
+        "model": "alphacentauri:beratuzia_sapling"
+        }
+    }
+}
