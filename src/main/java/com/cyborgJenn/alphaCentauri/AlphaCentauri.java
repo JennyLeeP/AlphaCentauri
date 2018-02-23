@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.command.TeleportCommand;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
+import com.cyborgJenn.alphaCentauri.handlers.BlockColorHandler;
 import com.cyborgJenn.alphaCentauri.proxy.CommonProxy;
 import com.cyborgJenn.alphaCentauri.utils.AlphaCentauriTab;
 import com.cyborgJenn.alphaCentauri.utils.Config;
@@ -55,6 +56,7 @@ public class AlphaCentauri {
 	{
 		Registry.registerDimensionTypes();
 		Registry.registerDimension();
+		BlockColorHandler.registerColorHandlers();
 	}
 
 	@Mod.EventHandler
@@ -64,7 +66,7 @@ public class AlphaCentauri {
 	}
 
 	@Mod.EventHandler
-	public void onServerStarting(FMLServerStartingEvent event) throws IOException
+	public void onServerStarting(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new TeleportCommand());
 	}
