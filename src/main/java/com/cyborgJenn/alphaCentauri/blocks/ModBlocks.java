@@ -48,7 +48,7 @@ public class ModBlocks {
 	public static Block lightSandstone;
 	public static Block darkSandstone;
 	public static Block bogg;
-	public static Block chalk;
+	public static Block CHALK;
 	public static Block shells;
 	public static Block cursedStone;
 	public static Block walls;
@@ -71,7 +71,8 @@ public class ModBlocks {
 	public static Block FUNGUS;
 	public static Block BLOCK_MUSHROOM_PURPLE;
 	public static Block BLOCK_MUSHROOM_BLUE;
-	
+	public static Block BOULDERS;
+	public static Block SHRUBBARY;
 	
 	public static Block oreAluminum;
 	public static Block oreApatite;
@@ -142,13 +143,15 @@ public class ModBlocks {
 		darkSandstone = new SandstoneBlock("sandstone_dark");
 
 		/* Misc */
-		//chalk         = new BlockChalk().setRegistryName("chalk");
+		CHALK         = new BlockChalk();
+		CommonProxy.registerBlockWithItem(CHALK, "chalk");
 		//shells        = new GenericBlock(1, Material.ROCK, "shells");
 		//cursedStone     = new GenericBlock(1, Material.ROCK, "cursedStone");
 
 		/* Fences and Walls */
 		//walls         = new WallBlock(beachGrass).setRegistryName("terraWalls");
 		//fences        = new FenceBlock().setRegistryName("terraFences");
+		BOULDERS = new BlockBoulders();
 
 		/* Flowers  and Plants */
 		FLOWERS = new BlockACFlowers();
@@ -173,8 +176,8 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS1, new ItemSaplingBlock1(SAPLINGS1),"saplings1");
 		SAPLINGS2       = new BlockACSaplings2();
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS2, new ItemSaplingBlock2(SAPLINGS2),"saplings2");
-		
-		
+		SHRUBBARY = new BlockShrubbary();
+		CommonProxy.registerBlockWithItem(SHRUBBARY, "shrubbary");
 		ALIEN_PLANTS_1 = new BlockAlienPlants1();
 		CommonProxy.registerBlockWithCustomItem(ALIEN_PLANTS_1, new ItemBlockAlienPlants(ALIEN_PLANTS_1), "alienplants");
 		FUNGUS 		    = new BlockFungus();
