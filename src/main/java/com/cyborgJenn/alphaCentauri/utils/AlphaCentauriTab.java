@@ -1,8 +1,8 @@
 package com.cyborgJenn.alphaCentauri.utils;
 
-import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.item.ModItems;
+
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class AlphaCentauriTab extends CreativeTabs
@@ -16,7 +16,7 @@ public class AlphaCentauriTab extends CreativeTabs
 	@Override
 	public ItemStack getTabIconItem() 
 	{
-		return new ItemStack(Item.getItemFromBlock(ModBlocks.gateAlphaCentauri));	
+		return new ItemStack(ModItems.Sword4);	
 	}
 	@Override
 	public boolean hasSearchBar()

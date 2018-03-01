@@ -1,0 +1,47 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "particle": "alphacentauri:blocks/basalt",
+        "0": "alphacentauri:blocks/basalt"
+    },
+    "elements": [
+        {
+            "name": "Mid",
+            "from": [ 2.0, 0.0, 2.0 ], 
+            "to": [ 12.0, 6.0, 12.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 6.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 6.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 6.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 6.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 10.0 ], "cullface": "up" },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 10.0 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "Low",
+            "from": [ 5.0, 0.0, 5.0 ], 
+            "to": [ 15.0, 5.0, 15.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 5.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 5.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 5.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 5.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 10.0 ], "cullface": "up" },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 10.0 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "Top",
+            "from": [ 5.0, 5.0, 5.0 ], 
+            "to": [ 13.0, 8.0, 13.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 3.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 3.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 3.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 3.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 10.0, 6.0 ], "cullface": "up" }
+            }
+        }
+    ]
+}

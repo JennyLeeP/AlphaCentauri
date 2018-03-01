@@ -152,7 +152,7 @@ public class ModBlocks {
 		//walls         = new WallBlock(beachGrass).setRegistryName("terraWalls");
 		//fences        = new FenceBlock().setRegistryName("terraFences");
 		BOULDERS = new BlockBoulders();
-
+		CommonProxy.registerBlockWithItem(BOULDERS, "boulders");
 		/* Flowers  and Plants */
 		FLOWERS = new BlockACFlowers();
 		CommonProxy.registerBlockWithCustomItem(FLOWERS, new ItemBlockACFlowers(FLOWERS),"flowers");
@@ -177,7 +177,7 @@ public class ModBlocks {
 		SAPLINGS2       = new BlockACSaplings2();
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS2, new ItemSaplingBlock2(SAPLINGS2),"saplings2");
 		SHRUBBARY = new BlockShrubbary();
-		CommonProxy.registerBlockWithItem(SHRUBBARY, "shrubbary");
+		CommonProxy.registerBlockWithTest(SHRUBBARY, "shrubbary");
 		ALIEN_PLANTS_1 = new BlockAlienPlants1();
 		CommonProxy.registerBlockWithCustomItem(ALIEN_PLANTS_1, new ItemBlockAlienPlants(ALIEN_PLANTS_1), "alienplants");
 		FUNGUS 		    = new BlockFungus();
@@ -267,7 +267,7 @@ public class ModBlocks {
 		
 
 	}
-	private static void addFireSpreadInfo() 
+	public static void addFireSpreadInfo() 
 	{
 		Blocks.FIRE.setFireInfo(ModBlocks.LEAVES1, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS1, 30, 60);

@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+     "model": "alphacentauri:boulder_01"
+     },
+    "variants": {
+        "type=0": { "model": "alphacentauri:boulder_01" },
+        "type=1": { "model": "alphacentauri:boulder_02" },
+        "type=2": { "model": "alphacentauri:boulder_03" },
+        "type=3": { "model": "alphacentauri:boulder_04" },
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

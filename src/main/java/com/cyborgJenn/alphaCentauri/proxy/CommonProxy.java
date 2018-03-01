@@ -1,13 +1,19 @@
 package com.cyborgJenn.alphaCentauri.proxy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.interfaces.IItemWithMeshDefinition;
+import com.cyborgJenn.alphaCentauri.item.ModItems;
+import com.cyborgJenn.alphaCentauri.utils.Config;
 import com.cyborgJenn.alphaCentauri.utils.IMetaLookup;
 import com.cyborgJenn.alphaCentauri.utils.Reference;
+import com.cyborgJenn.alphaCentauri.utils.Registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -16,6 +22,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
@@ -27,6 +35,21 @@ public class CommonProxy {
 	private List<Item>  itemsToReg  = new ArrayList<Item>();
 	protected HashMap<Block,Item> blockItems = new HashMap<Block,Item>();
 	
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event)throws IOException
+	{
+		Config.init(event.getSuggestedConfigurationFile());
+		ModBlocks.initBlocks();
+		ModItems.initItems();
+		ModBiomes.initBiomes();
+	}
+	@Mod.EventHandler
+	public void Init(FMLInitializationEvent event)
+	{
+		Registry.registerDimensionTypes();
+		Registry.registerDimension();
+		ModBlocks.addFireSpreadInfo();
+	}
 	/**
 	 * Registers simple Block, with no item.
 	 * Nothing is added to CreativeTab.
@@ -44,6 +67,9 @@ public class CommonProxy {
 	 * @param registryname
 	 */
 	public static void registerBlockWithItem(Block block, String registryname) {
+		AlphaCentauri.proxy._registerBlockWithItem(block, registryname);
+	}
+	public static void registerBlockWithTest(Block block, String registryname) {
 		AlphaCentauri.proxy._registerBlockWithItem(block, registryname);
 	}
 	/**
@@ -115,6 +141,10 @@ public class CommonProxy {
 		blocksToReg.add(block);
 		itemsToReg.add(ib);
 		blockItems.put(block, ib);
+	}
+	public void _registerBlockWithTest(Block block, String registryname) 
+	{
+		_registerBlockWithItem(block, registryname);
 	}
 	public void _registerBlockWithCustomItem(Block block, ItemBlock iBlock, String registryname) {
 		block.setRegistryName(registryname);

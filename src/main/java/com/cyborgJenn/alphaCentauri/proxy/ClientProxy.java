@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
+import com.cyborgJenn.alphaCentauri.handlers.BlockColorHandler;
 import com.cyborgJenn.alphaCentauri.interfaces.IItemWithMeshDefinition;
 import com.cyborgJenn.alphaCentauri.utils.IMetaLookup;
 import com.google.common.collect.ImmutableList;
@@ -27,6 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -34,6 +36,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+	@Mod.EventHandler
+	@Override
+	public void Init(FMLInitializationEvent event)
+	{
+		super.Init(event);
+		BlockColorHandler.registerColorHandlers();
+	}
 	protected List<ModelRegistryObj> modelsToReg = new ArrayList<ModelRegistryObj>();
 	protected List<ModelBakeObj> modelsToBake = new ArrayList<ModelBakeObj>();
 	protected List<StateMapObj> statesToMap = new ArrayList<StateMapObj>();
@@ -48,6 +57,11 @@ public class ClientProxy extends CommonProxy
 	public void _registerBlockWithItem(Block block, String registryname) {
 		super._registerBlockWithItem(block, registryname);
 		_registerBlockResources(block);
+	}
+	@Override
+	public void _registerBlockWithTest(Block block, String registryname) {
+		super._registerBlockWithItem(block, registryname);
+		_registerBlockExtra(block);
 	}
 	@Override
 	public void _registerBlockWithCustomItem(Block block, ItemBlock iBlock, String registryname) {
@@ -91,6 +105,11 @@ public class ClientProxy extends CommonProxy
 	private void _registerBlockResources(Block block) {
 		Item item = blockItems.get(block);
 		modelsToReg.add(new ModelRegistryObj(item, 0, new ModelResourceLocation(block.getRegistryName(),"normal")));
+	}
+	private void _registerBlockExtra(Block block) {
+		Item item = blockItems.get(block);
+		//modelsToReg.add(new ModelRegistryObj(item, 0, new ModelResourceLocation(block.getRegistryName(),"normal")));
+		 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 	}
 
 	private void _registerBlockItemModelForMeta(Block block, int metadata, String variant) {

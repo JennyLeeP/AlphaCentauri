@@ -1,21 +1,21 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "alphacentauri:blocks/basalt_cobble",
-        "0": "alphacentauri:blocks/log_peylal",
-        "1": "alphacentauri:blocks/log_peylal_top",
+        "particle": "blocks/basalt_cobble",
+        "0": "blocks/log_peylal",
+        "1": "blocks/log_peylal_top",
         "2": "blocks/leaves_oak"
     },
     "elements": [
         {
             "name": "Trunk",
             "from": [ 5.0, 0.0, 5.0 ], 
-            "to": [ 11.0, 56.0, 11.0 ], 
+            "to": [ 11.0, 16.0, 11.0 ], 
             "faces": {
-                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 56.0 ] },
-                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 56.0 ], "cullface": "east" },
-                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 56.0 ], "cullface": "south" },
-                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 56.0 ] },
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
                 "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "up" },
                 "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "down" }
             }
@@ -55,6 +55,32 @@
                 "south": { "texture": "#2", "uv": [ 0.0, 0.0, 22.0, 16.0 ] },
                 "west": { "texture": "#2", "uv": [ 0.0, 0.0, 22.0, 16.0 ] },
                 "up": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "Trunk_mid",
+            "from": [ 5.0, 16.0, 5.0 ], 
+            "to": [ 11.0, 32.0, 11.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "up" },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "Trunk_top",
+            "from": [ 5.0, 32.0, 5.0 ], 
+            "to": [ 11.0, 48.0, 11.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "east" },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ], "cullface": "south" },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 6.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "up" },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "down" }
             }
         }
     ]
