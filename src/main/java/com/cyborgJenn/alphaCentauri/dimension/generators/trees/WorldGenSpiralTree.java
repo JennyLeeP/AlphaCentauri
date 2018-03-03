@@ -26,7 +26,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldGenSpiralTree extends WorldGenBaseTree
 {
-	private final int BaseHeight = 5;
+	private final int BaseHeight = 6;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL);
 	private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	private static final IBlockState BARK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL).withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE);
@@ -45,7 +45,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	{
 		if (this.isValidLocation(worldIn, pos, false))
 		{
-			int height = rand.nextInt(4) + BaseHeight;
+			int height = rand.nextInt(3) + BaseHeight;
 			int quantity = rand.nextInt(4)+1;
 			//this.setDirtAt(worldIn, pos.down());
 
@@ -63,14 +63,22 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 	private void makeBranches(World worldIn, BlockPos pos, int quantity, Random rand, int treeHeight)
 	{	
 		float f = rand.nextFloat() * ((float)Math.PI * 2F); // The angle in Radians.
-		int width = rand.nextInt(1)+1;
 		int x = pos.getX();
-		int y = pos.getY() + treeHeight -2;
 		int z = pos.getZ();
 		if (quantity ==1)
 		{
-			for (int l =1;l <4; l++)
+
+			int y = pos.getY() + treeHeight;
+			int width = rand.nextInt(1)+2;
+			for (int l =1;l <4; l++) //3 layers of leaves
 			{
+				if (l < 3) { //set previous block to be a normal trunk
+					this.setBlockAndNotifyAdequately(worldIn, new BlockPos( x, y+l-1, z), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+				}
+				else {
+					this.setBlockAndNotifyAdequately(worldIn, new BlockPos( x, y+l-1, z), BARK);
+				}
+				
 				this.growLeavesCircular(worldIn, new BlockPos( x, y+l, z),width , DEFAULT_LEAF);
 				++width;
 			}
@@ -91,13 +99,12 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 						this.setBlockAndNotifyAdequately(worldIn, new BlockPos(x, j + 3 + i1 / 2, z), BARK);
 					}
 					
-					
 					int j2 = 1 + rand.nextInt(2);
 					int s = 1;
 					for (int k1 = j - j2; k1 <= j; ++k1)
 					{
 						//System.out.println("k1 "+ k1 + " j "+ j + " j2 "+ j2);
-						int l1 = k1 - j;
+						//int l1 = k1 - j;
 						this.growLeavesCircular(worldIn, new BlockPos(x, k1+6, z), 1 + s, DEFAULT_LEAF);
 						++s;
 					}
@@ -176,7 +183,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		
 		setBlockAndNotifyAdequately(worldIn, pos, Blocks.AIR.getDefaultState());
 		setBlockAndNotifyAdequately(worldIn, pos.up(1), BARK);
-		for (int i=2; i<=height -1; i++)
+		for (int i=2; i<height; i++)
 		{
 			setBlockAndNotifyAdequately(worldIn, pos.up(i), trunk);
 		}
