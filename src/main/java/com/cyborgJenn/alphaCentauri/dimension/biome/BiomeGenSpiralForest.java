@@ -23,7 +23,7 @@ public class BiomeGenSpiralForest extends ACBiome{
 		/* Trees and Plants */
 		biomeDecorator = new ACBiomeDecorator(this);
 		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
-		this.customBiomeDecorator.treesPerChunk = 7;
+		this.customBiomeDecorator.treesPerChunk = 19;
 		this.customBiomeDecorator.grassPerChunk = 6;
 		
 	}

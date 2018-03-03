@@ -37,7 +37,7 @@ public class ModBiomes {
         LIVINGPLATEAU  = new BiomeGenLivingPlateau( new BiomeProperties("LivingPlateau" ).setTemperature(1.1f).setBaseHeight(0.8f).setHeightVariation(0.0f).setRainfall(1.0f).setWaterColor(2216227));
         BEACH          = new BiomeGenBeach(         new BiomeProperties("Beach"         ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
         
-        SPIRAL_FOREST  = new BiomeGenSpiralForest(  new BiomeProperties("Spiral_Forest" ).setTemperature(0.8f).setRainfall(1.0f).setWaterColor(2216227).setHeightVariation(0.2f));
+        SPIRAL_FOREST  = new BiomeGenSpiralForest(  new BiomeProperties("Spiral_Forest" ).setTemperature(0.8f).setRainfall(1.0f).setWaterColor(2216227).setHeightVariation(0.002f));
         
         Morass         = new BiomeGenMorass(        new BiomeProperties("Morass"        ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(-0.5f).setHeightVariation(0.1f));
         PrimevalForest = new BiomeGenPrimevalForest(new BiomeProperties("PrimevalForest").setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
