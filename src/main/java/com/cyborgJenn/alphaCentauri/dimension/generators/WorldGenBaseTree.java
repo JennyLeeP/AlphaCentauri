@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.dimension.generators;
 
 import java.util.List;
 
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSaplings1;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.block.Block;
@@ -39,6 +40,10 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
 	protected boolean isValidLocation(World worldIn, BlockPos pos, boolean islargetree)
 	{
 		//TODO check if location is valid for tree
+		if (!islargetree) {
+			IBlockState soil = worldIn.getBlockState(pos.down());
+	        return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, new BlockACSaplings1());
+		}
 		return true;
 		
 	}
