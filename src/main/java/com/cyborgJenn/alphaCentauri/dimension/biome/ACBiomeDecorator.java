@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBush;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
@@ -298,20 +299,17 @@ public class ACBiomeDecorator extends BiomeDecorator
 
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE))
 			for (int j2 = 0; j2 < k1; ++j2)
-			{
-				int k6 = random.nextInt(16) + 8;
-				int l5 = random.nextInt(16) + 8;
-				/*
-				WorldGenBaseTree worldgenbasetree = biomeIn.genBigTreeChance(random);
-				worldgenbasetree.setDecorationDefaults();
-				BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l5));
+	        {
+	            int k6 = random.nextInt(16) + 8;
+	            int l = random.nextInt(16) + 8;
+	            WorldGenAbstractTree worldgenabstracttree = biomeIn.getRandomTreeFeature(random);
+	            //worldgenabstracttree.setDecorationDefaults();
+	            BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
 
-				if (worldgenbasetree.generate(worldIn, random, blockpos))
-				{
-					worldgenbasetree.generateSaplings(worldIn, random, blockpos);
-				}
-				*/
-				
+	            if (worldgenabstracttree.generate(worldIn, random, blockpos))
+	            {
+	                worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
+	            }
 			}
 		/* ----------------------------------
 		 *           Grass and Moss

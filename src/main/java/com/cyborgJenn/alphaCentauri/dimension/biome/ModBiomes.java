@@ -15,7 +15,7 @@ public class ModBiomes {
 	public static Biome GREENRIVER;
 	public static Biome LIVINGPLATEAU;
 	public static Biome BEACH;
-	public static Biome VioletBoscage;
+	public static Biome SPIRAL_FOREST;
 	public static Biome Morass;
 	public static Biome PrimevalForest;
 	public static Biome Mangroves;
@@ -36,7 +36,9 @@ public class ModBiomes {
         GREENRIVER     = new BiomeGenGreenRiver(    new BiomeProperties("GreenRiver"    ).setTemperature(2.0f).setBaseHeight(1.5f).setHeightVariation(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227));
         LIVINGPLATEAU  = new BiomeGenLivingPlateau( new BiomeProperties("LivingPlateau" ).setTemperature(1.1f).setBaseHeight(0.8f).setHeightVariation(0.0f).setRainfall(1.0f).setWaterColor(2216227));
         BEACH          = new BiomeGenBeach(         new BiomeProperties("Beach"         ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
-        VioletBoscage  = new BiomeGenVioletBoscage( new BiomeProperties("VioletBoscage" ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
+        
+        SPIRAL_FOREST  = new BiomeGenSpiralForest(  new BiomeProperties("Spiral_Forest" ).setTemperature(0.8f).setRainfall(1.0f).setWaterColor(2216227).setHeightVariation(0.2f));
+        
         Morass         = new BiomeGenMorass(        new BiomeProperties("Morass"        ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(-0.5f).setHeightVariation(0.1f));
         PrimevalForest = new BiomeGenPrimevalForest(new BiomeProperties("PrimevalForest").setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
         Mangroves      = new BiomeGenMangroves(     new BiomeProperties("Mangroves"     ).setTemperature(2.0f).setRainfall(1.0f).setSnowEnabled().setWaterColor(2216227).setBaseHeight(1.5f).setHeightVariation(2.0f));
@@ -51,7 +53,7 @@ public class ModBiomes {
     	registerBiome("GreenRiver", GREENRIVER, Type.RIVER);
     	registerBiome("LivingPlateau", LIVINGPLATEAU, Type.MESA);
     	registerBiome("Beach", BEACH, Type.BEACH);
-    	registerBiome("VioletBoscage", VioletBoscage, Type.CONIFEROUS);
+    	registerBiome("Spiral_Forest", SPIRAL_FOREST, Type.FOREST, Type.DENSE);
     	registerBiome("Morass", Morass, Type.WET);
     	registerBiome("PrimevalForest", PrimevalForest, Type.JUNGLE);
     	registerBiome("Mangroves", Mangroves, Type.BEACH);

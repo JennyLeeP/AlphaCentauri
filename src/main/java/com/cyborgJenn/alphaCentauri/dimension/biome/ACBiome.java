@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,11 +14,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class ACBiome extends Biome{
-	
-	private ModBlocks baseBlock;
+public class ACBiome extends Biome
+{
 	public BiomeDecorator biomeDecorator;
-	public ACBiome(BiomeProperties par1) {
+	public ACBiome(Biome.BiomeProperties par1) 
+	{
 		super(par1);	
 	}
 	@Override
@@ -25,7 +26,18 @@ public class ACBiome extends Biome{
 	{   
 		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
 	}
-	
+	@Override
+	public WorldGenBaseTree getRandomTreeFeature(Random rand)
+    {
+		//TODO might not need big tree feature;
+        return (WorldGenBaseTree)(rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE);
+    }
+	@Override
+	public void decorate(World worldIn, Random rand, BlockPos pos)
+    {
+        this.biomeDecorator.decorate(worldIn, rand, this, pos);
+    }
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {
         this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);

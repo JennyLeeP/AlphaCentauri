@@ -27,7 +27,7 @@ public class ACBiomeProvider extends BiomeProvider {
 	private GenLayer acBiomeIndexLayer;
 	private BiomeCache biomecache;
 	private List<Biome> allowedBiomes = Lists.newArrayList(ModBiomes.LUSHHILLS,ModBiomes.BEACH,ModBiomes.GREENRIVER,
-			ModBiomes.LIVINGPLATEAU,ModBiomes.Mangroves,ModBiomes.Morass,ModBiomes.PrimevalForest,ModBiomes.VioletBoscage,
+			ModBiomes.LIVINGPLATEAU,ModBiomes.Mangroves,ModBiomes.Morass,ModBiomes.PrimevalForest,ModBiomes.SPIRAL_FOREST,
 			ModBiomes.DESERT,ModBiomes.FUNGALFOREST,ModBiomes.PAINTED_CLIFFS);
 
 	public ACBiomeProvider()

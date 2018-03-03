@@ -8,7 +8,7 @@ public class ACGenLayerBiomes extends GenLayer {
 
 
 	protected Biome[] allowedBiomes = {ModBiomes.LUSHHILLS, ModBiomes.GREENRIVER, ModBiomes.BEACH, ModBiomes.PAINTED_CLIFFS,
-			ModBiomes.LIVINGPLATEAU, ModBiomes.Mangroves, ModBiomes.Morass, ModBiomes.PrimevalForest, ModBiomes.HOODOOVALLEY, ModBiomes.VioletBoscage,ModBiomes.DESERT};
+			ModBiomes.LIVINGPLATEAU, ModBiomes.Mangroves, ModBiomes.Morass, ModBiomes.PrimevalForest, ModBiomes.HOODOOVALLEY, ModBiomes.SPIRAL_FOREST,ModBiomes.DESERT};
 
 
 
