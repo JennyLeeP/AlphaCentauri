@@ -123,6 +123,10 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 		List<EnumFacing> availableSides = Lists.newArrayList(EnumFacing.Plane.HORIZONTAL.facings()); //array of available sides of the tree
 		for (int j=1; j<=quantity;j++)
 		{
+			if (quantity == 1) {
+				this.setBlockAndNotifyAdequately(worldIn, treeBase, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+				this.setBlockAndNotifyAdequately(worldIn, new BlockPos(treeBase.getX(), treeBase.getY() + 1, treeBase.getZ()), DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y));
+			}
 			EnumFacing direction = availableSides.remove(rand.nextInt(availableSides.size())); //pick a random direction and remove it from the list
 			pickRoot(worldIn, treeBase, direction, rand);
 		}
