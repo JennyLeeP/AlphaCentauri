@@ -18,6 +18,9 @@ public class BlockVanillaOres extends Block {
 	public BlockVanillaOres() 
 	{
 		super(Material.ROCK, MapColor.CYAN);
+		this.setHardness(2.0F);
+		this.setHarvestLevel("pickaxe", 2);
+		this.setResistance(100.0F);
 	}
 	/**
 	 * Get the damage value that this Block should drop
