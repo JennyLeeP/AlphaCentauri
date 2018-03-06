@@ -9,8 +9,6 @@ import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACMinable;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenLargeMushroom;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -88,7 +86,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	public WorldGenerator bigMushroomGen = new WorldGenLargeMushroom();
 	/*       Trees             */
 	public int treesPerChunk;
-    public float extraTreeChance = 0.0F;
+    public float extraTreeChance = 0.2F;
 	/*       Moss and Grass    */
     public WorldGenerator mossGen = new WorldGenBush(ModBlocks.MOSS);
     public int mossPerChunk;
@@ -118,6 +116,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 			this.emerald  = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.EMERALD), 6);
 			this.redstone = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.REDSTONE), this.chunkProviderSettings.redstoneSize);
 			this.coal     = new WorldGenACMinable(ModBlocks.VANILLA_ORES.getDefaultState().withProperty(BlockVanillaOres.VARIANT, BlockVanillaOres.EnumType.COAL), this.chunkProviderSettings.coalSize);
+			/*
 			if (Loader.isModLoaded("thermalfoundation") || Config.forceOres)
 			{
 				this.aluminum  = new WorldGenACMinable(ModBlocks.oreAluminum.getDefaultState(), 6);
@@ -169,6 +168,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 			{
 				this.yellorite   = new WorldGenACMinable(ModBlocks.oreYellorite.getDefaultState(),    4);
 			}
+			*/
 			this.genDecorations(biome, worldIn, random);
 			this.decorating = false;
 		}
@@ -251,34 +251,18 @@ public class ACBiomeDecorator extends BiomeDecorator
 		 */
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS))
 			for (int l2 = 0; l2 < this.flowersPerChunk; ++l2)
-			{
-				int i7 = random.nextInt(16) + 8;
-				int l10 = random.nextInt(16) + 8;
-				int j14 = worldIn.getHeight(this.chunkPos.add(i7, 0, l10)).getY() + 32;
+	        {
+	            int i7 = random.nextInt(16) + 8;
+	            int l10 = random.nextInt(16) + 8;
+	            int j14 = worldIn.getHeight(this.chunkPos.add(i7, 0, l10)).getY() + 32;
 
-				if (j14 > 0)
-				{
-					int k17 = random.nextInt(j14);
-					BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
-					BlockFlower.EnumFlowerType blockflower$enumflowertype = biomeIn.pickRandomFlower(random, blockpos1);
-					BlockFlower blockflower = blockflower$enumflowertype.getBlockType().getBlock();
-
-					if (blockflower.getDefaultState().getMaterial() != Material.AIR)
-					{
-						//TODO generate random flower.
-						//this.yellowFlowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
-						//this.yellowFlowerGen.generate(worldIn, random, blockpos1);
-
-					}
-				}
-			}
-		for (int j = 0; j < flowersPerChunk; ++j)
-		{
-			//k = chunk_X + randomGenerator.nextInt(16) + 8;
-			//l = randomGenerator.nextInt(128);
-			//i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-			//flowersGen.generate(worldIn, random, blockPos, l, i1);
-		}
+	            if (j14 > 0)
+	            {
+	                //int k17 = random.nextInt(j14);
+	                //BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
+	                //TODO generate a random flower
+	            }
+	        }
 		for (int j = 0; j < nodesPerChunk; ++j)
 		{
 			//k = chunk_X + randomGenerator.nextInt(16) + 8;

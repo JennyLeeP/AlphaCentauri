@@ -16,13 +16,16 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ACBiomeProvider extends BiomeProvider {
+public class ACBiomeProvider extends BiomeProvider 
+{
+	private ChunkGeneratorSettings settings;
 	private GenLayer acGenBiomes;
 	private GenLayer acBiomeIndexLayer;
 	private BiomeCache biomecache;
@@ -40,7 +43,11 @@ public class ACBiomeProvider extends BiomeProvider {
 	public ACBiomeProvider(long seed, WorldType worldTypeIn, String options)
 	{
 		this();
-		GenLayer[] agenlayer = ACGenLayer.initializeAllBiomeGenerators(seed);
+		if (worldTypeIn == WorldType.CUSTOMIZED && !options.isEmpty())
+        {
+            this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(options).build();
+        }
+		GenLayer[] agenlayer = ACGenLayer.initializeAllBiomeGenerators(seed, worldTypeIn, this.settings);
 		agenlayer = getModdedBiomeGenerators(worldTypeIn, seed, agenlayer);//TODO may cause issues
 		this.acGenBiomes = agenlayer[0];
 		this.acBiomeIndexLayer = agenlayer[1];

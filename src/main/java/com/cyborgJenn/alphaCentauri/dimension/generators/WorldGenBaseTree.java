@@ -124,7 +124,7 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
     
 
     protected void buildRoot(World worldIn, BlockPos treeBase, EnumFacing direction, IBlockState rootBlock, List<Vec3i> posList){
-    	for (Vec3i currPos: posList){
+    	for (Vec3i currPos: posList) {
     		setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
     		//if (worldIn.getBlockState(currPos.down()).getBlock().isAir(worldIn.getBlockState(treeBase.down()), worldIn, treeBase.down())){
     		//	setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);

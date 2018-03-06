@@ -4,7 +4,6 @@ package com.cyborgJenn.alphaCentauri.dimension.world;
 import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
-import com.cyborgJenn.alphaCentauri.dimension.biome.ACBiomeProvider;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.dimension.chunk.AlphaCentauriChunkProvider;
 import com.cyborgJenn.alphaCentauri.render.ACSkyRenderer;
@@ -79,8 +78,6 @@ public class ACWorldProvider extends WorldProvider{
     protected void generateLightBrightnessTable()
     {
 		//TODO maybe change World Light Level - i.e. TwilightForest ish.
-        float f = 0.0F;
-
         for (int i = 0; i <= 15; ++i)
         {
             float f1 = 1.0F - (float)i / 15.0F;
@@ -118,10 +115,7 @@ public class ACWorldProvider extends WorldProvider{
     @Override
     public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks)
     {
-        float f = 0.4F;
         float f1 = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) - 0.0F;
-        float f2 = -0.0F;
-
         if (f1 >= -0.4F && f1 <= 0.4F)
         {
             float f3 = (f1 - -0.0F) / 0.4F * 0.5F + 0.5F;
@@ -131,7 +125,6 @@ public class ACWorldProvider extends WorldProvider{
             this.colorsSunriseSunset[1] = f3 * f3 * 0.7F + 0.2F;
             this.colorsSunriseSunset[2] = f3 * f3 * 0.0F + 0.2F;
             this.colorsSunriseSunset[3] = f4;
-            //System.out.println("Sunset Color /s ? - "+ colorsSunriseSunset);
             return this.colorsSunriseSunset;
         }
         else
