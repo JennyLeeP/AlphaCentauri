@@ -44,7 +44,7 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
 			IBlockState soil = worldIn.getBlockState(pos.down());
 	        return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, new BlockACSaplings1());
 		}
-		return true;
+		return false;
 		
 	}
 	/**
@@ -126,6 +126,9 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
     protected void buildRoot(World worldIn, BlockPos treeBase, EnumFacing direction, IBlockState rootBlock, List<Vec3i> posList){
     	for (Vec3i currPos: posList){
     		setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
+    		//if (worldIn.getBlockState(currPos.down()).getBlock().isAir(worldIn.getBlockState(treeBase.down()), worldIn, treeBase.down())){
+    		//	setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
+    		//} TODO get relative postion, check for air, if air place bark block, thickens roots over slopes
     	}
     }
     
