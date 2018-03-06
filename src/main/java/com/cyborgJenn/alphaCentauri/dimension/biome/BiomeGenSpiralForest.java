@@ -15,17 +15,15 @@ public class BiomeGenSpiralForest extends ACBiome{
 	private ACBiomeDecorator customBiomeDecorator;
 	private WorldGenSpiralTree SPIRAL_TREE = new WorldGenSpiralTree();
 	
-	public BiomeGenSpiralForest(BiomeProperties biomeProperties) {
+	public BiomeGenSpiralForest(BiomeProperties biomeProperties) 
+	{
 		super(biomeProperties);
-		this.spawnableCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		
 		/* Trees and Plants */
 		biomeDecorator = new ACBiomeDecorator(this);
 		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
-		this.customBiomeDecorator.treesPerChunk = 19;
+		this.customBiomeDecorator.treesPerChunk = 9;
 		this.customBiomeDecorator.grassPerChunk = 6;
-		
+		this.customBiomeDecorator.flowersPerChunk = 3;
 	}
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)

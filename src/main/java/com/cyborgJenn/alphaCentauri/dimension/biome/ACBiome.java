@@ -19,7 +19,11 @@ public class ACBiome extends Biome
 	public BiomeDecorator biomeDecorator;
 	public ACBiome(Biome.BiomeProperties par1) 
 	{
-		super(par1);	
+		super(par1);
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.spawnableMonsterList.clear();
 	}
 	@Override
 	public BiomeDecorator createBiomeDecorator()
