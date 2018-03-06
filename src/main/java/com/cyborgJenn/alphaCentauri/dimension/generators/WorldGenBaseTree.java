@@ -125,10 +125,14 @@ public abstract class WorldGenBaseTree extends WorldGenAbstractTree implements I
 
     protected void buildRoot(World worldIn, BlockPos treeBase, EnumFacing direction, IBlockState rootBlock, List<Vec3i> posList){
     	for (Vec3i currPos: posList) {
-    		setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
-    		//if (worldIn.getBlockState(currPos.down()).getBlock().isAir(worldIn.getBlockState(treeBase.down()), worldIn, treeBase.down())){
-    		//	setRelativeBlockState(worldIn, treeBase, rootBlock, currPos.getX(), currPos.getY(), currPos.getZ(), direction);
-    		//} TODO get relative postion, check for air, if air place bark block, thickens roots over slopes
+    		int x = currPos.getX();
+    		int y = currPos.getY();
+    		int z = currPos.getZ();
+    		setRelativeBlockState(worldIn, treeBase, rootBlock, x, y, z, direction);
+    		BlockPos absBlockPos = new BlockPos(this.getXWithOffset(treeBase, x,z,direction),this.getYWithOffset(treeBase, y-1), this.getZWithOffset(treeBase, x, z, direction));
+    		if (isReplaceable(worldIn, absBlockPos)) {
+    			setRelativeBlockState(worldIn, treeBase, rootBlock, x, y-1, z, direction);
+    		}
     	}
     }
     
