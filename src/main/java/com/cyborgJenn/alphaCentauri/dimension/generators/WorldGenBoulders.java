@@ -11,12 +11,10 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class WorldGenBoulders  implements IWorldGenerator
 {
 	private Block blockUsed;
-    private int blockMeta;
 
-    public WorldGenBoulders(Block block, int meta)
+    public WorldGenBoulders(Block block)
     {
         block = this.blockUsed;
-        this.blockMeta = meta;
     }
 
     public WorldGenBoulders() 

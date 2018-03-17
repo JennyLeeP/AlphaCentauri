@@ -4,6 +4,7 @@ import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACFlowers;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACGravel;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLeaves1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
@@ -167,7 +168,7 @@ public class ModBlocks {
 		LOG2 			= new BlockACLog2();
 		CommonProxy.registerBlockWithCustomItem(LOG2, new ItemBlockACLog2(LOG2),"log2");
 		LEAVES1          = new BlockACLeaves1();
-		//CommonProxy.registerBlockWithCustomItem(LEAVES1, new ItemBlockACLeaves1(LEAVES1),"leaves1");
+		CommonProxy.registerBlockWithCustomItem(LEAVES1, new ItemBlockACLeaves1(LEAVES1),"leaves1");
 		PLANKS1         = new BlockACPlanks1();
 		CommonProxy.registerBlockWithCustomItem(PLANKS1, new ItemBlockACPlank1(PLANKS1),"planks");
 		PLANKS2         = new BlockACPlanks2();

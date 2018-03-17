@@ -60,7 +60,7 @@ public class BiomeGenLushHills extends ACBiome{
 			*/
 		if (rand.nextInt(20) == 0)
 		{
-			WorldGenBoulders worldgenboulders = new WorldGenBoulders(ModBlocks.BASALTCOBBLE, 0);
+			WorldGenBoulders worldgenboulders = new WorldGenBoulders(ModBlocks.BASALTCOBBLE);
 
 		}
 		super.decorate(worldIn, rand, pos);

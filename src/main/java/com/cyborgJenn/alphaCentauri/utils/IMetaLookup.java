@@ -6,6 +6,7 @@ package com.cyborgJenn.alphaCentauri.utils;
  *
  * @param <T>
  */
+@SuppressWarnings("rawtypes")
 public interface IMetaLookup<T extends Enum> {
 	public String getID();
 	public T getByOrdinal(int i);

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.handlers.BlockColorHandler;
+import com.cyborgJenn.alphaCentauri.interfaces.IBlockWithMapper;
 import com.cyborgJenn.alphaCentauri.interfaces.IItemWithMeshDefinition;
 import com.cyborgJenn.alphaCentauri.utils.IMetaLookup;
 import com.google.common.collect.ImmutableList;
@@ -58,6 +59,23 @@ public class ClientProxy extends CommonProxy
 		super._registerBlockWithItem(block, registryname);
 		_registerBlockResources(block);
 	}
+	public void _registerBlockWithMapper(Block block, ItemBlock iBlock, String registryname) 
+	{
+		super._registerBlockWithMapper(block, iBlock, registryname);
+		BlockStateContainer bsc = block.getBlockState();
+		ImmutableList<IBlockState> values = bsc.getValidStates();
+		StateMapperBase mapper = ((IBlockWithMapper)block).getStateMapper();
+		//ModelLoader.setCustomStateMapper(block, mapper);
+		//ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY).ignore(BlockLeaves.DECAYABLE).build());
+		statesToMap.add(new StateMapObj(block, mapper));
+		
+		for(IBlockState state : values) {
+			System.out.println(mapper.getPropertyString(state.getProperties()));
+			//String str = mapper.getPropertyString(state.getProperties());
+			//_registerBlockItemModelForMeta(block, block.getMetaFromState(state), str);
+		}
+		
+	}
 	@Override
 	public void _registerBlockWithTest(Block block, String registryname) {
 		super._registerBlockWithItem(block, registryname);
@@ -92,6 +110,7 @@ public class ClientProxy extends CommonProxy
 		ModelBakery.registerItemVariants(item, def.getModelLocation(variantStack));
 		ModelLoader.setCustomMeshDefinition(item, def);
 	}
+	@SuppressWarnings("rawtypes")
 	@Override
 	public <T extends IMetaLookup> void _registerItemWithVariants(Item item, String registryname, T variant) {
 		super._registerItemWithVariants(item, registryname, variant);

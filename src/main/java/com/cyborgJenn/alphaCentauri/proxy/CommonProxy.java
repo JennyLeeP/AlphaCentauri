@@ -83,6 +83,15 @@ public class CommonProxy {
 		AlphaCentauri.proxy._registerBlockWithCustomItem(block, iBlock, registryname);
 	}
 	/**
+	 * 
+	 * @param block
+	 * @param iBlock
+	 * @param registryname
+	 */
+	public static void registerBlockWithMapper(Block block, ItemBlock iBlock, String registryname) {
+		AlphaCentauri.proxy._registerBlockWithMapper(block, iBlock, registryname);
+	}
+	/**
 	 * Register Item's
 	 * @param item
 	 * @param registryname
@@ -96,6 +105,7 @@ public class CommonProxy {
 	 * @param registryname
 	 * @param variant
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <T extends IMetaLookup> void registerItemWithVariants(Item item, String registryname, T variant) {
 		AlphaCentauri.proxy._registerItemWithVariants(item, registryname, variant);
 	}
@@ -129,8 +139,7 @@ public class CommonProxy {
 		block.setUnlocalizedName(block.getRegistryName().toString());
 		block.setCreativeTab(AlphaCentauri.tabAlphaCentauri);
 		blocksToReg.add(block);
-	}
-	
+	}	
 	public void _registerBlockWithItem(Block block, String registryname) 
 	{
 		block.setRegistryName(registryname);
@@ -141,6 +150,15 @@ public class CommonProxy {
 		blocksToReg.add(block);
 		itemsToReg.add(ib);
 		blockItems.put(block, ib);
+	}
+	public void _registerBlockWithMapper(Block block, ItemBlock iBlock, String registryname) 
+	{
+		block.setRegistryName(registryname);
+		block.setUnlocalizedName(block.getRegistryName().toString());
+		iBlock.setRegistryName(registryname);
+		blocksToReg.add(block);
+		itemsToReg.add(iBlock);
+		blockItems.put(block, iBlock);
 	}
 	public void _registerBlockWithTest(Block block, String registryname) 
 	{
@@ -167,6 +185,7 @@ public class CommonProxy {
 		//client only
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public <T extends IMetaLookup> void _registerItemWithVariants(Item item, String registryname, T variant) 
 	{
 		item.setRegistryName(registryname);

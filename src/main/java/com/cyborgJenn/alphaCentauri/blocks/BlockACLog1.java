@@ -1,7 +1,5 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
@@ -38,7 +36,6 @@ public class BlockACLog1 extends BlockLog
      */
     @Override
     @SideOnly(Side.CLIENT)
-
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
     	items.add(new ItemStack(this, 1, BlockACPlanks1.EnumType.SPIRAL.getMetadata())); // Meta 0
@@ -46,15 +43,6 @@ public class BlockACLog1 extends BlockLog
     	items.add(new ItemStack(this, 1, BlockACPlanks1.EnumType.MANGROVE.getMetadata())); // Meta 2
     	items.add(new ItemStack(this, 1, BlockACPlanks1.EnumType.ADANSONIA.getMetadata())); // Meta 3
 	}
-
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
-    {
-    	list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPIRAL.getMetadata())); // Meta 0
-		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.SPLOTCH.getMetadata())); // Meta 1
-		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.MANGROVE.getMetadata())); // Meta 2
-		list.add(new ItemStack(item, 1, BlockACPlanks1.EnumType.ADANSONIA.getMetadata())); // Meta 3
-    }
-    
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
