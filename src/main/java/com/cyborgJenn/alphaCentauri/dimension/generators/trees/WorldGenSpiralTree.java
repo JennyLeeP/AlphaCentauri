@@ -154,6 +154,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 			posList.add(new Vec3i(2, 0, 1));
 			break;
 		case 2:
+			posList.add(new Vec3i(1, 1, 0));
 			posList.add(new Vec3i(1, 0, 0));
 			posList.add(new Vec3i(2, 0, 0));
 			posList.add(new Vec3i(2, 0, -1));
@@ -166,6 +167,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 			posList.add(new Vec3i(2, 0, 0));
 			break;
 		case 4:
+			posList.add(new Vec3i(1, 1, 0));
 			posList.add(new Vec3i(1, 0, 0));
 			posList.add(new Vec3i(2, 0, 0));
 			posList.add(new Vec3i(3, 0, -1));
