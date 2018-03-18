@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -41,6 +42,8 @@ public class BlockVanillaOres extends Block
 		}
 		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.GOLD)) {
 			return ((BlockVanillaOres.EnumType)state.getValue(VARIANT)).getMetadata();
+		}else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.LAPIS)) {
+			return EnumDyeColor.BLUE.getDyeDamage();
 		}
 		else {
 			return 0;
