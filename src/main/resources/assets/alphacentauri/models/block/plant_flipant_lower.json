@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "alphacentauri:blocks/plant_flipant_bottom",
+        "cross": "alphacentauri:blocks/plant_flipant_bottom"
+    }
+}

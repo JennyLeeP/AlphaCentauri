@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "particle": "alphacentauri:blocks/plant_glowbulb_top",
+        "cross": "alphacentauri:blocks/plant_glowbulb_top"
+    }
+}

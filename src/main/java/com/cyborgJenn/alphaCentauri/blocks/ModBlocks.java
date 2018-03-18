@@ -2,6 +2,7 @@ package com.cyborgJenn.alphaCentauri.blocks;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
 import com.cyborgJenn.alphaCentauri.dimension.portal.BlockAlphaCentauriPortal;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACDoublePlants;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACFlowers;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACGravel;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLeaves1;
@@ -66,6 +67,7 @@ public class ModBlocks {
 	public static Block PLANKS1;
 	public static Block PLANKS2;
 	public static Block ALIEN_PLANTS_1;
+	public static Block ACDOUBLEPLANT;
 	public static Block VANILLA_ORES;
 	public static BlockBush PURPLE_MUSHROOM;
 	public static BlockBush BLUE_MUSHROOM;
@@ -177,8 +179,8 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS1, new ItemSaplingBlock1(SAPLINGS1),"saplings1");
 		SAPLINGS2       = new BlockACSaplings2();
 		CommonProxy.registerBlockWithCustomItem(SAPLINGS2, new ItemSaplingBlock2(SAPLINGS2),"saplings2");
-		SHRUBBARY = new BlockShrubbary();
-		CommonProxy.registerBlockWithTest(SHRUBBARY, "shrubbary");
+		//SHRUBBARY = new BlockShrubbary();
+		//CommonProxy.registerBlockWithTest(SHRUBBARY, "shrubbary");
 		ALIEN_PLANTS_1 = new BlockAlienPlants1();
 		CommonProxy.registerBlockWithCustomItem(ALIEN_PLANTS_1, new ItemBlockAlienPlants(ALIEN_PLANTS_1), "alienplants");
 		FUNGUS 		    = new BlockFungus();
@@ -191,6 +193,8 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithItem(BLOCK_MUSHROOM_PURPLE, "block_mushroom_purple");
 		BLOCK_MUSHROOM_BLUE   = new BlockAlienMushroom(MapColor.BLUE, BLUE_MUSHROOM);
 		CommonProxy.registerBlockWithItem(BLOCK_MUSHROOM_BLUE, "block_mushroom_blue");
+		ACDOUBLEPLANT  = new BlockACDoublePlant();
+		CommonProxy.registerBlockWithCustomItem(ACDOUBLEPLANT, new ItemBlockACDoublePlants(ACDOUBLEPLANT), "acDoublePLant");
 		
 		/* Ores  */
 		VANILLA_ORES      = new BlockVanillaOres();

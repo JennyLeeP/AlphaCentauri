@@ -1,0 +1,10 @@
+{
+  "variants": {
+     "half=upper,variant=glowbulb": { 
+        "model": "alphacentauri:plant_glowbulb_upper" 
+     },
+     "half=lower,variant=glowbulb": { "model": "alphacentauri:plant_glowbulb_lower" },
+     "half=lower,variant=flipant": { "model": "alphacentauri:plant_flipant_lower" },
+     "half=upper,variant=flipant": { "model": "alphacentauri:plant_flipant_upper" }
+   }
+}
