@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACDoublePlants;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
 
 import net.minecraft.block.material.Material;
@@ -16,6 +17,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class ACBiome extends Biome
 {
+	protected static final WorldGenACDoublePlants DOUBLE_PLANT_GEN = new WorldGenACDoublePlants();
 	public BiomeDecorator biomeDecorator;
 	public ACBiome(Biome.BiomeProperties par1) 
 	{

@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class BlockVanillaOres extends Block 
 {
 	public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", BlockVanillaOres.EnumType.class);
-	
+
 	public BlockVanillaOres() 
 	{
 		super(Material.ROCK, MapColor.CYAN);
@@ -33,7 +33,6 @@ public class BlockVanillaOres extends Block
 	/**
 	 * Get the damage value that this Block should drop
 	 */
-	
 	@Override
 	public int damageDropped(IBlockState state)
 	{
@@ -42,51 +41,52 @@ public class BlockVanillaOres extends Block
 		}
 		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.GOLD)) {
 			return ((BlockVanillaOres.EnumType)state.getValue(VARIANT)).getMetadata();
-		}else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.LAPIS)) {
+		}
+		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.LAPIS)) {
 			return EnumDyeColor.BLUE.getDyeDamage();
 		}
 		else {
 			return 0;
 		}
 	}
-	
 	/**
-     * Get the Item that this Block should drop when harvested.
-     */
+	 * Get the Item that this Block should drop when harvested.
+	 */
 	@Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-    	if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.DIAMOND)) {
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.DIAMOND)) {
 			return Items.DIAMOND;
 		}
-    	else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.COAL)) {
-    		return Items.COAL;
-    	}
-    	else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.LAPIS)) {
-    		return Items.DYE;
-    	}
-    	else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.REDSTONE)) {
-    		return Items.REDSTONE;
-    	}
-    	else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.EMERALD)) {
-    		return Items.EMERALD;
-    	}
-    		return Item.getItemFromBlock(this);
-    	
-    }
+		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.COAL)) {
+			return Items.COAL;
+		}
+		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.LAPIS)) {
+			return Items.DYE;
+		}
+		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.REDSTONE)) {
+			return Items.REDSTONE;
+		}
+		else if (state == this.getDefaultState().withProperty(VARIANT, BlockVanillaOres.EnumType.EMERALD)) {
+			return Items.EMERALD;
+		}
+		return Item.getItemFromBlock(this);
+
+	}
 	@Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
-        return new ItemStack(this);
-    }
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+	{
+		return new ItemStack(this);
+	}
 	/**
-     * Returns the quantity of items to drop on block destruction.
-     */
+	 * Returns the quantity of items to drop on block destruction.
+	 */
 	@Override
-    public int quantityDropped(Random random)
-    {
-        return 1;
-    }
+	public int quantityDropped(Random random)
+	{
+		//TODO return quantity dropped based on blockstate. I.E Lapis / redstone drop more.
+		return 1;
+	}
 	//TODO FORTUNE Bonus.
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
@@ -124,7 +124,7 @@ public class BlockVanillaOres extends Block
 	{
 		return new BlockStateContainer(this, VARIANT);
 	}
-	
+
 	public static enum EnumType implements IStringSerializable
 	{
 		GOLD(0, "gold"),

@@ -3,7 +3,6 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
-import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBoulders;
 
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.util.math.BlockPos;
@@ -60,7 +59,7 @@ public class BiomeGenLushHills extends ACBiome{
 			*/
 		if (rand.nextInt(20) == 0)
 		{
-			WorldGenBoulders worldgenboulders = new WorldGenBoulders(ModBlocks.BASALTCOBBLE);
+			//WorldGenBoulders worldgenboulders = new WorldGenBoulders(ModBlocks.BASALTCOBBLE);
 
 		}
 		super.decorate(worldIn, rand, pos);

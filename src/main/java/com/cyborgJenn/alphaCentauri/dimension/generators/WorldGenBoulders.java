@@ -3,28 +3,27 @@ package com.cyborgJenn.alphaCentauri.dimension.generators;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.fml.common.IWorldGenerator;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class WorldGenBoulders  implements IWorldGenerator
+public class WorldGenBoulders extends WorldGenerator
 {
+	@SuppressWarnings("unused")
 	private Block blockUsed;
 
-    public WorldGenBoulders(Block block)
+	public void setBlockUSed(Block blockUsedIn)
     {
-        block = this.blockUsed;
+        this.blockUsed = blockUsedIn;
     }
 
-    public WorldGenBoulders() 
-    {
-		// TODO Boulders
-	}
+    public WorldGenBoulders() { }
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
-	{
-		// TODO Auto-generated method stub	
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+	
 }

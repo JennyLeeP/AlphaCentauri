@@ -67,7 +67,7 @@ public class ModBlocks {
 	public static Block PLANKS1;
 	public static Block PLANKS2;
 	public static Block ALIEN_PLANTS_1;
-	public static Block ACDOUBLEPLANT;
+	public static BlockACDoublePlant ACDOUBLEPLANT;
 	public static Block VANILLA_ORES;
 	public static BlockBush PURPLE_MUSHROOM;
 	public static BlockBush BLUE_MUSHROOM;
