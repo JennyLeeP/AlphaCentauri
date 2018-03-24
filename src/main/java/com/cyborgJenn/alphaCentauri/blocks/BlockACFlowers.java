@@ -33,6 +33,7 @@ public class BlockACFlowers extends BlockBush implements IPlantable {
 	/**
      * Get the damage value that this Block should drop
      */
+	@Override
     public int damageDropped(IBlockState state)
     {
         return ((BlockACFlowers.EnumType)state.getValue(VARIANT)).getMetadata();
@@ -58,19 +59,21 @@ public class BlockACFlowers extends BlockBush implements IPlantable {
     /**
      * Convert the given meta-data into a BlockState for this Block
      */
+    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(VARIANT, BlockACFlowers.EnumType.byMetadata(meta));
     }
-
+    
     /**
      * Convert the BlockState into the correct metadata value
      */
+    @Override
     public int getMetaFromState(IBlockState state)
     {
         return ((BlockACFlowers.EnumType)state.getValue(VARIANT)).getMetadata();
     }
-
+    @Override
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {VARIANT});
@@ -116,7 +119,7 @@ public class BlockACFlowers extends BlockBush implements IPlantable {
         {
             return this.meta;
         }
-
+        @Override
         public String toString()
         {
             return this.name;

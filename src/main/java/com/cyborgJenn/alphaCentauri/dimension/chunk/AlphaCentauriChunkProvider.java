@@ -317,7 +317,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		boolean flag = false;
 		ChunkPos chunkpos = new ChunkPos(x, z);
 
-		if (biome != ModBiomes.DESERT && !flag && this.random.nextInt(4) == 0)
+		if (biome != ModBiomes.DESERT && !flag && this.random.nextInt(6) == 0)
 		{
 			if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE))
 			{
@@ -329,7 +329,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 			}
 		}
 		//TODO maybe make lava lakes not gen in certain biomes.
-		if (!flag && this.random.nextInt(8) == 0)
+		if (!flag && this.random.nextInt(10) == 0)
 		{
 			if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.random, x, z, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA))
 			{

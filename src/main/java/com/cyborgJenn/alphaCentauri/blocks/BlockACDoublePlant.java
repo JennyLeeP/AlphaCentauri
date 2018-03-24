@@ -36,7 +36,7 @@ public class BlockACDoublePlant extends BlockBush implements IGrowable, net.mine
 	public BlockACDoublePlant() 
 	{
 		super(Material.VINE);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockACDoublePlant.EnumPlantType.GLOWBULB).withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.UPPER));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockACDoublePlant.EnumPlantType.GLOWBULB).withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.LOWER));
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
 		this.setLightLevel(0.5F);
@@ -161,6 +161,7 @@ public class BlockACDoublePlant extends BlockBush implements IGrowable, net.mine
 	}
 	public void placeAt(World worldIn, BlockPos lowerPos, BlockACDoublePlant.EnumPlantType variant, int flags)
 	{
+		//System.out.println("Placed Lower at: "+lowerPos.getX()+" "+lowerPos.getY()+" "+lowerPos.getZ());
 		worldIn.setBlockState(lowerPos, this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.LOWER).withProperty(VARIANT, variant), flags);
 		worldIn.setBlockState(lowerPos.up(), this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.UPPER), flags);
 	}

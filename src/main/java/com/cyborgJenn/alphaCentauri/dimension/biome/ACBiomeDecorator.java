@@ -5,6 +5,7 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
 import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACFlowers;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACMinable;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenLargeMushroom;
 import com.cyborgJenn.alphaCentauri.utils.Config;
@@ -81,6 +82,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	/*       Mushrooms         */
 	public int mushroomsPerChunk;
 	public int bigMushroomsPerChunk;
+	public WorldGenACFlowers flowerGen = new WorldGenACFlowers();
 	public WorldGenerator mushroomBlueGen = new WorldGenBush(ModBlocks.BLUE_MUSHROOM);
 	public WorldGenerator mushroomPurpleGen = new WorldGenBush(ModBlocks.PURPLE_MUSHROOM);
 	public WorldGenerator bigMushroomGen = new WorldGenLargeMushroom();
@@ -196,15 +198,6 @@ public class ACBiomeDecorator extends BiomeDecorator
 				int j6 = random.nextInt(16) + 8;
 				this.gravelGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
 			}
-		/*
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, CLAY);
-        for (i = 0; doGen && i < this.methIcePerChunk; ++i)
-        {
-            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.methIceGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
-        }
-		 */
 
 		/* ------------------------------------
 		 *               Mushrooms    
@@ -258,18 +251,11 @@ public class ACBiomeDecorator extends BiomeDecorator
 
 	            if (j14 > 0)
 	            {
-	                //int k17 = random.nextInt(j14);
-	                //BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
-	                //TODO generate a random flower
+	                int k17 = random.nextInt(j14);
+	                BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
+	                this.flowerGen.generate(worldIn, random, blockpos1);
 	            }
 	        }
-		for (int j = 0; j < nodesPerChunk; ++j)
-		{
-			//k = chunk_X + randomGenerator.nextInt(16) + 8;
-			//l = randomGenerator.nextInt(128);
-			// i1 = chunk_Z + randomGenerator.nextInt(16) + 8;
-			//cursedNodesGen.generate(currentWorld, randomGenerator, k, l, i1);
-		}
 		
 		/* --------------------------------------
 		 *                Trees 

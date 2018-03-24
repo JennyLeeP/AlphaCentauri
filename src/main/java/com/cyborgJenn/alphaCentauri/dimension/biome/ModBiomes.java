@@ -31,7 +31,7 @@ public class ModBiomes {
     }
     public static void initBiomeTypes()
     {
-    	SPIRAL_FOREST  = new BiomeGenSpiralForest(  new BiomeProperties("Spiral_Forest" ).setTemperature(0.8f).setRainfall(1.0f).setWaterColor(2216227).setHeightVariation(0.002f));
+    	SPIRAL_FOREST  = new BiomeGenSpiralForest(  new BiomeProperties("Spiral_Forest" ).setTemperature(0.8f).setRainfall(1.0f).setWaterColor(2216227).setHeightVariation(0.001f));
     	GREENRIVER     = new BiomeGenGreenRiver(    new BiomeProperties("GreenRiver"    ).setBaseHeight(-0.5F).setHeightVariation(0.05F).setWaterColor(2216227));
     	LUSHHILLS      = new BiomeGenLushHills(     new BiomeProperties("LushHills"     ).setTemperature(2.0f).setBaseHeight(2.0f).setHeightVariation(1.0f).setRainfall(0.3f).setWaterColor(2216227));
         

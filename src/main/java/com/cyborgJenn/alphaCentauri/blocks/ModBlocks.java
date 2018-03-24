@@ -58,7 +58,7 @@ public class ModBlocks {
 
 	public static BlockBush MOSS;
 	public static Block VINES;
-	public static Block FLOWERS;
+	public static BlockACFlowers FLOWERS;
 	public static Block LOG1;
 	public static Block LOG2;
 	public static Block LEAVES1;
