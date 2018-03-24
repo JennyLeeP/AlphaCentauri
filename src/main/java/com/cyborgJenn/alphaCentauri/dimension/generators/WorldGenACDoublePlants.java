@@ -26,12 +26,8 @@ public class WorldGenACDoublePlants extends WorldGenerator {
 
 			if (worldIn.isAirBlock(blockpos) &&(!worldIn.provider.isNether() || blockpos.getY() < 254) && ModBlocks.ACDOUBLEPLANT.canPlaceBlockAt(worldIn, blockpos))
 			{
-				if (WorldGenUtils.isPosDarkEnough(worldIn, blockpos.add(0,1,0)))
-				{
-					//System.out.println("Checked Light at: "+blockpos.getX()+" "+blockpos.getY() + 1+" "+blockpos.getZ());
-					ModBlocks.ACDOUBLEPLANT.placeAt(worldIn, blockpos, this.plantType, 2);
-					flag = true;
-				}
+				ModBlocks.ACDOUBLEPLANT.placeAt(worldIn, blockpos, this.plantType, 2);
+				flag = true;
 			}
 		}
 		return flag;

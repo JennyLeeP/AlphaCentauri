@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -161,9 +163,10 @@ public class BlockACDoublePlant extends BlockBush implements IGrowable, net.mine
 	}
 	public void placeAt(World worldIn, BlockPos lowerPos, BlockACDoublePlant.EnumPlantType variant, int flags)
 	{
-		//System.out.println("Placed Lower at: "+lowerPos.getX()+" "+lowerPos.getY()+" "+lowerPos.getZ());
-		worldIn.setBlockState(lowerPos, this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.LOWER).withProperty(VARIANT, variant), flags);
-		worldIn.setBlockState(lowerPos.up(), this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.UPPER), flags);
+		if (WorldGenUtils.isPosDarkEnough(worldIn, lowerPos)){
+			worldIn.setBlockState(lowerPos, this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.LOWER).withProperty(VARIANT, variant), flags);
+			worldIn.setBlockState(lowerPos.up(), this.getDefaultState().withProperty(HALF, BlockACDoublePlant.EnumBlockHalf.UPPER), flags);
+		}
 	}
 	/**
 	 * Called by ItemBlocks after a block is set in the world, to allow post-place logic

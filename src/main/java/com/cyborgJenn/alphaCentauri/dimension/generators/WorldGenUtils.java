@@ -53,8 +53,8 @@ public class WorldGenUtils
 	 */
 	public static boolean isPosDarkEnough(World worldIn, BlockPos pos)
 	{
-		int skylight = worldIn.getLightFor(EnumSkyBlock.SKY, pos);
-		if (skylight > 1 && skylight < 5) {
+		int skylight = worldIn.getLight(pos, true);
+		if (skylight < 5) {
 			return true;
 		}else {
 			return false;

@@ -180,13 +180,13 @@ public class ACWorldProvider extends WorldProvider{
         BlockPos blockpos = new BlockPos(x, 0, z);
         return this.world.getBiome(blockpos).ignorePlayerSpawnSuitability() ? true : this.world.getGroundAboveSeaLevel(blockpos).getBlock() == ModBlocks.ACGRASS;
     }
-	/*
+	
 	@Override
-	public boolean getHasSkylight()
+	public boolean hasSkyLight()
     {
         return this.hasSkyLight;
     }
-    */
+    
 	@Override
     public float[] getLightBrightnessTable()
     {
