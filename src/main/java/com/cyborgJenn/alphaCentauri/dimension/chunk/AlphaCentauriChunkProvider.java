@@ -14,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
@@ -22,6 +21,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
@@ -35,6 +35,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	private Random random;
 	private Biome[] biomesForGeneration;
 	private WorldType terrainType;
+	private ChunkGeneratorSettings settings;
 	private NoiseGeneratorOctaves minLimitPerlinNoise;
 	private NoiseGeneratorOctaves maxLimitPerlinNoise;
 	private NoiseGeneratorOctaves mainPerlinNoise;
@@ -49,7 +50,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	double[] minLimitRegion;
 	double[] maxLimitRegion;
 	double[] depthRegion;
-	private static int sealevel = 63;
 	private MapGenBase caveGenerator = new MapGenCaves();
 
 	public AlphaCentauriChunkProvider(World worldObj) 
@@ -57,8 +57,9 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
 		this.worldObj = worldObj;
 		long seed = worldObj.getSeed();
+		String generatorOptions = worldObj.getWorldInfo().getGeneratorOptions();
 		this.random = new Random((seed + 516) * 314);
-		this.terrainType = WorldType.DEFAULT;
+		this.terrainType = worldObj.getWorldInfo().getTerrainType();
 		this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.random, 16);
 		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.random, 16);
 		this.mainPerlinNoise = new NoiseGeneratorOctaves(this.random, 8);
@@ -76,6 +77,12 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 				this.biomeWeights[i + 2 + (j + 2) * 5] = f;
 			}
 		}
+		if (generatorOptions != null)
+        {
+            this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorOptions).build();
+            this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
+            worldObj.setSeaLevel(this.settings.seaLevel);
+        }
 	}
 	/**
 	 * 
@@ -102,7 +109,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 
 				for (int i2 = 0; i2 < 32; ++i2)
 				{
-					double d0 = 0.125D;
 					double d1 = this.heightMap[i1 + i2];
 					double d2 = this.heightMap[j1 + i2];
 					double d3 = this.heightMap[k1 + i2];
@@ -114,7 +120,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 
 					for (int j2 = 0; j2 < 8; ++j2)
 					{
-						double d9 = 0.25D;
 						double d10 = d1;
 						double d11 = d2;
 						double d12 = (d3 - d1) * 0.25D;
@@ -122,7 +127,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 
 						for (int k2 = 0; k2 < 4; ++k2)
 						{
-							double d14 = 0.25D;
 							double d16 = (d11 - d10) * 0.25D;
 							double lvt_45_1_ = d10 - d16;
 
@@ -132,7 +136,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, ModBlocks.ACSTONE.getDefaultState());
 								}
-								else if (i2 * 8 + j2 < sealevel)
+								else if (i2 * 8 + j2 < this.settings.seaLevel)
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.oceanBlock);
 								}
@@ -161,7 +165,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
 	{
 		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj)) return;
-		double d0 = 0.03125D;
 		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
 
 		for (int i = 0; i < 16; ++i)
@@ -219,15 +222,20 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 				float f = 0.0F;
 				float f1 = 0.0F;
 				float f2 = 0.0F;
-				byte b0 = 2;
-				for (int l1 = -b0; l1 <= b0; ++l1) 
+				for (int l1 = - 2; l1 <= 2; ++l1) 
 				{
-					for (int i2 = -b0; i2 <= b0; ++i2) 
+					for (int i2 = - 2; i2 <= 2; ++i2) 
 					{
 						Biome biome = this.biomesForGeneration[j1 + 2 + (k1 + 2) * 10];
-						float baseHeight = biome.getBaseHeight();
-						float variation = biome.getHeightVariation();
-
+						//float baseHeight = biome.getBaseHeight();
+						//float variation = biome.getHeightVariation();
+						float baseHeight = this.settings.biomeDepthOffSet + biome.getBaseHeight() * this.settings.biomeDepthWeight;
+                        float variation = this.settings.biomeScaleOffset + biome.getHeightVariation() * this.settings.biomeScaleWeight;
+                        if (this.terrainType == WorldType.AMPLIFIED && baseHeight > 0.0F)
+                        {
+                        	baseHeight = 1.0F + baseHeight * 2.0F;
+                        	variation = 1.0F + variation * 4.0F;
+                        }
 						float f5 = biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
 						f += variation * f5;
 						f1 += baseHeight * f5;
@@ -315,7 +323,6 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		long l = this.random.nextLong() / 2L * 2L + 1L;
 		this.random.setSeed((long)x * k + (long)z * l ^ this.worldObj.getSeed());
 		boolean flag = false;
-		ChunkPos chunkpos = new ChunkPos(x, z);
 
 		if (biome != ModBiomes.DESERT && !flag && this.random.nextInt(6) == 0)
 		{
