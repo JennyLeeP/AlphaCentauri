@@ -1,6 +1,6 @@
 package com.cyborgJenn.alphaCentauri.dimension.biome;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.BlockACDoublePlant;
@@ -12,6 +12,7 @@ import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBoulders;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenUtils;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSpiralTree;
+import com.google.common.collect.Lists;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,7 +23,7 @@ public class BiomeGenSpiralForest extends ACBiome{
 	private ACBiomeDecorator customBiomeDecorator;
 	private WorldGenBoulders worldgenboulders = new WorldGenBoulders();
 	private WorldGenSpiralTree SPIRAL_TREE = new WorldGenSpiralTree();
-	ArrayList<EnumType> list = new ArrayList<EnumType>();
+	List<EnumType> flowers = Lists.newArrayList(BlockACFlowers.EnumType.BLUE, BlockACFlowers.EnumType.RED, BlockACFlowers.EnumType.MAGENTA, BlockACFlowers.EnumType.PURPLE);
 
 	public BiomeGenSpiralForest(BiomeProperties biomeProperties) 
 	{
@@ -31,13 +32,9 @@ public class BiomeGenSpiralForest extends ACBiome{
 		biomeDecorator = new ACBiomeDecorator(this);
 		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
 		this.customBiomeDecorator.treesPerChunk = 9;
-		this.customBiomeDecorator.grassPerChunk = 6;
-		this.customBiomeDecorator.flowersPerChunk = 12;
-		list.add(BlockACFlowers.EnumType.BLUE);
-		list.add(BlockACFlowers.EnumType.RED);
-		list.add(BlockACFlowers.EnumType.MAGENTA);
-		list.add(BlockACFlowers.EnumType.PURPLE);
-		WorldGenACFlowers.setFlowers(list);
+		this.customBiomeDecorator.grassPerChunk = 4;
+		this.customBiomeDecorator.flowersPerChunk = 100;
+		WorldGenACFlowers.setFlowers(flowers);
 	}
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)

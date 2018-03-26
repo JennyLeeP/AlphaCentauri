@@ -245,14 +245,13 @@ public class ACBiomeDecorator extends BiomeDecorator
 		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS))
 			for (int l2 = 0; l2 < this.flowersPerChunk; ++l2)
 	        {
-	            int i7 = random.nextInt(16) + 8;
-	            int l10 = random.nextInt(16) + 8;
-	            int j14 = worldIn.getHeight(this.chunkPos.add(i7, 0, l10)).getY() + 32;
+	            int X = random.nextInt(16) + 8;
+	            int Z = random.nextInt(16) + 8;
+	            int Y = worldIn.getHeight(this.chunkPos.add(X, 0, Z)).getY();
 
-	            if (j14 > 0)
+	            if (Y > 0)
 	            {
-	                int k17 = random.nextInt(j14);
-	                BlockPos blockpos1 = this.chunkPos.add(i7, k17, l10);
+	                BlockPos blockpos1 = this.chunkPos.add(X, Y, Z);
 	                this.flowerGen.generate(worldIn, random, blockpos1);
 	            }
 	        }

@@ -29,6 +29,7 @@ public class ACBiomeProvider extends BiomeProvider
 	private GenLayer acGenBiomes;
 	private GenLayer acBiomeIndexLayer;
 	private BiomeCache biomecache;
+	private List<Biome> tempList =Lists.newArrayList(ModBiomes.SPIRAL_FOREST, ModBiomes.PrimevalForest); //TODO add to this list when testing multiple biomes.
 	private List<Biome> allowedBiomes = Lists.newArrayList(ModBiomes.LUSHHILLS,ModBiomes.BEACH,ModBiomes.GREENRIVER,
 			ModBiomes.LIVINGPLATEAU,ModBiomes.Mangroves,ModBiomes.Morass,ModBiomes.PrimevalForest,ModBiomes.SPIRAL_FOREST,
 			ModBiomes.DESERT,ModBiomes.FUNGALFOREST,ModBiomes.PAINTED_CLIFFS);
@@ -36,8 +37,10 @@ public class ACBiomeProvider extends BiomeProvider
 	public ACBiomeProvider()
 	{
 		this.biomecache = new BiomeCache(this);
-		this.allowedBiomes = new ArrayList<Biome>();
-		this.allowedBiomes.addAll(allowedBiomes);
+		this.tempList = new ArrayList<Biome>();//TODO change to allowedBiomes list when biomes are copmplete.
+		this.tempList.addAll(tempList);
+		//this.allowedBiomes = new ArrayList<Biome>();
+		//this.allowedBiomes.addAll(allowedBiomes);
 	}
 
 	public ACBiomeProvider(long seed, WorldType worldTypeIn, String options)

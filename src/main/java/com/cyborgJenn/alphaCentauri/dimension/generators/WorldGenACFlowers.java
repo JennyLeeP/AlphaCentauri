@@ -23,24 +23,24 @@ public class WorldGenACFlowers extends WorldGenerator
 	/**
 	 * Set a list of EnumType FLowers to generate. Should be called by a Biome to create a 
 	 * list of acceptable flowers to generate in this Biome.
-	 * Other wise the generator will default to generating a purple flower.
+	 * Other wise the generator will default to generating a random flower.
 	 * @param list
 	 */
-	public static void setFlowers(ArrayList<BlockACFlowers.EnumType> list)
+	public static void setFlowers(List<BlockACFlowers.EnumType> flowers)
 	{
-		possible.addAll(list);
+		possible.addAll(flowers);
 	}
 	private BlockACFlowers.EnumType chooseFlower()
 	{
+		Random random = new Random();
 		if (!possible.isEmpty()) {
-			int rand = new Random().nextInt(possible.size());
+			int rand = random.nextInt(possible.size());
 			chosen = possible.get(rand);
 			return chosen;
 
 		} else {
-			for (int i = 0; i < BlockACFlowers.EnumType.values().length; ++i) {
-				chosen = BlockACFlowers.EnumType.byMetadata(i);
-			}
+			int rand = random.nextInt(BlockACFlowers.EnumType.values().length);
+			chosen = BlockACFlowers.EnumType.byMetadata(rand);
 			return chosen ;
 		}
 	}
@@ -53,15 +53,12 @@ public class WorldGenACFlowers extends WorldGenerator
 	public boolean generate(World worldIn, Random rand, BlockPos position) 
 	{
 		this.state = ModBlocks.FLOWERS.getDefaultState().withProperty(BlockACFlowers.VARIANT, chooseFlower());
-		for (int i = 0; i < 10; ++i)
+		BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+		if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 255) && ModBlocks.FLOWERS.canBlockStay(worldIn, blockpos, this.state))
 		{
-			BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-
-			if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 255) && ModBlocks.FLOWERS.canBlockStay(worldIn, blockpos, this.state))
-			{
-				worldIn.setBlockState(blockpos, this.state, 2);
-			}
+			worldIn.setBlockState(blockpos, this.state, 2);
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

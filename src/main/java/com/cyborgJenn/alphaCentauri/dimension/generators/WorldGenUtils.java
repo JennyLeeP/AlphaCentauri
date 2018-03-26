@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 
 public class WorldGenUtils 
 {
+	//TODO Complete as needed ground and replaceable block Lists.
 	private static List<Block> replacableBlock = Lists.newArrayList(Blocks.GRASS, Blocks.DIRT, ModBlocks.ACGRASS, ModBlocks.ACDIRT);
 	private static List<Block> groundBlocks = Lists.newArrayList(Blocks.GRASS, Blocks.DIRT, ModBlocks.ACGRASS, ModBlocks.ACDIRT);
 	/**
