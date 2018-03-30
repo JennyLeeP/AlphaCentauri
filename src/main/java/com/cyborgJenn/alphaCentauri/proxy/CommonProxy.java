@@ -21,8 +21,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
@@ -49,6 +51,11 @@ public class CommonProxy {
 		Registry.registerDimensionTypes();
 		Registry.registerDimension();
 		ModBlocks.addFireSpreadInfo();
+		if (Loader.isModLoaded("largecaves"))
+		{
+			AlphaCentauri.logger.info("Found LargeCaves - Sending BaseBlock in IMC");
+			FMLInterModComms.sendMessage("largecaves", "baseblock", new ItemStack(ModBlocks.ACSTONE));
+		}
 	}
 	/**
 	 * Registers simple Block, with no item.
