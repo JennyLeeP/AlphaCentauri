@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class ItemSaplingBlock1 extends ItemBlock 
 {
 	private final static String[] subNames = {
-			"spiral", "splotch", "mangrove", "adonsonia"
+			"spiral", "splotch", "mangrove", "adansonia"
 		};
 	public ItemSaplingBlock1(Block block) 
 	{
