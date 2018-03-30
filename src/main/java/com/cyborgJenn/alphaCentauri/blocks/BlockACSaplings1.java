@@ -1,10 +1,11 @@
 package com.cyborgJenn.alphaCentauri.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.AlphaCentauri;
-import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
-import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenAdonsoniaTree;
+import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenHouseTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenMangroveTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSpiralTree;
 import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSplotchTree;
@@ -20,6 +21,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -89,18 +91,18 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	}
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) //TODO looks like this isnt finished
 	{
-		WorldGenBaseTree treeGen;
+		//WorldGenBaseTree treeGen;
 		int i = 0;
         int j = 0;
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-		AlphaCentauri.logger.info(state.getValue(VARIANT));
+		//AlphaCentauri.logger.info(state.getValue(VARIANT));
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
 		{
 		case SPIRAL:
-			treeGen = new WorldGenSpiralTree(worldIn, pos);
+			new WorldGenSpiralTree(worldIn, pos);
 			break;
 		case SPLOTCH:
-			treeGen = new WorldGenSplotchTree(worldIn, pos);
+			new WorldGenSplotchTree(worldIn, pos);
 //			labelSplo:
 //				
 //			for (i = 0; i >= -1; --i)
@@ -116,21 +118,24 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			break;
 			
 		case MANGROVE:
-			treeGen = new WorldGenMangroveTree(worldIn, pos);
+			new WorldGenMangroveTree(worldIn, pos);
 			break;
 		case ADANSONIA:
-			labelAdon:
-				
-				for (i = 0; i >= -1; --i)
-                {
-                    for (j = 0; j >= -1; --j)
-                    {
-						if (isThreeByThree(worldIn, pos, i, j, BlockACPlanks1.EnumType.ADANSONIA)) {
-							treeGen = new WorldGenAdonsoniaTree(worldIn, pos);
-							break labelAdon;
-						}
-                    }
-                }
+			List<BlockPos> sapList = getsaplingRectangle(worldIn, pos, BlockACPlanks1.EnumType.ADANSONIA);
+			AlphaCentauri.logger.info(sapList != null);
+			if (sapList != null) new WorldGenHouseTree(worldIn, sapList);
+//			labelAdon:
+//				
+//				for (i = 0; i >= -1; --i)
+//                {
+//                    for (j = 0; j >= -1; --j)
+//                    {
+//						if (isThreeByThree(worldIn, pos, i, j, BlockACPlanks1.EnumType.ADANSONIA)) {
+//							treeGen = new WorldGenHouseTree(worldIn, pos);
+//							break labelAdon;
+//						}
+//                    }
+//                }
 			break;
 			
 		default:
@@ -147,6 +152,54 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 				&& this.isTypeAt(worldIn, pos.add(X, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X, 0, Z + 2), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 1), type)
 				&& this.isTypeAt(worldIn, pos.add(X + 2, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X + 2, 0, Z + 2), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 2), type);
 	}
+	
+	private List<BlockPos> getsaplingRectangle(World worldIn, BlockPos pos, BlockACPlanks1.EnumType type) {
+		//find direction
+		EnumFacing currDirection = null;
+		List<BlockPos> corners = new ArrayList<BlockPos>();
+		List<BlockPos> sapList = new ArrayList<BlockPos>();
+		boolean rotationClockwise = false;
+		for (EnumFacing direction:EnumFacing.HORIZONTALS) {
+			if (this.isTypeAt(worldIn, pos.offset(direction), type)) {
+				currDirection = direction;
+				break;
+			}
+		}
+		if (currDirection == null) {
+			return null; //single sapling
+		}
+		BlockPos currpos = pos;
+		//if turning, register turn direction, register corner, continue
+		//if not turning, go straight and recheck
+		//return to original sapling, return corners list
+		//if turns more than 4, more than 40 spalings traversed or line stops, return null
+		for (int i = 0; i <30; i++) {
+			currpos = currpos.offset(currDirection); //move forward
+			sapList.add(currpos);
+			if (this.isTypeAt(worldIn, currpos.offset(currDirection.rotateY()), type) && (corners.size() == 0 || rotationClockwise)) { //a sapling exists clockwise of direction AND no corners have been found OR we are going clockwise
+				rotationClockwise = true;
+				corners.add(currpos);
+				currDirection = currDirection.rotateY();
+			}
+			else if (this.isTypeAt(worldIn, currpos.offset(currDirection.rotateYCCW()), type) && (corners.size() == 0 || !rotationClockwise)) { //a sapling exists counterclockwise of direction AND no corners have been found OR we are going ccounterlockwise
+				corners.add(currpos);
+				currDirection = currDirection.rotateYCCW();
+			}
+			else if (!this.isTypeAt(worldIn, currpos.offset(currDirection), type)) { //moving straight, no saplings were found CW or CCW or forward
+				return null;
+			}
+			//else keep moving straight
+			if (corners.size() > 4) { //cant have more than 4 corners
+				return null;
+			}
+			if (currpos.equals(pos)) { //Back to start YAY
+				return sapList;
+			}
+		}
+		return null;
+	}
+	
+	
 	/**
 	 * Check whether the given BlockPos has a Sapling of the given type
 	 */
