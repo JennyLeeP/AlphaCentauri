@@ -93,24 +93,26 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 		int i = 0;
         int j = 0;
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
+		AlphaCentauri.logger.info(state.getValue(VARIANT));
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
 		{
 		case SPIRAL:
 			treeGen = new WorldGenSpiralTree(worldIn, pos);
 			break;
 		case SPLOTCH:
-			labelSplo:
-				
-			for (i = 0; i >= -1; --i)
-            {
-                for (j = 0; j >= -1; --j)
-                {
-					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.SPLOTCH)) {
-						treeGen = new WorldGenSplotchTree(worldIn, pos);
-						break labelSplo;
-					}
-                }
-            }
+			treeGen = new WorldGenSplotchTree(worldIn, pos);
+//			labelSplo:
+//				
+//			for (i = 0; i >= -1; --i)
+//            {
+//                for (j = 0; j >= -1; --j)
+//                {
+//					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.SPLOTCH)) {
+//						treeGen = new WorldGenSplotchTree(worldIn, pos);
+//						break labelSplo;
+//					}
+//                }
+//            }
 			break;
 			
 		case MANGROVE:
