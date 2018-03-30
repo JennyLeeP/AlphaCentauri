@@ -52,7 +52,7 @@
       "model": "alphacentauri:splotch_log",
       "x": 90
     },
-    "axis=z,variant=adonsonia": {
+    "axis=z,variant=adansonia": {
       "model": "alphacentauri:adansonia_log",
       "x": 90
     },
