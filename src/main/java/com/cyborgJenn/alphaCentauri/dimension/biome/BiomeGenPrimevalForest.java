@@ -3,19 +3,21 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
+import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSplotchTree;
 
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 public class BiomeGenPrimevalForest extends ACBiome
 {
-	public BiomeGenPrimevalForest(BiomeProperties par1) 
+	private WorldGenSplotchTree SPLOTCH_TREE = new WorldGenSplotchTree();
+	public BiomeGenPrimevalForest(BiomeProperties biomeprops) 
 	{
-		super(par1);
-		this.spawnableCreatureList.clear();
-		//this.setTemperatureRainfall(0.2F, 0.3F);
-		//this..setColor(8900670);
+		super(biomeprops);
+		this.customBiomeDecorator.treesPerChunk = 9;
+		this.customBiomeDecorator.grassPerChunk = 4;
+		this.customBiomeDecorator.flowersPerChunk = 100;
 	}
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
@@ -26,8 +28,18 @@ public class BiomeGenPrimevalForest extends ACBiome
 		this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 	@Override
-	public BiomeDecorator createBiomeDecorator()
-	{   
-		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
+	public WorldGenBaseTree getRandomTreeFeature(Random rand)
+	{ 
+		return SPLOTCH_TREE; 
+	}
+	@Override
+	public int getModdedBiomeGrassColor(int ont)
+	{
+		return 0x5c96c9;// Nice Blue color.
+	}
+	@Override
+	public int getModdedBiomeFoliageColor(int original)
+	{
+		return 0xad5cc9;
 	}
 }

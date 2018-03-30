@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -37,16 +36,9 @@ public class BiomeGenPaintedCliffs extends ACBiome
 	public BiomeGenPaintedCliffs(Biome.BiomeProperties properties)
 	{
 		super(properties);
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
         this.topBlock = TOP_BLOCK;
         this.fillerBlock = FILLER;
 	}
-	@Override
-	public void decorate(World worldIn, Random rand, BlockPos pos)
-    {
-        super.decorate(worldIn, rand, pos);
-    }
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {
@@ -241,7 +233,6 @@ public class BiomeGenPaintedCliffs extends ACBiome
 
         for (int l4 = 0; l4 < k3; ++l4)
         {
-            int i5 = 1;
             j4 += random.nextInt(16) + 4;
 
             for (int k1 = 0; j4 + k1 < 64 && k1 < 1; ++k1)

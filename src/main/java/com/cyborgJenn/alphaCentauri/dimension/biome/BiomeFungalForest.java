@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeFungalForest extends ACBiome
 {
-	private ACBiomeDecorator biomeDecorator;
+	//private ACBiomeDecorator biomeDecorator;
 	
 	public BiomeFungalForest(BiomeProperties properties) 
 	{
@@ -21,12 +21,12 @@ public class BiomeFungalForest extends ACBiome
 		this.spawnableWaterCreatureList.clear();
         this.topBlock = ModBlocks.FUNGUS.getDefaultState();
         this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
-        this.biomeDecorator = new ACBiomeDecorator(this);
-        biomeDecorator = (ACBiomeDecorator)biomeDecorator;
-        this.biomeDecorator.mossPerChunk = 5;
-        this.biomeDecorator.grassPerChunk = 3;
-        this.biomeDecorator.mushroomsPerChunk = 3;
-        this.biomeDecorator.bigMushroomsPerChunk = 409;
+        this.customBiomeDecorator = new ACBiomeDecorator(this);
+        //biomeDecorator = (ACBiomeDecorator)biomeDecorator;
+        this.customBiomeDecorator.mossPerChunk = 5;
+        this.customBiomeDecorator.grassPerChunk = 3;
+        this.customBiomeDecorator.mushroomsPerChunk = 3;
+        this.customBiomeDecorator.bigMushroomsPerChunk = 409;
         
         //TODO moss , ferns , tall grass, boulders and sporePlants.
 	}

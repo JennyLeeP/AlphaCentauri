@@ -18,9 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class BiomeGenSpiralForest extends ACBiome{
-
-	private ACBiomeDecorator customBiomeDecorator;
+public class BiomeGenSpiralForest extends ACBiome
+{
 	private WorldGenBoulders worldgenboulders = new WorldGenBoulders();
 	private WorldGenSpiralTree SPIRAL_TREE = new WorldGenSpiralTree();
 	List<EnumType> flowers = Lists.newArrayList(BlockACFlowers.EnumType.BLUE, BlockACFlowers.EnumType.RED, BlockACFlowers.EnumType.MAGENTA, BlockACFlowers.EnumType.PURPLE);
@@ -28,9 +27,6 @@ public class BiomeGenSpiralForest extends ACBiome{
 	public BiomeGenSpiralForest(BiomeProperties biomeProperties) 
 	{
 		super(biomeProperties);
-		/* Trees and Plants */
-		biomeDecorator = new ACBiomeDecorator(this);
-		customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
 		this.customBiomeDecorator.treesPerChunk = 9;
 		this.customBiomeDecorator.grassPerChunk = 4;
 		this.customBiomeDecorator.flowersPerChunk = 100;

@@ -3,9 +3,8 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
-import net.minecraft.util.math.BlockPos;
+
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 public class BiomeGenHoodooValley extends ACBiome
@@ -19,18 +18,7 @@ public class BiomeGenHoodooValley extends ACBiome
 	{      
 		this.topBlock = ModBlocks.ACGRASS.getDefaultState();
 		this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
-
 		this.generateCustomeBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
-	}
-	@Override
-	public BiomeDecorator createBiomeDecorator()
-	{   
-		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
-	}
-	@Override
-	public void decorate(World worldIn, Random rand, BlockPos pos)
-	{
-		super.decorate(worldIn, rand, pos);
 	}
 	@Override
 	public int getModdedBiomeGrassColor(int ont)

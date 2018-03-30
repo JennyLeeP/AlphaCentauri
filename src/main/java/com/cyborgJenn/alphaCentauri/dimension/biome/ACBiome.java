@@ -18,7 +18,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 public class ACBiome extends Biome
 {
 	protected static final WorldGenACDoublePlants DOUBLE_PLANT_GEN = new WorldGenACDoublePlants();
-	public BiomeDecorator biomeDecorator;
+	public ACBiomeDecorator customBiomeDecorator = new ACBiomeDecorator(this);
 	public ACBiome(Biome.BiomeProperties par1) 
 	{
 		super(par1);
@@ -41,7 +41,7 @@ public class ACBiome extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
     {
-        this.biomeDecorator.decorate(worldIn, rand, this, pos);
+        this.customBiomeDecorator.decorate(worldIn, rand, this, pos);
     }
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)

@@ -29,9 +29,9 @@ public class ACBiomeProvider extends BiomeProvider
 	private GenLayer acGenBiomes;
 	private GenLayer acBiomeIndexLayer;
 	private BiomeCache biomecache;
-	private List<Biome> tempList =Lists.newArrayList(ModBiomes.SPIRAL_FOREST, ModBiomes.PrimevalForest); //TODO add to this list when testing multiple biomes.
+	private List<Biome> tempList =Lists.newArrayList(ModBiomes.SPIRAL_FOREST, ModBiomes.PRIMEVAL_FOREST); //TODO add to this list when testing multiple biomes.
 	private List<Biome> allowedBiomes = Lists.newArrayList(ModBiomes.LUSHHILLS,ModBiomes.BEACH,ModBiomes.GREENRIVER,
-			ModBiomes.LIVINGPLATEAU,ModBiomes.Mangroves,ModBiomes.Morass,ModBiomes.PrimevalForest,ModBiomes.SPIRAL_FOREST,
+			ModBiomes.LIVINGPLATEAU,ModBiomes.Mangroves,ModBiomes.Morass,ModBiomes.PRIMEVAL_FOREST,ModBiomes.SPIRAL_FOREST,
 			ModBiomes.DESERT,ModBiomes.FUNGALFOREST,ModBiomes.PAINTED_CLIFFS);
 
 	public ACBiomeProvider()

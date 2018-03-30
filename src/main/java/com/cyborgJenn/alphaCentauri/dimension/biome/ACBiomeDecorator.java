@@ -272,9 +272,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 	            int k6 = random.nextInt(16) + 8;
 	            int l = random.nextInt(16) + 8;
 	            WorldGenAbstractTree worldgenabstracttree = biomeIn.getRandomTreeFeature(random);
-	            //worldgenabstracttree.setDecorationDefaults();
 	            BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(k6, 0, l));
-
 	            if (worldgenabstracttree.generate(worldIn, random, blockpos))
 	            {
 	                worldgenabstracttree.generateSaplings(worldIn, random, blockpos);

@@ -14,16 +14,14 @@ public class BiomeGenLivingOcean extends ACBiome{
 
 	public BiomeGenLivingOcean(Biome.BiomeProperties properties)
 	{
-		super(properties);
-		this.spawnableCreatureList.clear();
-		
+		super(properties);	
 	}
-
-	public Biome.TempCategory getTempCategory()
+	@Override
+	public Biome.TempCategory getTempCategory() //TODO is this needed?
 	{
 		return Biome.TempCategory.OCEAN;
 	}
-
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{      
 		this.topBlock = ModBlocks.GRAVEL.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.BLUE);

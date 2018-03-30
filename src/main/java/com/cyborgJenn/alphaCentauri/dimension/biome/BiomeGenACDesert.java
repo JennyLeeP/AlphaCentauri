@@ -7,7 +7,6 @@ import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenFossils;
 
 public class BiomeGenACDesert extends ACBiome 
@@ -18,17 +17,9 @@ public class BiomeGenACDesert extends ACBiome
         this.spawnableCreatureList.clear();
         this.topBlock = ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT);
         this.fillerBlock = ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT);
-        //this.biomeDecorator.treesPerChunk = 0;
-        //this.biomeDecorator.deadBushPerChunk = 2;
-        //this.biomeDecorator.reedsPerChunk = 50;
-        //this.biomeDecorator.cactiPerChunk = 10;
-        this.spawnableCreatureList.clear();
-        //this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 4, 2, 3));//TODO Bunnies ? Aliens ?
-	}
-	@Override
-	public BiomeDecorator createBiomeDecorator()
-	{   
-		return getModdedBiomeDecorator(new ACBiomeDecorator(this));
+        this.customBiomeDecorator.deadBushPerChunk = 2;
+        this.customBiomeDecorator.reedsPerChunk = 50;
+        this.customBiomeDecorator.cactiPerChunk = 10;
 	}
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)

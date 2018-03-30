@@ -12,16 +12,16 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeGenMorass extends ACBiome{
 
-	private ACBiomeDecorator customBiomeDecorator;
+	//private ACBiomeDecorator customBiomeDecorator;
 	
 	public BiomeGenMorass(Biome.BiomeProperties properties) {
 		super(properties);
         //this.rootHeight = -0.5F;
         //this.heightVariation = 0.1F;
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
-        biomeDecorator = new ACBiomeDecorator(this);
-        customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
+      //  this.spawnableCreatureList.clear();
+       // this.spawnableMonsterList.clear();
+       // biomeDecorator = new ACBiomeDecorator(this);
+        //customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
         
         this.customBiomeDecorator.treesPerChunk = 7;
         this.customBiomeDecorator.nodesPerChunk = 1;
