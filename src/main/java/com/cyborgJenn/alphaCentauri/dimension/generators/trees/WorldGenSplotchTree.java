@@ -62,10 +62,8 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 				IBlockState branchLog = DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(direction.getAxis()));
 				for (int j = 0; j < branchLength; j++) {
 					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1), branchLog);
-					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateY()), DEFAULT_LEAF);
-					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateYCCW()), DEFAULT_LEAF);
 					int leafWidth = Math.round((branchLength - j)/2f + 1);
-					for (int k = 2; k < leafWidth; k++) {
+					for (int k = 1; k < leafWidth; k++) {
 						this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateY(), k), DEFAULT_LEAF);
 						this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateYCCW(), k), DEFAULT_LEAF);
 					}
