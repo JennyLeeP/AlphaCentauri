@@ -64,6 +64,11 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1), branchLog);
 					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateY()), DEFAULT_LEAF);
 					this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateYCCW()), DEFAULT_LEAF);
+					int leafWidth = Math.round((branchLength - j)/2f + 1);
+					for (int k = 2; k < leafWidth; k++) {
+						this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateY(), k), DEFAULT_LEAF);
+						this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, j + 1).offset(direction.rotateYCCW(), k), DEFAULT_LEAF);
+					}
 
 				}
 				this.setBlockAndNotifyAdequately(worldIn, pos.up(i).offset(direction, branchLength + 1), DEFAULT_LEAF);
