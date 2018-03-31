@@ -12,6 +12,7 @@ import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACLog2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank1;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACPlank2;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACSand;
+import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockACSandstone;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockAlienPlants;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockBeachGrass;
 import com.cyborgJenn.alphaCentauri.item.itemBlock.ItemBlockVanillaOres;
@@ -48,8 +49,7 @@ public class ModBlocks {
 	public static Block GRAVEL;
 	public static Block PEAT;
 	
-	public static Block lightSandstone;
-	public static Block darkSandstone;
+	public static Block SANDSTONE;
 	public static Block bogg;
 	public static Block CHALK;
 	public static Block shells;
@@ -131,21 +131,20 @@ public class ModBlocks {
 		CommonProxy.registerBlockWithCustomItem(GRAVEL, new ItemBlockACGravel(GRAVEL),"gravel");
 		
 		/* Stone Blocks */
-		ACSTONE       = new GenericBlock(1, Material.ROCK);
+		ACSTONE      = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(ACSTONE, "acstone");
-		ACCOBBLE      = new GenericBlock(1, Material.ROCK);
+		ACCOBBLE     = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(ACCOBBLE, "accobble");
-		BASALT        = new GenericBlock(1, Material.ROCK);
+		BASALT       = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(BASALT, "basalt");
-		BASALTCOBBLE  = new GenericBlock(1, Material.ROCK);
+		BASALTCOBBLE = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(BASALTCOBBLE, "basalt_cobble");
-		MARBLE        = new GenericBlock(1, Material.ROCK);
+		MARBLE       = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(MARBLE, "marble");
-		GRANITE       = new GenericBlock(1, Material.ROCK);
+		GRANITE      = new GenericBlock(1, Material.ROCK);
 		CommonProxy.registerBlockWithItem(GRANITE, "granite");
-		
-		lightSandstone= new SandstoneBlock("sandstone_light");
-		darkSandstone = new SandstoneBlock("sandstone_dark");
+		SANDSTONE	 = new BlockACSandStone();
+		CommonProxy.registerBlockWithCustomItem(SANDSTONE, new ItemBlockACSandstone(SANDSTONE), "sandstone");
 
 		/* Misc */
 		CHALK         = new BlockChalk();
