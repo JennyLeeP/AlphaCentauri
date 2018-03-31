@@ -15,18 +15,6 @@
      "check_decay=true,decayable=true,variant=adansonia": { "model": "alphacentauri:leaves_adansonia" },
      "check_decay=false,decayable=true,variant=adansonia": { "model": "alphacentauri:leaves_adansonia" },
      "check_decay=false,decayable=false,variant=adansonia": { "model": "alphacentauri:leaves_adansonia" },
-     "check_decay=true,decayable=false,variant=adansonia": { "model": "alphacentauri:leaves_adansonia" },
-     "check_decay=true,decayable=true,variant=nefralia": { "model": "alphacentauri:leaves_nefralia" },
-     "check_decay=false,decayable=true,variant=nefralia": { "model": "alphacentauri:leaves_nefralia" },
-     "check_decay=false,decayable=false,variant=nefralia": { "model": "alphacentauri:leaves_nefralia" },
-     "check_decay=true,decayable=false,variant=nefralia": { "model": "alphacentauri:leaves_nefralia" },
-     "check_decay=true,decayable=true,variant=peylal": { "model": "alphacentauri:leaves_peylal" },
-     "check_decay=false,decayable=true,variant=peylal": { "model": "alphacentauri:leaves_peylal" },
-     "check_decay=false,decayable=false,variant=peylal": { "model": "alphacentauri:leaves_peylal" },
-     "check_decay=true,decayable=false,variant=peylal": { "model": "alphacentauri:leaves_peylal" },
-     "check_decay=true,decayable=true,variant=beratuzia": { "model": "alphacentauri:leaves_beratuzia" },
-     "check_decay=false,decayable=true,variant=beratuzia": { "model": "alphacentauri:leaves_beratuzia" },
-     "check_decay=false,decayable=false,variant=beratuzia": { "model": "alphacentauri:leaves_beratuzia" },
-     "check_decay=true,decayable=false,variant=beratuzia": { "model": "alphacentauri:leaves_beratuzia" }
+     "check_decay=true,decayable=false,variant=adansonia": { "model": "alphacentauri:leaves_adansonia" }
    }
 }

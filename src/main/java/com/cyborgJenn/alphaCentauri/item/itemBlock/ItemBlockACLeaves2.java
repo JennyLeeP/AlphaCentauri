@@ -4,11 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockACLeaves1 extends ItemBlock 
+public class ItemBlockACLeaves2 extends ItemBlock 
 {
-	private final static String[] subNames = {"spiral", "splotch", "mangrove", "adansonia"};
+	private final static String[] subNames = {"nefralia", "peylal", "beratuzia"};
 	
-	public ItemBlockACLeaves1(Block block) 
+	public ItemBlockACLeaves2(Block block) 
 	{
 		super(block);
 		setHasSubtypes(true);

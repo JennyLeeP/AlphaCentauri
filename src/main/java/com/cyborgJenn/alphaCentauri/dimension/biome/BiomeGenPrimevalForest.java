@@ -15,9 +15,9 @@ public class BiomeGenPrimevalForest extends ACBiome
 	public BiomeGenPrimevalForest(BiomeProperties biomeprops) 
 	{
 		super(biomeprops);
-		this.customBiomeDecorator.treesPerChunk = 9;
+		this.customBiomeDecorator.treesPerChunk = 1;
 		this.customBiomeDecorator.grassPerChunk = 4;
-		this.customBiomeDecorator.flowersPerChunk = 100;
+		this.customBiomeDecorator.flowersPerChunk = 10;
 	}
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)

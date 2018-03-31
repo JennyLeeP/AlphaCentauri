@@ -21,14 +21,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockACLeaves1 extends Block implements net.minecraftforge.common.IShearable
+public class BlockACLeaves2 extends Block implements net.minecraftforge.common.IShearable
 {
-	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACLeaves1.EnumType.class);
+	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", BlockACLeaves2.EnumType.class);
 	public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
     public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 	protected boolean leavesAreFancy = true;
 	int[] surroundings;
-	public BlockACLeaves1() 
+	public BlockACLeaves2() 
 	{
 		super(Material.LEAVES);
 		this.setTickRandomly(true);
@@ -41,7 +41,7 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
      */
     public int damageDropped(IBlockState state)
     {
-        return ((BlockACLeaves1.EnumType)state.getValue(VARIANT)).getMetadata();
+        return ((BlockACLeaves2.EnumType)state.getValue(VARIANT)).getMetadata();
     }
 
     /**
@@ -51,12 +51,12 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
     @SideOnly(Side.CLIENT)
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
-    	BlockACLeaves1.EnumType[] aenumtype = BlockACLeaves1.EnumType.values();
+    	BlockACLeaves2.EnumType[] aenumtype = BlockACLeaves2.EnumType.values();
         int i = aenumtype.length;
 
         for (int j = 0; j < i; ++j)
         {
-        	BlockACLeaves1.EnumType enumtype = aenumtype[j];
+        	BlockACLeaves2.EnumType enumtype = aenumtype[j];
         	items.add(new ItemStack(this, 1, enumtype.getMetadata()));
         }
     }
@@ -66,7 +66,7 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
     public IBlockState getStateFromMeta(int meta)
     {
        // return this.getDefaultState().withProperty(VARIANT, BlockACLeaves1.EnumType.byMetadata(meta));
-        return this.getDefaultState().withProperty(VARIANT, BlockACLeaves1.EnumType.byMetadata(meta)).withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(VARIANT, BlockACLeaves2.EnumType.byMetadata(meta)).withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
 
     }
 
@@ -76,7 +76,7 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
     public int getMetaFromState(IBlockState state)
     {
     	int i = 0;
-        i = i | ((BlockACLeaves1.EnumType)state.getValue(VARIANT)).getMetadata();
+        i = i | ((BlockACLeaves2.EnumType)state.getValue(VARIANT)).getMetadata();
 
         if (!((Boolean)state.getValue(DECAYABLE)).booleanValue())
         {
@@ -127,11 +127,10 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
     }
 	public static enum EnumType implements IStringSerializable
     {
-        SPIRAL(0, "spiral"),
-        SPLOTCH(1, "splotch"),
-		MANGROVE(2, "mangrove"),
-		ADANSONIA(3, "adansonia");
-        private static final BlockACLeaves1.EnumType[] META_LOOKUP = new BlockACLeaves1.EnumType[values().length];
+		NEFRALIA(0, "nefralia"),
+		PEYLAL(1, "peylal"),
+		BERATUZIA(2, "beratuzia");
+        private static final BlockACLeaves2.EnumType[] META_LOOKUP = new BlockACLeaves2.EnumType[values().length];
         private final int meta;
         private final String name;
         private final String unlocalizedName;
@@ -159,7 +158,7 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
             return this.name;
         }
 
-        public static BlockACLeaves1.EnumType byMetadata(int meta)
+        public static BlockACLeaves2.EnumType byMetadata(int meta)
         {
             if (meta < 0 || meta >= META_LOOKUP.length)
             {
@@ -181,12 +180,12 @@ public class BlockACLeaves1 extends Block implements net.minecraftforge.common.I
 
         static
         {
-        	BlockACLeaves1.EnumType[] var0 = values();
+        	BlockACLeaves2.EnumType[] var0 = values();
             int var1 = var0.length;
 
             for (int var2 = 0; var2 < var1; ++var2)
             {
-            	BlockACLeaves1.EnumType var3 = var0[var2];
+            	BlockACLeaves2.EnumType var3 = var0[var2];
                 META_LOOKUP[var3.getMetadata()] = var3;
             }
         }
