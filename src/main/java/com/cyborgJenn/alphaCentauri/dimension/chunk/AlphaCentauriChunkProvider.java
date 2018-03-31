@@ -8,6 +8,8 @@ import java.util.Random;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACLakes;
+import com.cyborgJenn.alphaCentauri.dimension.generators.mapgen.MapGenACCaves;
+import com.cyborgJenn.alphaCentauri.dimension.generators.mapgen.MapGenACRavine;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +26,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -50,11 +51,14 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 	double[] minLimitRegion;
 	double[] maxLimitRegion;
 	double[] depthRegion;
-	private MapGenBase caveGenerator = new MapGenCaves();
+	private MapGenBase caveGenerator = new MapGenACCaves();
+	private MapGenBase ravineGenerator = new MapGenACRavine();
 
 	public AlphaCentauriChunkProvider(World worldObj) 
 	{
 		caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
+		ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE);
+
 		this.worldObj = worldObj;
 		long seed = worldObj.getSeed();
 		String generatorOptions = worldObj.getWorldInfo().getGeneratorOptions();
@@ -78,11 +82,11 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 			}
 		}
 		if (generatorOptions != null)
-        {
-            this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorOptions).build();
-            this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
-            worldObj.setSeaLevel(this.settings.seaLevel);
-        }
+		{
+			this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorOptions).build();
+			this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
+			worldObj.setSeaLevel(this.settings.seaLevel);
+		}
 	}
 	/**
 	 * 
@@ -188,8 +192,12 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		/* Setup biomes again for actual biome decoration   */
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.replaceBiomeBlocks(x, z, chunkprimer, biomesForGeneration);
-		/*    Generate caves     */
-		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
+		if (this.settings.useCaves) {
+			this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
+		}
+		if (this.settings.useRavines) {
+            this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
+        }
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		byte[] biomeArray = chunk.getBiomeArray();
 		for (int i = 0; i < biomeArray.length; ++i) 
@@ -230,12 +238,12 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 						//float baseHeight = biome.getBaseHeight();
 						//float variation = biome.getHeightVariation();
 						float baseHeight = this.settings.biomeDepthOffSet + biome.getBaseHeight() * this.settings.biomeDepthWeight;
-                        float variation = this.settings.biomeScaleOffset + biome.getHeightVariation() * this.settings.biomeScaleWeight;
-                        if (this.terrainType == WorldType.AMPLIFIED && baseHeight > 0.0F)
-                        {
-                        	baseHeight = 1.0F + baseHeight * 2.0F;
-                        	variation = 1.0F + variation * 4.0F;
-                        }
+						float variation = this.settings.biomeScaleOffset + biome.getHeightVariation() * this.settings.biomeScaleWeight;
+						if (this.terrainType == WorldType.AMPLIFIED && baseHeight > 0.0F)
+						{
+							baseHeight = 1.0F + baseHeight * 2.0F;
+							variation = 1.0F + variation * 4.0F;
+						}
 						float f5 = biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
 						f += variation * f5;
 						f1 += baseHeight * f5;
@@ -351,7 +359,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 			}
 		}
 		//TODO add dungeons here.
-		
+
 		// Adds biome decorations (like flowers, grass, trees, ...).
 		biome.decorate(this.worldObj, this.random, blockpos);
 		// Make sure animals appropriate to the biome spawn here when the chunk is generated.
@@ -370,7 +378,7 @@ public class AlphaCentauriChunkProvider implements  IChunkGenerator
 		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
-	
+
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z) 
 	{
