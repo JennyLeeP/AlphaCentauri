@@ -1,0 +1,13 @@
+{
+  "variants": {
+     "variant=light_normal": { "model": "alphacentauri:sandstone_light_normal" },
+     "variant=light_smooth": { "model": "alphacentauri:sandstone_light_smooth" },
+     "variant=light_carved": { "model": "alphacentauri:sandstone_light_carved" },
+     "variant=medium_normal": { "model": "alphacentauri:sandstone_medium_normal" },
+     "variant=medium_smooth": { "model": "alphacentauri:sandstone_medium_smooth" },
+     "variant=medium_carved": { "model": "alphacentauri:sandstone_medium_carved" },
+     "variant=dark_normal": { "model": "alphacentauri:sandstone_dark_normal" },
+     "variant=dark_smooth": { "model": "alphacentauri:sandstone_dark_smooth" },
+     "variant=dark_carved": { "model": "alphacentauri:sandstone_dark_carved" }
+   }
+}

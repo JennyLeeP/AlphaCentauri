@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "alphacentauri:blocks/dark_sandstone_top",
+        "side": "alphacentauri:blocks/dark_sandstone_smooth"
+    }
+}

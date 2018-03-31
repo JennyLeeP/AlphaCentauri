@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "alphacentauri:blocks/light_sandstone_bottom",
+        "top": "alphacentauri:blocks/light_sandstone_top",
+        "side": "alphacentauri:blocks/light_sandstone_normal"
+    }
+}
