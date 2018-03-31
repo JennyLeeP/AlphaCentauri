@@ -18,7 +18,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldGenSplotchTree extends WorldGenBaseTree 
 {
-	private final int baseHeight = 15;
+	private final int baseHeight = 10;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPLOTCH);
 	private static final IBlockState DEFAULT_LEAF = ModBlocks.LEAVES1.getDefaultState().withProperty(BlockACLeaves1.VARIANT, BlockACLeaves1.EnumType.SPLOTCH).withProperty(BlockACLeaves1.CHECK_DECAY, Boolean.valueOf(false));
 
@@ -34,17 +34,18 @@ public class WorldGenSplotchTree extends WorldGenBaseTree
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos pos)
 	{
-		int height = rand.nextInt(5) + baseHeight;
+		int height = rand.nextInt(10) + baseHeight;
 		if (this.isValidLocation(worldIn, pos, false)) {
 			makeTrunk(worldIn, DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.Y), pos, height);
-			makeBranches(worldIn, pos, height);
+			makeBranches(worldIn, pos, height, rand);
 			return true;
 		}
 		return false;
 	}
-	public void makeBranches(World worldIn, BlockPos pos, int height) {
+	public void makeBranches(World worldIn, BlockPos pos, int height, Random rand) {
 		this.setBlockAndNotifyAdequately(worldIn, pos.up(height+1), DEFAULT_LEAF);
-		for (int i = height; i > 0;i=i-2) {
+		int baseGap = rand.nextInt(4); 
+		for (int i = height; i > baseGap;i=i-2) {
 			int branchLength = (height - i)/2;
 			for (EnumFacing direction:EnumFacing.HORIZONTALS) {
 				IBlockState branchLog = DEFAULT_TRUNK.withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(direction.getAxis()));
