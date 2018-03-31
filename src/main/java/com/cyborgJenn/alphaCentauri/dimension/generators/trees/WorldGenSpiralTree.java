@@ -26,7 +26,7 @@ public class WorldGenSpiralTree extends WorldGenBaseTree
 {
 	private final int BaseHeight = 6;
 	private static final IBlockState DEFAULT_TRUNK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL);
-	private static final IBlockState DEFAULT_LEAF = ModBlocks.LEAVES1.getDefaultState().withProperty(BlockACLeaves1.VARIANT, BlockACLeaves1.EnumType.SPIRAL)/*.withProperty(BlockACLeaves1.CHECK_DECAY, Boolean.valueOf(false))*/;
+	private static final IBlockState DEFAULT_LEAF = ModBlocks.LEAVES1.getDefaultState().withProperty(BlockACLeaves1.VARIANT, BlockACLeaves1.EnumType.SPIRAL).withProperty(BlockACLeaves1.CHECK_DECAY, Boolean.valueOf(false));
 	private static final IBlockState BARK = ModBlocks.LOG1.getDefaultState().withProperty(BlockACLog1.VARIANT, BlockACPlanks1.EnumType.SPIRAL).withProperty(BlockACLog1.LOG_AXIS, BlockLog.EnumAxis.NONE);
 	
 	public WorldGenSpiralTree()
