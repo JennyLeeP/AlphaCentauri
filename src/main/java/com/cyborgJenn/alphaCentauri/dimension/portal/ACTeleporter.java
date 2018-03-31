@@ -22,9 +22,10 @@ import net.minecraft.world.WorldServer;
 public class ACTeleporter extends Teleporter 
 {
 	private final WorldServer worldServerInstance;
+	@SuppressWarnings("unused")
 	private int dimensionID;
 	private final Random random;
-	private final Long2ObjectMap<ACTeleporter.AlphaCentauriPortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<ACTeleporter.AlphaCentauriPortalPosition>(4096);
+	private final Long2ObjectMap<ACTeleporter.AlphaCentauriPortalPosition> destinationCoordCache = new Long2ObjectOpenHashMap<ACTeleporter.AlphaCentauriPortalPosition>(4096);
 
 	public ACTeleporter(WorldServer par1WorldServer, int dimID) {
 		super(par1WorldServer);
@@ -76,7 +77,6 @@ public class ACTeleporter extends Teleporter
 	@Override
 	public boolean placeInExistingPortal(Entity entityIn, float rotationYaw) 
 	{
-		short short1 = 128;
 		double d0 = -1.0D;
 		int j = MathHelper.floor(entityIn.posX);
 		int k = MathHelper.floor(entityIn.posZ);
@@ -86,7 +86,7 @@ public class ACTeleporter extends Teleporter
 
 		if (this.destinationCoordinateCache.containsKey(l))
 		{
-			ACTeleporter.AlphaCentauriPortalPosition portalposition = (ACTeleporter.AlphaCentauriPortalPosition) this.destinationCoordinateCache.get(l);
+			ACTeleporter.AlphaCentauriPortalPosition portalposition = (ACTeleporter.AlphaCentauriPortalPosition) this.destinationCoordCache.get(l);
 			d0 = 0.0D;
             blockpos = portalposition;
             portalposition.lastUpdateTime = this.worldServerInstance.getTotalWorldTime();
@@ -128,7 +128,7 @@ public class ACTeleporter extends Teleporter
         {
             if (flag)
             {
-                this.destinationCoordinateCache.put(l, new ACTeleporter.AlphaCentauriPortalPosition(blockpos, this.worldServerInstance.getTotalWorldTime()));
+                this.destinationCoordCache.put(l, new ACTeleporter.AlphaCentauriPortalPosition(blockpos, this.worldServerInstance.getTotalWorldTime()));
             }
 
             double d5 = (double)blockpos.getX() + 0.5D;
@@ -201,7 +201,6 @@ public class ACTeleporter extends Teleporter
 	@Override
 	public boolean makePortal(Entity entityIn)
 	{
-		int i = 16;
         double d0 = -1.0D;
         int j = MathHelper.floor(entityIn.posX);
         int k = MathHelper.floor(entityIn.posY);
@@ -407,7 +406,7 @@ public class ACTeleporter extends Teleporter
 	{
 		if ((worldTime % 100L) == 0L){
 			long i = worldTime - 300L;
-			ObjectIterator<ACTeleporter.AlphaCentauriPortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
+			ObjectIterator<ACTeleporter.AlphaCentauriPortalPosition> objectiterator = this.destinationCoordCache.values().iterator();
 			while (objectiterator.hasNext()){
 				AlphaCentauriPortalPosition portalposition = (AlphaCentauriPortalPosition)objectiterator.next();
 				if (portalposition == null || portalposition.lastUpdateTime < i)

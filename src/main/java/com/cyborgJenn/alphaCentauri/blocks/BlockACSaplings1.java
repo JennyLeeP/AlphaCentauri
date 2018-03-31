@@ -91,9 +91,6 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 	}
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) //TODO looks like this isnt finished
 	{
-		//WorldGenBaseTree treeGen;
-		int i = 0;
-        int j = 0;
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
 		//AlphaCentauri.logger.info(state.getValue(VARIANT));
 		switch ((BlockACPlanks1.EnumType)state.getValue(VARIANT))
@@ -105,9 +102,9 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			new WorldGenSplotchTree(worldIn, pos);
 //			labelSplo:
 //				
-//			for (i = 0; i >= -1; --i)
+//			for (int i = 0; i >= -1; --i)
 //            {
-//                for (j = 0; j >= -1; --j)
+//                for (int j = 0; j >= -1; --j)
 //                {
 //					if (isTwoByTwo(worldIn, pos, i, j, BlockACPlanks1.EnumType.SPLOTCH)) {
 //						treeGen = new WorldGenSplotchTree(worldIn, pos);
@@ -143,10 +140,12 @@ public class BlockACSaplings1 extends BlockBush implements IGrowable
 			break;
 		}
 	}
+	@SuppressWarnings("unused")
 	private boolean isTwoByTwo(World worldIn, BlockPos pos, int X, int Z, BlockACPlanks1.EnumType type)
 	{
 		return this.isTypeAt(worldIn, pos.add(X, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 1), type);
 	}
+	@SuppressWarnings("unused")
 	private boolean isThreeByThree(World worldIn, BlockPos pos, int X, int Z, BlockACPlanks1.EnumType type) {
 		return this.isTypeAt(worldIn, pos.add(X, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z), type) && this.isTypeAt(worldIn, pos.add(X + 2, 0, Z), type) 
 				&& this.isTypeAt(worldIn, pos.add(X, 0, Z + 1), type) && this.isTypeAt(worldIn, pos.add(X, 0, Z + 2), type) && this.isTypeAt(worldIn, pos.add(X + 1, 0, Z + 1), type)

@@ -1,16 +1,20 @@
 package com.cyborgJenn.alphaCentauri.render;
 
+import java.util.Random;
+
 import com.cyborgJenn.alphaCentauri.utils.Reference;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -32,7 +36,7 @@ public class ACSkyRenderer extends IRenderHandler {
 	private VertexFormat vertexBufferFormat;
 	private net.minecraft.client.renderer.vertex.VertexBuffer starVBO;
 	private net.minecraft.client.renderer.vertex.VertexBuffer skyVBO;
-	private net.minecraft.client.renderer.vertex.VertexBuffer sky2VBO;
+	//private net.minecraft.client.renderer.vertex.VertexBuffer sky2VBO;
 	public ACSkyRenderer()
 	{
 
@@ -43,6 +47,7 @@ public class ACSkyRenderer extends IRenderHandler {
 	@SideOnly(Side.CLIENT)
 	public void render(float partialTicks, WorldClient world, Minecraft mc) 
 	{
+		/* starting at renderSky() in RenderGlobal line 1324 */
 		this.vboEnabled = OpenGlHelper.useVbo();
 		GlStateManager.disableTexture2D();
 		Vec3d vec3d = world.getSkyColor(mc.getRenderViewEntity(), partialTicks);
@@ -50,15 +55,6 @@ public class ACSkyRenderer extends IRenderHandler {
 		float f1 = (float)vec3d.y;
 		float f2 = (float)vec3d.z;
 
-		if (mc.gameSettings.anaglyph)
-		{
-			float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
-			float f4 = (f * 30.0F + f1 * 70.0F) / 100.0F;
-			float f5 = (f * 30.0F + f2 * 70.0F) / 100.0F;
-			f = f3;
-			f1 = f4;
-			f2 = f5;
-		}
 		GlStateManager.color(f, f1, f2);
 		Tessellator tessellator1 = Tessellator.getInstance();
 		BufferBuilder bufferBuilder = tessellator1.getBuffer();
@@ -100,18 +96,8 @@ public class ACSkyRenderer extends IRenderHandler {
 			float f7 = afloat[1]; // G
 			float f8 = afloat[2]; // B
 
-			if (mc.gameSettings.anaglyph)
-			{
-				float f9 = (f6 * 30.0F + f7 * 59.0F + f8 * 11.0F) / 100.0F;
-				float f10 = (f6 * 30.0F + f7 * 70.0F) / 100.0F;
-				float f11 = (f6 * 30.0F + f8 * 70.0F) / 100.0F;
-				f6 = f9;
-				f7 = f10;
-				f8 = f11;
-			}
 			bufferBuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
 			bufferBuilder.pos(0.0D, 100.0D, 0.0D).color(f6, f7, f8, afloat[3]).endVertex();
-			int j = 16;
 
 			for (int l = 0; l <= 16; ++l)
 			{
@@ -124,25 +110,27 @@ public class ACSkyRenderer extends IRenderHandler {
 			GlStateManager.popMatrix();
 			GlStateManager.shadeModel(7424);
 		}
+		/*---------------ALphaCentauri A   - Sun 1---------------*/
 		GlStateManager.enableTexture2D();
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		GlStateManager.pushMatrix();
-		float f16 = 1.0F - world.getRainStrength(partialTicks);
-		GlStateManager.color(1.0F, 1.0F, 1.0F, f16);
+		float rainSt = 1.0F - world.getRainStrength(partialTicks);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, rainSt);
 		GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
 		
-		float f17 = 30.0F;// Size of sun from center
+		float sunDia = 30.0F;// Size of sun from center
 		mc.renderEngine.bindTexture(sunTexture);
 		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferBuilder.pos((double)(-f17), 100.0D, (double)(-f17)).tex(0.0D, 0.0D).endVertex();
-		bufferBuilder.pos((double)f17, 100.0D, (double)(-f17)).tex(1.0D, 0.0D).endVertex();
-		bufferBuilder.pos((double)f17, 100.0D, (double)f17).tex(1.0D, 1.0D).endVertex();
-		bufferBuilder.pos((double)(-f17), 100.0D, (double)f17).tex(0.0D, 1.0D).endVertex();
+		bufferBuilder.pos((double)(-sunDia), 100.0D, (double)(-sunDia)).tex(0.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sunDia, 100.0D, (double)(-sunDia)).tex(1.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sunDia, 100.0D, (double)sunDia).tex(1.0D, 1.0D).endVertex();
+		bufferBuilder.pos((double)(-sunDia), 100.0D, (double)sunDia).tex(0.0D, 1.0D).endVertex();
 		tessellator1.draw(); // Draw sun
 
-		/*    Begin Moon    */
-		f17 = 25.0F; // Size of moon from center
+		/*------------------------Moon--------------------------
+		 *    this is = to renderSky() method in RenderGlobal   */
+		float moonRad = 10.0F; // Size of moon from center
 		mc.renderEngine.bindTexture(moonTextures);
 		int i = world.getMoonPhase();
 		int k = i % 4;
@@ -152,31 +140,29 @@ public class ACSkyRenderer extends IRenderHandler {
 		float f24 = (float)(k + 1) / 4.0F;
 		float f14 = (float)(i1 + 1) / 2.0F;
 		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferBuilder.pos((double)(-f17), -100.0D, (double)f17).tex((double)f24, (double)f14).endVertex();
-		bufferBuilder.pos((double)f17, -100.0D, (double)f17).tex((double)f22, (double)f14).endVertex();
-		bufferBuilder.pos((double)f17, -100.0D, (double)(-f17)).tex((double)f22, (double)f23).endVertex();
-		bufferBuilder.pos((double)(-f17), -100.0D, (double)(-f17)).tex((double)f24, (double)f23).endVertex();
+		bufferBuilder.pos((double)(-moonRad), -100.0D, (double)moonRad).tex((double)f24, (double)f14).endVertex();
+		bufferBuilder.pos((double)moonRad, -100.0D, (double)moonRad).tex((double)f22, (double)f14).endVertex();
+		bufferBuilder.pos((double)moonRad, -100.0D, (double)(-moonRad)).tex((double)f22, (double)f23).endVertex();
+		bufferBuilder.pos((double)(-moonRad), -100.0D, (double)(-moonRad)).tex((double)f24, (double)f23).endVertex();
 		tessellator1.draw();  // Draw Moon
 		
-		/* Alpha Centauri B   */
-		//TODO add second Star
-		
-		float sunB = 1.0F - world.getRainStrength(partialTicks);
-		GlStateManager.color(1.0F, 1.0F, 1.0F, sunB);
+		/*------------------Alpha Centauri B-------------------*/
+		GlStateManager.color(1.0F, 1.0F, 1.0F, rainSt);
 		GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
 		
-		float sunb2 = 15.0F;// Size of sun from center
+		float sun2Rad = 15.0F;// Size of sun from center
 		mc.renderEngine.bindTexture(sunBTexture);
 		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferBuilder.pos((double)(-sunb2), 100.0D, (double)(-sunb2)).tex(0.0D, 0.0D).endVertex();
-		bufferBuilder.pos((double)sunb2, 100.0D, (double)(-sunb2)).tex(1.0D, 0.0D).endVertex();
-		bufferBuilder.pos((double)sunb2, 100.0D, (double)sunb2).tex(1.0D, 1.0D).endVertex();
-		bufferBuilder.pos((double)(-sunb2), 100.0D, (double)sunb2).tex(0.0D, 1.0D).endVertex();
+		bufferBuilder.pos((double)(-sun2Rad), 100.0D, (double)(-sun2Rad)).tex(0.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sun2Rad, 100.0D, (double)(-sun2Rad)).tex(1.0D, 0.0D).endVertex();
+		bufferBuilder.pos((double)sun2Rad, 100.0D, (double)sun2Rad).tex(1.0D, 1.0D).endVertex();
+		bufferBuilder.pos((double)(-sun2Rad), 100.0D, (double)sun2Rad).tex(0.0D, 1.0D).endVertex();
 		tessellator1.draw(); // Draw sun
 		
+		/*                 Stars                */
 		GlStateManager.disableTexture2D();
-		float f15 = world.getStarBrightness(partialTicks) * f16;
+		float f15 = world.getStarBrightness(partialTicks) * rainSt;
 		if (f15 > 0.0F)
 		{
 			GlStateManager.color(f15, f15, f15, f15);
@@ -185,6 +171,7 @@ public class ACSkyRenderer extends IRenderHandler {
                 GlStateManager.callList(this.starGLCallList);
             
 		}
+		//this.generateStars();
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.disableBlend();
 		GlStateManager.enableAlpha();
@@ -192,20 +179,18 @@ public class ACSkyRenderer extends IRenderHandler {
 		GlStateManager.popMatrix();
 		GlStateManager.disableTexture2D();
 		GlStateManager.color(0.0F, 0.0F, 0.0F);
+		
+		/*                        Sky 2                      */
 		double d0 = mc.player.getPositionEyes(partialTicks).y - world.getHorizon();
 		if (d0 < 0.0D)
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0.0F, 12.0F, 0.0F);
 			
-			
-				GlStateManager.callList(this.glSkyList2);
-			
-
+                GlStateManager.callList(this.glSkyList2);
+            
 			GlStateManager.popMatrix();
-			float f18 = 1.0F;
 			float f19 = -((float)(d0 + 65.0D));
-			float f20 = -1.0F;
 			bufferBuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
 			bufferBuilder.pos(-1.0D, (double)f19, 1.0D).color(0, 0, 0, 255).endVertex();
 			bufferBuilder.pos(1.0D, (double)f19, 1.0D).color(0, 0, 0, 255).endVertex();
@@ -244,6 +229,93 @@ public class ACSkyRenderer extends IRenderHandler {
 		GlStateManager.enableTexture2D();
 		GlStateManager.depthMask(true);
 	}
+	
+	/*-----------------------------------------------
+	 * 
+	 *                     NEW
+	 *   TODO fix stars
+	 ------------------------------------------------*/
+	@SuppressWarnings("unused")
+	private void generateStars()
+    {
+		Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
 
+        if (this.starVBO != null)
+        {
+            this.starVBO.deleteGlBuffers();
+        }
 
+        if (this.starGLCallList >= 0)
+        {
+            GLAllocation.deleteDisplayLists(this.starGLCallList);
+            this.starGLCallList = -1;
+        }
+
+        if (this.vboEnabled)
+        {
+            this.starVBO = new VertexBuffer(this.vertexBufferFormat);
+            this.renderStars(bufferbuilder);
+            bufferbuilder.finishDrawing();
+            bufferbuilder.reset();
+            this.starVBO.bufferData(bufferbuilder.getByteBuffer());
+        }
+        else
+        {
+            this.starGLCallList = GLAllocation.generateDisplayLists(1);
+            GlStateManager.pushMatrix();
+            GlStateManager.glNewList(this.starGLCallList, 4864);
+            this.renderStars(bufferbuilder);
+            tessellator.draw();
+            GlStateManager.glEndList();
+            GlStateManager.popMatrix();
+        }
+    }
+	private void renderStars(BufferBuilder worldRendererIn)
+    {
+        Random random = new Random(10842L);
+        worldRendererIn.begin(7, DefaultVertexFormats.POSITION);
+
+        for (int i = 0; i < 1500; ++i)
+        {
+            double d0 = (double)(random.nextFloat() * 2.0F - 1.0F);
+            double d1 = (double)(random.nextFloat() * 2.0F - 1.0F);
+            double d2 = (double)(random.nextFloat() * 2.0F - 1.0F);
+            double d3 = (double)(0.15F + random.nextFloat() * 0.1F);
+            double d4 = d0 * d0 + d1 * d1 + d2 * d2;
+
+            if (d4 < 1.0D && d4 > 0.01D)
+            {
+                d4 = 1.0D / Math.sqrt(d4);
+                d0 = d0 * d4;
+                d1 = d1 * d4;
+                d2 = d2 * d4;
+                double d5 = d0 * 100.0D;
+                double d6 = d1 * 100.0D;
+                double d7 = d2 * 100.0D;
+                double d8 = Math.atan2(d0, d2);
+                double d9 = Math.sin(d8);
+                double d10 = Math.cos(d8);
+                double d11 = Math.atan2(Math.sqrt(d0 * d0 + d2 * d2), d1);
+                double d12 = Math.sin(d11);
+                double d13 = Math.cos(d11);
+                double d14 = random.nextDouble() * Math.PI * 2.0D;
+                double d15 = Math.sin(d14);
+                double d16 = Math.cos(d14);
+
+                for (int j = 0; j < 4; ++j)
+                {
+                    double d18 = (double)((j & 2) - 1) * d3;
+                    double d19 = (double)((j + 1 & 2) - 1) * d3;
+                    double d21 = d18 * d16 - d19 * d15;
+                    double d22 = d19 * d16 + d18 * d15;
+                    double d23 = d21 * d12 + 0.0D * d13;
+                    double d24 = 0.0D * d12 - d21 * d13;
+                    double d25 = d24 * d9 - d22 * d10;
+                    double d26 = d22 * d9 + d24 * d10;
+                    worldRendererIn.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+                }
+            }
+        }
+    }
 }

@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockBogg extends Block{
 
+	@SuppressWarnings("unused")
 	private Random rand;
 	protected BlockBogg() {
 		super(Material.GROUND);

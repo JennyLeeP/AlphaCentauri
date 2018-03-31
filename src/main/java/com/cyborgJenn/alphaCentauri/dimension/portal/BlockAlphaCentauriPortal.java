@@ -384,7 +384,7 @@ public class BlockAlphaCentauriPortal extends BlockBreakable{
 
 			for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
 			{
-				;
+				//;
 			}
 
 			int i = this.getDistanceUntilEdge(p_i45694_2_, this.leftDir) - 1;

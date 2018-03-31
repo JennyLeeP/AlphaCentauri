@@ -16,8 +16,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class WorldGenACLakes extends WorldGenerator 
 {
 	private final Block block;
-	private final Material FLUID = Material.WATER; //TODO add support for custom fluids in lakes.
-	private final Material LAVA = Material.LAVA;
+	private final Material water = Material.WATER; //TODO add support for custom fluids in lakes.
+	private final Material lava = Material.LAVA;
 	
 	public WorldGenACLakes(Block blockIn) 
 	{
@@ -29,7 +29,7 @@ public class WorldGenACLakes extends WorldGenerator
 	{
 		for (position = position.add(-8, 0, -8); position.getY() > 5 && worldIn.isAirBlock(position); position = position.down())
         {
-            ;
+            //;
         }
 
         if (position.getY() <= 4)
@@ -125,9 +125,9 @@ public class WorldGenACLakes extends WorldGenerator
                             {
                                 Biome biome = worldIn.getBiome(blockpos);
 
-                                if (biome.topBlock.getBlock() == Blocks.MYCELIUM)
+                                if (biome.topBlock.getBlock() == ModBlocks.FUNGUS)
                                 {
-                                    worldIn.setBlockState(blockpos, Blocks.MYCELIUM.getDefaultState(), 2);
+                                    worldIn.setBlockState(blockpos, ModBlocks.FUNGUS.getDefaultState(), 2);
                                 }
                                 else
                                 {
@@ -139,7 +139,7 @@ public class WorldGenACLakes extends WorldGenerator
                 }
             }
 
-            if (this.block.getDefaultState().getMaterial() == LAVA)
+            if (this.block.getDefaultState().getMaterial() == lava)
             {
                 for (int j2 = 0; j2 < 16; ++j2)
                 {
@@ -158,14 +158,12 @@ public class WorldGenACLakes extends WorldGenerator
                 }
             }
 
-            if (this.block.getDefaultState().getMaterial() == FLUID)
+            if (this.block.getDefaultState().getMaterial() == water)
             {
                 for (int k2 = 0; k2 < 16; ++k2)
                 {
                     for (int l3 = 0; l3 < 16; ++l3)
                     {
-                        int l4 = 4;
-
                         if (worldIn.canBlockFreezeWater(position.add(k2, 4, l3)))
                         {
                             worldIn.setBlockState(position.add(k2, 4, l3), Blocks.ICE.getDefaultState(), 2);

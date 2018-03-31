@@ -278,6 +278,7 @@ public class ModBlocks {
 	public static void addFireSpreadInfo() 
 	{
 		Blocks.FIRE.setFireInfo(ModBlocks.LEAVES1, 30, 60);
+		Blocks.FIRE.setFireInfo(ModBlocks.LEAVES2, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS1, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.PLANKS2, 30, 60);
 		Blocks.FIRE.setFireInfo(ModBlocks.LOG1, 30, 60);
