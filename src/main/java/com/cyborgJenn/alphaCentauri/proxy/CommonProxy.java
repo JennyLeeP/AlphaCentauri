@@ -53,6 +53,7 @@ public class CommonProxy {
 		ModBlocks.addFireSpreadInfo();
 		if (Loader.isModLoaded("largecaves"))
 		{
+			//TODO move to ModCompat.
 			AlphaCentauri.logger.info("Found LargeCaves - Sending BaseBlock in IMC");
 			FMLInterModComms.sendMessage("largecaves", "baseblock", new ItemStack(ModBlocks.ACSTONE));
 		}

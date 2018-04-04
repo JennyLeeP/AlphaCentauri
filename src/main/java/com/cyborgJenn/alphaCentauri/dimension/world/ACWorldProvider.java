@@ -36,7 +36,7 @@ public class ACWorldProvider extends WorldProvider{
 		this.setDimension(Config.dimensionID);
 		this.hasSkyLight = true;
 		/* Use this to test your Biome Creation. Make sure to switch back to our BiomeProvider before pushing to github.*/
-		this.biomeProvider = new BiomeProviderSingle(ModBiomes.PRIMEVAL_FOREST);
+		this.biomeProvider = new BiomeProviderSingle(ModBiomes.MANGROVES);
         //this.biomeProvider = new ACBiomeProvider(world.getSeed(), world.getWorldType(), world.getWorldInfo().getGeneratorOptions());
         this.generateLightBrightnessTable();
     }
@@ -55,14 +55,28 @@ public class ACWorldProvider extends WorldProvider{
 	{
 		return "AlphaCentauri";
 	}
+	/* ------------------------------------------------------------------------------*/
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IRenderHandler getSkyRenderer()
 	{
 		return new ACSkyRenderer();
 	}
-	
-	/* ------------------------------------------------------------------------------*/
+	@Override
+	public Vec3d getCloudColor(float partialTicks) {
+		// TODO Cloud Coloring?
+		return super.getCloudColor(partialTicks);
+	}
+	@Override
+	public float getStarBrightness(float par1) {
+		// TODO Brighter Stars.
+		return super.getStarBrightness(par1);
+	}
+	@Override
+	public IRenderHandler getCloudRenderer() {
+		// TODO Custom cloud renderer?
+		return super.getCloudRenderer();
+	}
 	/**
      * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
      */

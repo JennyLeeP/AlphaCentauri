@@ -3,10 +3,13 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.BlockACGravel;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
 import com.cyborgJenn.alphaCentauri.blocks.BlockVanillaOres;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACClay;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACFlowers;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACMinable;
+import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACSand;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenLargeMushroom;
 import com.cyborgJenn.alphaCentauri.utils.Config;
 
@@ -25,7 +28,7 @@ public class ACBiomeDecorator extends BiomeDecorator
 {
 	public ChunkGeneratorSettings chunkProviderSettings;
 
-	/*    Vanilla    */
+	/*     Vanilla Ores    */
 	public WorldGenerator dirt;
 	public WorldGenerator gravel;
 	public WorldGenerator iron;
@@ -72,17 +75,18 @@ public class ACBiomeDecorator extends BiomeDecorator
 
 	public WorldGenerator cursedNodesGen;
 	public int nodesPerChunk;
-
-	public WorldGenerator flowersGen;
-	public int flowersPerChunk;
-
-	public WorldGenerator methIceGen;
-	public int methIcePerChunk;
-
+	/**  The clay generator.  */
+    public WorldGenerator clayGen = new WorldGenACClay(4);
+    /**  The sand generator.  */
+    public WorldGenerator sandGen = new WorldGenACSand(ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.MEDIUM), 7);
+    /** The gravel generator. */
+    public WorldGenerator gravelGen = new WorldGenACSand(ModBlocks.GRAVEL.getDefaultState().withProperty(BlockACGravel.VARIANT, BlockACGravel.EnumType.DARK), 6);
+    /** The fLower generator  */
+    public WorldGenACFlowers flowerGen = new WorldGenACFlowers();
+    public int flowersPerChunk;
 	/*       Mushrooms         */
 	public int mushroomsPerChunk;
 	public int bigMushroomsPerChunk;
-	public WorldGenACFlowers flowerGen = new WorldGenACFlowers();
 	public WorldGenerator mushroomBlueGen = new WorldGenBush(ModBlocks.BLUE_MUSHROOM);
 	public WorldGenerator mushroomPurpleGen = new WorldGenBush(ModBlocks.PURPLE_MUSHROOM);
 	public WorldGenerator bigMushroomGen = new WorldGenLargeMushroom();
@@ -198,7 +202,13 @@ public class ACBiomeDecorator extends BiomeDecorator
 				int j6 = random.nextInt(16) + 8;
 				this.gravelGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
 			}
-
+		if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY))
+	        for (int i1 = 0; i1 < this.clayPerChunk; ++i1)
+	        {
+	            int l1 = random.nextInt(16) + 8;
+	            int i6 = random.nextInt(16) + 8;
+	            this.clayGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
+	        }
 		/* ------------------------------------
 		 *               Mushrooms    
 		 --------------------------------------*/

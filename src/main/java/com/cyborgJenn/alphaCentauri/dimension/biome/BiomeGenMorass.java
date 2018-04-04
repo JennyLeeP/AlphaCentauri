@@ -17,17 +17,10 @@ public class BiomeGenMorass extends ACBiome{
 	public BiomeGenMorass(Biome.BiomeProperties properties) {
 		super(properties);
         //this.rootHeight = -0.5F;
-        //this.heightVariation = 0.1F;
-      //  this.spawnableCreatureList.clear();
-       // this.spawnableMonsterList.clear();
-       // biomeDecorator = new ACBiomeDecorator(this);
-        //customBiomeDecorator = (ACBiomeDecorator)biomeDecorator;
-        
+        //this.heightVariation = 0.1F;   
         this.customBiomeDecorator.treesPerChunk = 7;
         this.customBiomeDecorator.nodesPerChunk = 1;
         this.customBiomeDecorator.grassPerChunk = 5;
-        this.customBiomeDecorator.methIcePerChunk = 4;
-
 	}
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {      

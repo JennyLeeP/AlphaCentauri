@@ -1,4 +1,4 @@
-package com.cyborgJenn.alphaCentauri.dimension.biome;
+package com.cyborgJenn.alphaCentauri.dimension.biome.layer;
 
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.ChunkGeneratorSettings;

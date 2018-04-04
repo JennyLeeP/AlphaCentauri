@@ -27,6 +27,7 @@ public class WorldGenMangroveTree extends WorldGenBaseTree {
 		super(true);
 		this.generate(worldIn, new Random(), pos);
 	}
+	public WorldGenMangroveTree() { super(true); }
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 	}

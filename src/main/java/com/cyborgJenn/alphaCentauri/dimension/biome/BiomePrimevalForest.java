@@ -9,15 +9,18 @@ import com.cyborgJenn.alphaCentauri.dimension.generators.trees.WorldGenSplotchTr
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class BiomeGenPrimevalForest extends ACBiome
+public class BiomePrimevalForest extends ACBiome
 {
 	private WorldGenSplotchTree SPLOTCH_TREE = new WorldGenSplotchTree();
-	public BiomeGenPrimevalForest(BiomeProperties biomeprops) 
+	public BiomePrimevalForest(BiomeProperties biomeprops) 
 	{
 		super(biomeprops);
 		this.customBiomeDecorator.treesPerChunk = 1;
 		this.customBiomeDecorator.grassPerChunk = 4;
 		this.customBiomeDecorator.flowersPerChunk = 10;
+		this.customBiomeDecorator.sandPatchesPerChunk = 3;
+		this.customBiomeDecorator.gravelPatchesPerChunk = 1;
+		this.customBiomeDecorator.clayPerChunk = 2;
 	}
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)

@@ -3,6 +3,7 @@ package com.cyborgJenn.alphaCentauri.dimension.biome;
 import java.util.Random;
 
 import com.cyborgJenn.alphaCentauri.blocks.BlockACSand;
+import com.cyborgJenn.alphaCentauri.blocks.BlockACSandStone;
 import com.cyborgJenn.alphaCentauri.blocks.ModBlocks;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenACDoublePlants;
 import com.cyborgJenn.alphaCentauri.dimension.generators.WorldGenBaseTree;
@@ -120,8 +121,8 @@ public class ACBiome extends Biome
                         else if (j1 < i - 7 - k)
                         {
                             iblockstate = AIR;
-                            iblockstate1 = STONE;
-                            chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+                            iblockstate1 = ModBlocks.ACSTONE.getDefaultState();
+                            chunkPrimerIn.setBlockState(i1, j1, l, ModBlocks.GRAVEL.getDefaultState());
                         }
                         else
                         {
@@ -133,10 +134,10 @@ public class ACBiome extends Biome
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
-                        if (j == 0 && iblockstate1.getBlock() == ModBlocks.SAND.getDefaultState().withProperty(BlockACSand.VARIANT, BlockACSand.EnumType.LIGHT) && k > 1)
+                        if (j == 0 && iblockstate1.getBlock() == ModBlocks.SAND && k > 1)
                         {
                             j = rand.nextInt(4) + Math.max(0, j1 - 63);
-                            //TODO iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
+                            iblockstate1 = iblockstate1.getValue(BlockACSand.VARIANT) == BlockACSand.EnumType.DARK ? ModBlocks.SANDSTONE.getDefaultState().withProperty(BlockACSandStone.VARIANT, BlockACSandStone.EnumType.DARK_NNORMAL) : ModBlocks.SANDSTONE.getDefaultState().withProperty(BlockACSandStone.VARIANT, BlockACSandStone.EnumType.LIGHT_NORMAL);
                         }
                     }
                 }

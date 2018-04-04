@@ -1,4 +1,6 @@
-package com.cyborgJenn.alphaCentauri.dimension.biome;
+package com.cyborgJenn.alphaCentauri.dimension.biome.layer;
+
+import com.cyborgJenn.alphaCentauri.dimension.biome.ModBiomes;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -6,8 +8,8 @@ import net.minecraft.world.gen.layer.IntCache;
 
 public class ACGenLayerBiomes extends GenLayer 
 {
-	protected Biome[] allowedBiomes = {ModBiomes.LUSHHILLS, ModBiomes.GREENRIVER, ModBiomes.BEACH, ModBiomes.PAINTED_CLIFFS,
-			ModBiomes.LIVINGPLATEAU, ModBiomes.Mangroves, ModBiomes.Morass, ModBiomes.PRIMEVAL_FOREST, ModBiomes.HOODOOVALLEY, ModBiomes.SPIRAL_FOREST,ModBiomes.DESERT};
+	protected Biome[] allowedBiomes = {ModBiomes.LUSHHILLS, ModBiomes.RIVER, ModBiomes.BEACH, ModBiomes.PAINTED_CLIFFS,
+			ModBiomes.LIVINGPLATEAU, ModBiomes.MANGROVES, ModBiomes.Morass, ModBiomes.PRIMEVAL_FOREST, ModBiomes.HOODOOVALLEY, ModBiomes.SPIRAL_FOREST,ModBiomes.DESERT};
 
 	public ACGenLayerBiomes(long seed, GenLayer genlayer) 	
 	{

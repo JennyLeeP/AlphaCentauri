@@ -16,13 +16,8 @@ public class BiomeFungalForest extends ACBiome
 	public BiomeFungalForest(BiomeProperties properties) 
 	{
 		super(properties);
-		this.spawnableCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableWaterCreatureList.clear();
         this.topBlock = ModBlocks.FUNGUS.getDefaultState();
         this.fillerBlock = ModBlocks.ACDIRT.getDefaultState();
-        this.customBiomeDecorator = new ACBiomeDecorator(this);
-        //biomeDecorator = (ACBiomeDecorator)biomeDecorator;
         this.customBiomeDecorator.mossPerChunk = 5;
         this.customBiomeDecorator.grassPerChunk = 3;
         this.customBiomeDecorator.mushroomsPerChunk = 3;
